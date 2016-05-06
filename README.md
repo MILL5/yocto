@@ -6,9 +6,9 @@ Welcome to Yocto! An extremely small, low on ceremony, high on value Inversion o
 
 Here are the core principals:
 
-* **High Quality** - Follow development best practices such as *preconditions*, *unit tests*, *code coverage*, etc.
-* **Less Is More** - Most projects do not need all the ceremony of large IoC frameworks, we prefer small framework, with a limited set of features.
-* **Deployment** - While not yet implemented, we will publish Yocto to NuGet for use by all.
+* **High Quality** - follow development best practices such as *preconditions*, *unit tests*, *code coverage*, etc.
+* **Less Is More** - most projects do not need all the ceremony of large IoC frameworks, we prefer small framework, with a limited set of features.
+* **Deployment** - while not yet implemented, we will publish Yocto to NuGet for use by all.
 * **Consumption** - built as a portable class library for use with Windows 8/10, Xamarin iOS/Android, ASP.NET Core, and .NET Framework.
 
 ### Key Features ###
