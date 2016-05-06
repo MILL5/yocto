@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Linq;
 using static mill5.yocto.Preconditions;
 // ReSharper disable InconsistentNaming
 
@@ -7,7 +9,9 @@ namespace mill5.yocto
 {
     public class Container
     {
-        private readonly ConcurrentBag<Container> _childContainers = new ConcurrentBag<Container>(); 
+        private readonly object _syncLock = new object();
+        private readonly List<Container> _children = new List<Container>(); 
+   
         private readonly ConcurrentDictionary<Type, IInstanceFactory> _factories =
             new ConcurrentDictionary<Type, IInstanceFactory>();
 
@@ -36,16 +40,30 @@ namespace mill5.yocto
                 return;
 
             Cleanup.SafeMethod(() =>
-            {
-                foreach (var c in _childContainers)
+            {    
+                _parent?.RemoveChild(this);
+            
+                List<Container> childrenToDispose;
+
+                lock (_syncLock)
+                {
+                    childrenToDispose = _children.ToList();
+                    _children.Clear();
+                }
+
+                foreach (var c in childrenToDispose)
                 {
                     ((IDisposable)c).Dispose();
                 }
 
-                foreach (var f in _factories.Values)
+                List<IInstanceFactory> factoriesToDispose = _factories.Values.ToList();
+
+                foreach (var f in factoriesToDispose)
                 {
                     (f as IDisposable)?.Dispose();
                 }
+
+                _factories.Clear();
             });
 
             _disposed = true;
@@ -59,8 +77,21 @@ namespace mill5.yocto
         public Container CreateChild()
         {
             var child = new ChildContainer(this);
-            _childContainers.Add(child);
+
+            lock (_syncLock)
+            {
+                _children.Add(child);
+            }
+
             return child;
+        }
+
+        private void RemoveChild(Container child)
+        {
+            lock (_syncLock)
+            {
+                _children.Remove(child);
+            }
         }
 
         public void Register<T,V>(Lifetime lifetime = Lifetime.MultiInstance) where V : T
