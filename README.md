@@ -2,7 +2,7 @@
 
 ### Overview ###
 
-Welcome to Yocto! An extremely small, low on ceremony, high on value Inversion of Control Container. Yocto has been designed to be very small, a few 100 lines of code, but extremely high qualify.
+Welcome to Yocto! An extremely small, low on ceremony, high on value Inversion of Control container. Yocto has been designed to be very small, a few 100 lines of code, but extremely high qualify.
 
 Here are the core principals:
 
