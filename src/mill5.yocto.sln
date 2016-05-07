@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mill5.yocto", "mill5.yocto.csproj", "{6EC25FF2-F6BA-48C7-8DA1-A7F877718EE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mill5.yocto.Tests", "mill5.yocto.Tests\mill5.yocto.Tests.csproj", "{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{22E9AB67-AF06-40F2-BB75-A90743F03A83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mill5.yocto.Tests", "Tests\mill5.yocto.Tests.csproj", "{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
