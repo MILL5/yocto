@@ -18,3 +18,11 @@ Here are the core principals:
 * Lifetime Management - includes singleton, multi-instance, extensible
 * Child Containers - support for child containers, automatic "bubbling" of resolving to parent containers, and automatic disposal of singleton objects which support IDisposable
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
+
+
+### Quality Bar ###
+
+* # of Lines - 147 yocto, 78 yocto.tests
+* Test Coverage - 95.1% overall, 94.8% yocto, 95.57% yocto.tests
+* Last Published May 7, 2016
+
