@@ -7,33 +7,25 @@ namespace mill5.yocto.Tests
     public class RegisterTests
     {
         [TestMethod]
-        public void RegisterDefault()
+        public void Register_MultiInstance()
         {
-            Container.Root.Register<IAnimal, Dog>();
+            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
 
             Container.Root.Resolve<IAnimal>();
         }
 
         [TestMethod]
-        public void RegisterMultiInstance()
+        public void Register_Singleton()
         {
-            Container.Root.Register<IAnimal, Dog>(Lifetime.MultiInstance);
+            Container.Root.Register<IAnimal, Dog>().AsSingleton();
 
             Container.Root.Resolve<IAnimal>();
         }
 
         [TestMethod]
-        public void RegisterSingleton()
+        public void Register_CheckMultiInstance()
         {
-            Container.Root.Register<IAnimal, Dog>(Lifetime.Singleton);
-
-            Container.Root.Resolve<IAnimal>();
-        }
-
-        [TestMethod]
-        public void CheckMultiInstance()
-        {
-            Container.Root.Register<IAnimal, Dog>(Lifetime.MultiInstance);
+            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
 
             var dog1 = Container.Root.Resolve<IAnimal>();
             var dog2 = Container.Root.Resolve<IAnimal>();
@@ -42,9 +34,9 @@ namespace mill5.yocto.Tests
         }
 
         [TestMethod]
-        public void CheckSingleton()
+        public void Register_CheckSingleton()
         {
-            Container.Root.Register<IAnimal, Dog>(Lifetime.Singleton);
+            Container.Root.Register<IAnimal, Dog>().AsSingleton();
 
             var dog1 = Container.Root.Resolve<IAnimal>();
             var dog2 = Container.Root.Resolve<IAnimal>();
@@ -54,34 +46,34 @@ namespace mill5.yocto.Tests
 
 
         [TestMethod]
-        public void RegisterTwiceAsMultiInstance()
+        public void Register_TwiceAsMultiInstance()
         {
-            Container.Root.Register<IAnimal, Dog>(Lifetime.MultiInstance);
-            Container.Root.Register<IAnimal, Dog>(Lifetime.MultiInstance);
+            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
+            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
         }
 
 
         [TestMethod]
-        public void RegisterTwiceAsSingleton()
+        public void Register_TwiceAsSingleton()
         {
-            Container.Root.Register<IAnimal, Dog>(Lifetime.Singleton);
-            Container.Root.Register<IAnimal, Dog>(Lifetime.Singleton);
+            Container.Root.Register<IAnimal, Dog>().AsSingleton();
+            Container.Root.Register<IAnimal, Dog>().AsSingleton();
         }
 
         [TestMethod, ExpectedException(typeof(Exception))]
-        public void MultipleConstructors()
+        public void Register_MultipleConstructors()
         {
             var mc1 = new MultipleConstructors();
             var mc2 = new MultipleConstructors(new Cat());
-            Container.Root.Register<IAnimal, Dog>(Lifetime.Singleton);
-            Container.Root.Register<MultipleConstructors, MultipleConstructors>();
+            Container.Root.Register<IAnimal, Dog>().AsSingleton();
+            Container.Root.Register<MultipleConstructors, MultipleConstructors>().AsMultiInstance();
         }
 
         [TestMethod, ExpectedException(typeof(Exception))]
-        public void PartialParameters()
+        public void Register_PartialParameters()
         {
             new PartialParameters(new Cat(), new UnknownParameter());
-            Container.Root.Register<PartialParameters, PartialParameters>();
+            Container.Root.Register<PartialParameters, PartialParameters>().AsSingleton();
         }
     }
 }

@@ -17,5 +17,13 @@ namespace mill5.yocto
             if (value == null)
                 throw new ArgumentNullException(paramName, $"{paramName} cannot be null.");
         }
+
+        public static void CheckIsNotNullEmptyOrWhitespace(string paramName, string value)
+        {
+            CheckParamName(paramName);
+
+            if (string.IsNullOrWhiteSpace(value))
+                throw new ArgumentNullException(paramName, $"{paramName} cannot be null, empty or whitespace.");
+        }
     }
 }

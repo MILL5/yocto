@@ -7,19 +7,19 @@ namespace mill5.yocto.Tests
     public class PreconditionTests
     {
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CheckIfNullSuccess()
+        public void Precondition_CheckIsNotNullFail()
         {
             Preconditions.CheckIsNotNull("paramName", null);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentException))]
-        public void CheckParamName()
+        public void Precondition_CheckIsNotNullParamName()
         {
             Preconditions.CheckIsNotNull("", null);
         }
 
         [TestMethod]
-        public void CheckSuccess()
+        public void Precondition_CheckIsNotNullSuccess()
         {
             Preconditions.CheckIsNotNull("paramName", new object());
         }

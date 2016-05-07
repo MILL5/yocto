@@ -7,10 +7,10 @@ namespace mill5.yocto.Tests
     public class FinalizerTests
     {
         [TestMethod]
-        public void ChildContainer()
+        public void Finalizer_ChildContainer()
         {
-            var c = Container.Root.CreateChild();
-            c.Register<DisposableResource, DisposableResource>(Lifetime.Singleton);
+            var c = Container.Root.GetChildContainer();
+            c.Register<DisposableResource, DisposableResource>().AsSingleton();
             c.Resolve<DisposableResource>();
         }
     }

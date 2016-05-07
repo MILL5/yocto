@@ -11,25 +11,25 @@ namespace mill5.yocto.Tests
     public class CleanupTests
     {
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        public void CleanupFail()
+        public void Cleanup_Fail()
         {
             Cleanup.SafeMethod(null);
         }
 
         [TestMethod]
-        public void CleanupSuccess()
+        public void Cleanup_Success()
         {
             Cleanup.SafeMethod(() => {  });
         }
 
         [TestMethod]
-        public void CleanupException()
+        public void Cleanup_Exception()
         {
             Cleanup.SafeMethod(() => { throw new Exception(); });
         }
 
         [TestMethod]
-        public void CleanupAggregateException()
+        public void Cleanup_AggregateException()
         {
             Cleanup.SafeMethod(() => { throw new AggregateException(); });
         }

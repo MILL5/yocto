@@ -40,11 +40,18 @@
   <ItemGroup>
     <Compile Include="ChildContainer.cs" />
     <Compile Include="Factories\Constructor.cs" />
+    <Compile Include="IContainer.cs" />
+    <Compile Include="Lifetimes.cs" />
+    <Compile Include="Lifetimes\ILifetimeFactory.cs" />
+    <Compile Include="Lifetimes\MultiInstanceLifetimeFactory.cs" />
+    <Compile Include="Lifetimes\SingletonLifetimeFactory.cs" />
+    <Compile Include="IRegistration.cs" />
+    <Compile Include="Registration\AsMultiInstanceExtension.cs" />
+    <Compile Include="Registration\AsSingletonExtension.cs" />
     <Compile Include="Utilities\Cleanup.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Factories\IInstanceFactory.cs" />
     <Compile Include="Factories\SingletonFactory.cs" />
-    <Compile Include="Lifetime.cs" />
     <Compile Include="Factories\MultiInstanceFactory.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -16,17 +16,17 @@ namespace mill5.yocto.Tests
         }
 
         [TestMethod, ExpectedException(typeof(Exception))]
-        public void RegisterShouldFailBecauseMissingParameter()
+        public void Parameter_RegisterShouldFailBecauseMissingParameter()
         {
             var catPerson = new CatPerson(new Cat());
-            Container.Root.Register<CatPerson, CatPerson>();
+            Container.Root.Register<CatPerson, CatPerson>().AsMultiInstance();
         }
 
         [TestMethod]
-        public void RegisterWithParameters()
+        public void Parameter_RegisterWithParameters()
         {
-            Container.Root.Register<IAnimal, Dog>();
-            Container.Root.Register<IPerson, Person>();
+            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
+            Container.Root.Register<IPerson, Person>().AsMultiInstance();
         }
     }
 }
