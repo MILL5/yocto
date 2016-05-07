@@ -19,11 +19,6 @@ namespace mill5.yocto.Tests
 
             _pet = pet;
         }
-
-        public override string ToString()
-        {
-            return $"{GetType().Name} has a {_pet.GetType().Name}";
-        }
     }
 
     public class CatPerson : Person

@@ -18,6 +18,7 @@ namespace mill5.yocto.Tests
         [TestMethod, ExpectedException(typeof(Exception))]
         public void RegisterShouldFailBecauseMissingParameter()
         {
+            var catPerson = new CatPerson(new Cat());
             Container.Root.Register<CatPerson, CatPerson>();
         }
 

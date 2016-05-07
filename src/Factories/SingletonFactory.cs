@@ -3,7 +3,7 @@ using static mill5.yocto.Preconditions;
 
 namespace mill5.yocto
 {
-    public class SingletonFactory : IInstanceFactory, IDisposable
+    internal class SingletonFactory : IInstanceFactory, IDisposable
     {
         private readonly object _instance;
         private bool _disposed;

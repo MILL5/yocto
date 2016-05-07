@@ -6,7 +6,6 @@ namespace mill5.yocto.Tests
     [TestClass]
     public class PreconditionTests
     {
-
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void CheckIfNullSuccess()
         {

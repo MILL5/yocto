@@ -13,8 +13,8 @@ Here are the core principals:
 
 ### Key Features ###
 
-* Simple API - Register, Resolve
+* Simple API - Register, Resolve, CanResolve
 * Constructor Injection - constructors are selected automatically
 * Lifetime Management - includes singleton and multi-instance
 * Child Containers - support for child containers, automatic "bubbling" of resolving to parent containers, and automatic disposal of singleton objects which support IDisposable
-* Eager Type Factory Resolution - resolve type factories (not type) needed to construct instances at registration time
+* Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time

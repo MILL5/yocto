@@ -35,8 +35,8 @@ namespace mill5.yocto.Tests
             var c = Container.Root.CreateChild();
             c.Register<DisposableResource, DisposableResource>(Lifetime.Singleton);
             c.Resolve<DisposableResource>();
-            (c as IDisposable)?.Dispose();
-            (c as IDisposable)?.Dispose();
+            c.Dispose();
+            c.Dispose();
         }
     }
 }

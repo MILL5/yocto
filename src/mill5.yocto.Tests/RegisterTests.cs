@@ -38,8 +38,7 @@ namespace mill5.yocto.Tests
             var dog1 = Container.Root.Resolve<IAnimal>();
             var dog2 = Container.Root.Resolve<IAnimal>();
 
-            if (dog1.Equals(dog2))
-                throw new Exception("Multiinstancing is broken.");
+            Assert.IsTrue(!dog1.Equals(dog2), "Multiinstancing is broken.");
         }
 
         [TestMethod]
@@ -50,8 +49,7 @@ namespace mill5.yocto.Tests
             var dog1 = Container.Root.Resolve<IAnimal>();
             var dog2 = Container.Root.Resolve<IAnimal>();
 
-            if (!dog1.Equals(dog2))
-                throw new Exception("Singleton instancing is broken.");
+            Assert.IsTrue(dog1.Equals(dog2), "Singleton instancing is broken.");
         }
 
 
@@ -73,6 +71,8 @@ namespace mill5.yocto.Tests
         [TestMethod, ExpectedException(typeof(Exception))]
         public void MultipleConstructors()
         {
+            var mc1 = new MultipleConstructors();
+            var mc2 = new MultipleConstructors(new Cat());
             Container.Root.Register<IAnimal, Dog>(Lifetime.Singleton);
             Container.Root.Register<MultipleConstructors, MultipleConstructors>();
         }
@@ -80,7 +80,7 @@ namespace mill5.yocto.Tests
         [TestMethod, ExpectedException(typeof(Exception))]
         public void PartialParameters()
         {
-            Container.Root.Register<IAnimal, Dog>(Lifetime.Singleton);
+            new PartialParameters(new Cat(), new UnknownParameter());
             Container.Root.Register<PartialParameters, PartialParameters>();
         }
     }

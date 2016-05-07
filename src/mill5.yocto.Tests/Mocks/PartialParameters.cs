@@ -4,6 +4,11 @@ namespace mill5.yocto.Tests
 {
     public interface IUnknownParameter
     {
+
+    }
+
+    public class UnknownParameter : IUnknownParameter
+    {
         
     }
 

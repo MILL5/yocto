@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using System.Dynamic;
 using System.Linq;
 using static mill5.yocto.Preconditions;
 // ReSharper disable InconsistentNaming
@@ -74,7 +75,7 @@ namespace mill5.yocto
 
         public static Container Root { get; } = new Container();
 
-        public Container CreateChild()
+        public ChildContainer CreateChild()
         {
             var child = new ChildContainer(this);
 
@@ -123,6 +124,18 @@ namespace mill5.yocto
             }
 
             throw new Exception("Interface type is not registered.");
+        }
+
+        public bool CanResolve<T>()
+        {
+            bool canResolve = _factories.ContainsKey(typeof (T));
+
+            if ((!canResolve) && (_parent != null))
+            {
+                return _parent.CanResolve<T>();
+            }
+
+            return canResolve;
         }
 
         internal bool TryGetFactory(Type interfaceType, out IInstanceFactory instanceFactory)

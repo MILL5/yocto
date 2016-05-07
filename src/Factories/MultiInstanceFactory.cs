@@ -3,9 +3,10 @@ using static mill5.yocto.Preconditions;
 
 namespace mill5.yocto
 {
-    public class MultiInstanceFactory : IInstanceFactory
+    internal class MultiInstanceFactory : IInstanceFactory
     {
         private readonly Constructor _constructor;
+
         public MultiInstanceFactory(Container container, Type implementationType)
         {
             CheckIsNotNull(nameof(container), container);
