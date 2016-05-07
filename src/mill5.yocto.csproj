@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="ChildContainer.cs" />
     <Compile Include="Factories\Constructor.cs" />
+    <Compile Include="IChildContainer.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="Lifetimes.cs" />
     <Compile Include="Lifetimes\ILifetimeFactory.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="IRegistration.cs" />
     <Compile Include="Registration\AsMultiInstanceExtension.cs" />
     <Compile Include="Registration\AsSingletonExtension.cs" />
+    <Compile Include="Registration\Instancing.cs" />
     <Compile Include="Utilities\Cleanup.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="Factories\IInstanceFactory.cs" />

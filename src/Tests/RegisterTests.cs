@@ -44,6 +44,16 @@ namespace mill5.yocto.Tests
             Assert.IsTrue(dog1.Equals(dog2), "Singleton instancing is broken.");
         }
 
+        [TestMethod]
+        public void Register_CheckRegisterSingleton()
+        {
+            Container.Root.RegisterSingleton<IAnimal, Dog>();
+
+            var dog1 = Container.Root.Resolve<IAnimal>();
+            var dog2 = Container.Root.Resolve<IAnimal>();
+
+            Assert.IsTrue(dog1.Equals(dog2), "Singleton instancing is broken.");
+        }
 
         [TestMethod]
         public void Register_TwiceAsMultiInstance()
@@ -58,6 +68,21 @@ namespace mill5.yocto.Tests
         {
             Container.Root.Register<IAnimal, Dog>().AsSingleton();
             Container.Root.Register<IAnimal, Dog>().AsSingleton();
+        }
+
+        [TestMethod]
+        public void Register_TwiceAsRegisterSingleton()
+        {
+            Container.Root.RegisterSingleton<IAnimal, Dog>();
+            Container.Root.RegisterSingleton<IAnimal, Dog>();
+        }
+
+
+        [TestMethod]
+        public void Register_TwiceRegister()
+        {
+            Container.Root.RegisterSingleton<IAnimal, Dog>();
+            Container.Root.Register<IAnimal, Dog>();
         }
 
         [TestMethod, ExpectedException(typeof(Exception))]

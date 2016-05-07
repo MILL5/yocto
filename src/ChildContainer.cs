@@ -2,7 +2,7 @@
 
 namespace mill5.yocto
 {
-    public class ChildContainer : Container, IDisposable
+    internal class ChildContainer : Container, IChildContainer
     {
         public ChildContainer(Container parent) : base(parent)
         {

@@ -55,6 +55,9 @@
   <ItemGroup>
     <Compile Include="ChildContainerTests.cs" />
     <Compile Include="FinalizerTests.cs" />
+    <Compile Include="LifetimeTests.cs" />
+    <Compile Include="Utilities\LoggingLifetimeFactory.cs" />
+    <Compile Include="Utilities\LoggingLifetimeScope.cs" />
     <Compile Include="Mocks\Animals.cs" />
     <Compile Include="CleanupTests.cs" />
     <Compile Include="Mocks\DisposableResource.cs" />

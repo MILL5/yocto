@@ -103,7 +103,7 @@ namespace mill5.yocto
 
         public static Container Root { get; } = new Container();
 
-        public ChildContainer GetChildContainer()
+        public IChildContainer GetChildContainer()
         {
             var child = new ChildContainer(this);
 
@@ -123,9 +123,14 @@ namespace mill5.yocto
             }
         }
 
+        public IRegistration RegisterSingleton<T, V>() where V : T
+        {
+            return new Registration<T, V>(this).AsSingleton();
+        }
+
         public IRegistration Register<T,V>() where V : T
         {
-            return new Registration<T, V>(this);
+            return new Registration<T, V>(this).AsMultiInstance();
         }
 
         public T Resolve<T>() where T : class
@@ -161,7 +166,7 @@ namespace mill5.yocto
             }
             else if (_parent != null)
             {
-                instance = _parent.Resolve<T>();
+                return _parent.TryResolve(out instance);
             }
 
             return (instance != null);
