@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+  "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
+  "authors": [ "MILL5, Richard Crane" ],
+  "tags": [ "IoC, " ],
+  "projectUrl": "https://github.com/MILL5/yocto",
+  "licenseUrl": "https://opensource.org/licenses/MS-PL",
+  "frameworks": {
+    "net451": { },
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23516",
+        "System.Collections": "4.0.11-beta-23516",
+        "System.Linq": "4.0.1-beta-23516",
+        "System.Runtime": "4.0.21-beta-23516",
+        "System.Threading": "4.0.11-beta-23516",
+        "System.Collections.Concurrent": "4.0.11-beta-23516"
+      }
+    }
+  },
+  "dependencies": {
+  }
+}
