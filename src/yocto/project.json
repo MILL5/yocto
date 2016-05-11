@@ -6,7 +6,7 @@
   "summary": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
   "authors": [ "MILL5" ],
   "owners": [ "MILL5" ],
-  "tags": [ "Ninject MvvmCross TinyIoc Autofac Unity Unity3 Unity35 EntLib EntLib6 IoC DI container dependency injection inversion control LOB WinRT Win8 Windows8 NetCore WindowsStoreApps WindowsStore WindowsPhone WindowsPhone8 wp8 Azure Xamarin MonoTouch MonoAndroid OSS" ],
+  "tags": [ "Ninject MvvmCross ioc small tiny nano TinyIoc Autofac Unity Unity3 Unity35 EntLib EntLib6 IoC DI container dependency injection inversion control LOB WinRT Win8 Windows8 NetCore WindowsStoreApps WindowsStore WindowsPhone WindowsPhone8 wp8 Azure Xamarin MonoTouch MonoAndroid OSS" ],
   "projectUrl": "https://github.com/MILL5/yocto",
   "licenseUrl": "https://opensource.org/licenses/MS-PL",
   "frameworks": {
