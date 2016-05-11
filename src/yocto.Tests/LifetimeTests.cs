@@ -1,8 +1,8 @@
 ﻿using System;
-using yocto.Tests;
+using yocto.tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace yocto
+namespace yocto.tests
 {
     [TestClass]
     public class LifetimeTests

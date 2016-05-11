@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace yocto.Tests
+namespace yocto.tests
 {
     public interface IUnknownParameter
     {

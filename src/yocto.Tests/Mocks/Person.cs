@@ -2,7 +2,7 @@
 using System.Runtime.Remoting.Contexts;
 using static yocto.Preconditions;
 
-namespace yocto.Tests
+namespace yocto.tests
 {
     public interface IPerson
     {

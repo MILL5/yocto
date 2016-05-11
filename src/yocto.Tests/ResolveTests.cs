@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace yocto.Tests
+namespace yocto.tests
 {
     [TestClass]
     public class ResolveTests

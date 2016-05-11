@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace yocto
+namespace yocto.tests
 {
     public class LoggingLifetimeFactory : ILifetimeFactory
     {
