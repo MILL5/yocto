@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace mill5.yocto
+namespace yocto
 {
     public class LoggingLifetimeFactory : ILifetimeFactory
     {

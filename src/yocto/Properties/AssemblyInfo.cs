@@ -1,9 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
 [assembly: AssemblyTitle("yocto")]
 [assembly: AssemblyDescription("A small, yet powerful Inversion of Control container")]
 [assembly: AssemblyConfiguration("")]
@@ -20,3 +17,6 @@ using System.Runtime.InteropServices;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("9cc27eba-de73-418b-8aba-597dab11c97f")]
+
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

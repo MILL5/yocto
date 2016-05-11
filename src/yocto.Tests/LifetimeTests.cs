@@ -2,7 +2,7 @@
 using yocto.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace mill5.yocto
+namespace yocto
 {
     [TestClass]
     public class LifetimeTests

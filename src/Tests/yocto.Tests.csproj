@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,9 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="yocto">
-      <HintPath>..\..\artifacts\bin\yocto\Debug\net451\yocto.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -73,6 +69,12 @@
     <Compile Include="RegisterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResolveTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\yocto\yocto.xproj">
+      <Project>{9cc27eba-de73-418b-8aba-597dab11c97f}</Project>
+      <Name>yocto</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

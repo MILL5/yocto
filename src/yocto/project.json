@@ -1,8 +1,9 @@
 {
   "version": "1.0.0-*",
   "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
-  "authors": [ "MILL5, Richard Crane" ],
-  "tags": [ "IoC, " ],
+  "authors": [ "Richard Crane" ],
+  "owners": [ "MILL5" ],
+  "tags": [ "Unity Unity3 Unity35 EntLib EntLib6 IoC DI container dependency injection inversion control LOB WinRT Win8 Windows8 NetCore WindowsStoreApps WindowsStore WindowsPhone WindowsPhone8 wp8 Azure Xamarin MonoTouch MonoAndroid OSS" ],
   "projectUrl": "https://github.com/MILL5/yocto",
   "licenseUrl": "https://opensource.org/licenses/MS-PL",
   "frameworks": {
