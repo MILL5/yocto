@@ -6,8 +6,8 @@
     <ProjectGuid>{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>mill5.yocto.Tests</RootNamespace>
-    <AssemblyName>mill5.yocto.Tests</AssemblyName>
+    <RootNamespace>yocto.Tests</RootNamespace>
+    <AssemblyName>yocto.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
