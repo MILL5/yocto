@@ -2,7 +2,7 @@
 
 ### Overview ###
 
-Welcome to Yocto! An extremely small, low on ceremony, high on value Inversion of Control container. Yocto has been designed to be very small, a few 100 lines of code, but extremely high qualify.
+Welcome to Yocto! An extremely small, low on ceremony, high on value Inversion of Control container. Yocto has been designed to be very small, a few 100 lines of code, but extremely high quality.
 
 Here are the core principals:
 
@@ -24,7 +24,7 @@ Here are the core principals:
 
 * # of Lines - 188 yocto, 121 yocto.tests
 * Test Coverage - 96.22% overall, 97.37% yocto, 94.82% yocto.tests
-* Best Practices - use of interfaces, preconditions, etc.
+* Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
 * Last Published May 7, 2016
 
 ### Why ###
