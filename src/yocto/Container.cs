@@ -8,7 +8,7 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
-    public class Container : IContainer
+    internal class Container : IContainer, IFactoryProvider
     {
         private readonly object _syncLock = new object();
         private readonly List<Container> _children = new List<Container>();
@@ -19,12 +19,7 @@ namespace yocto
         private readonly Container _parent;
 
         private bool _disposed;
-
-        static Container()
-        {
-            
-        }
-
+        
         private class Registration<T, V> : IRegistration
         {
             private readonly Container _container;
@@ -48,7 +43,7 @@ namespace yocto
             }
         }
 
-        private Container()
+        internal Container()
         {
         }
 
@@ -100,8 +95,6 @@ namespace yocto
             if (dispose)
                 GC.SuppressFinalize(this);
         }
-
-        public static Container Root { get; } = new Container();
 
         public IChildContainer GetChildContainer()
         {
@@ -155,6 +148,34 @@ namespace yocto
             return canResolve;
         }
 
+        public bool CanResolve(Type type)
+        {
+            CheckIsNotNull(nameof(type), type);
+
+            bool canResolve = _factories.ContainsKey(type);
+
+            if ((!canResolve) && (_parent != null))
+            {
+                return _parent.CanResolve(type);
+            }
+
+            return canResolve;
+        }
+
+        public bool TryGetFactory(Type type, out IInstanceFactory factory)
+        {
+            CheckIsNotNull(nameof(type), type);
+
+            bool found = _factories.TryGetValue(type, out factory);
+
+            if (!found)
+            {
+                found = _parent.TryGetFactory(type, out factory);
+            }
+
+            return found;
+        }
+
         public bool TryResolve<T>(out T instance) where T : class
         {
             IInstanceFactory instanceFactory;
@@ -170,16 +191,6 @@ namespace yocto
             }
 
             return (instance != null);
-        }
-
-        internal bool TryGetFactory(Type interfaceType, out IInstanceFactory instanceFactory)
-        {
-            return _factories.TryGetValue(interfaceType, out instanceFactory);
-        }
-
-        internal bool ContainsFactory(Type interfaceType)
-        {
-            return _factories.ContainsKey(interfaceType);
         }
 
         private void CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime)

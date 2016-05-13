@@ -1,25 +1,20 @@
-﻿using System.Reflection;
+﻿using System.Resources;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("yocto.Tests")]
-[assembly: AssemblyDescription("A small, yet powerful Inversion of Control container")]
+[assembly: AssemblyTitle("yocto.tests.common")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MILL5")]
-[assembly: AssemblyProduct("yocto.Tests")]
-[assembly: AssemblyCopyright("Copyright MILL5 © 2016")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("yocto.tests.common")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4e6abdd1-46e8-478d-9b18-e7d6b0ae09d4")]
+[assembly: NeutralResourcesLanguage("en")]
 
 // Version information for an assembly consists of the following four values:
 //

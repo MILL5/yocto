@@ -7,7 +7,7 @@ namespace yocto
     {
         private readonly Constructor _constructor;
 
-        public MultiInstanceFactory(Container container, Type implementationType)
+        public MultiInstanceFactory(IContainer container, Type implementationType)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);

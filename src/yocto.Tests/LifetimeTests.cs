@@ -12,7 +12,7 @@ namespace yocto.tests
         {
             using (new LoggingLifetimeScope(Instancing.SingletonInstance))
             {
-                var r = Container.Root.Register<IAnimal, Dog>();
+                var r = Application.Current.Register<IAnimal, Dog>();
 
                 r.AsMultiInstance();
                 r.AsSingleton();

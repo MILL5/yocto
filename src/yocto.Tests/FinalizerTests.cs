@@ -9,7 +9,7 @@ namespace yocto.tests
         [TestMethod]
         public void Finalizer_ChildContainer()
         {
-            var c = Container.Root.GetChildContainer();
+            var c = Application.Current.GetChildContainer();
             c.Register<DisposableResource, DisposableResource>().AsSingleton();
             c.Resolve<DisposableResource>();
         }

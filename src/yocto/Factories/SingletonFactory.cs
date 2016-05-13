@@ -8,7 +8,7 @@ namespace yocto
         private readonly object _instance;
         private bool _disposed;
 
-        public SingletonFactory(Container container, Type implementationType)
+        public SingletonFactory(IContainer container, Type implementationType)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);

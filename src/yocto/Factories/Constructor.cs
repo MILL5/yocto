@@ -6,12 +6,12 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
-    public class Constructor
+    internal class Constructor
     {
         private readonly ConstructorInfo _constructorInfo;
         private readonly List<IInstanceFactory> _paramFactories;
 
-        public Constructor(Container container, Type implementationType)
+        public Constructor(IContainer container, Type implementationType)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
@@ -49,16 +49,20 @@ namespace yocto
             return (T)_constructorInfo.Invoke(paramObjects.ToArray());
         }
 
-        private static List<IInstanceFactory> GetParameterFactories(Container container, ConstructorInfo constructor)
+        private static List<IInstanceFactory> GetParameterFactories(IContainer container, ConstructorInfo constructor)
         {
+            IFactoryProvider factoryProvider = container as IFactoryProvider;
+
+            CheckIsNotNull(nameof(factoryProvider), factoryProvider);
+
             var paramFactories = new List<IInstanceFactory>();
 
             foreach (var p in constructor.GetParameters())
             {
                 var paramType = p.ParameterType;
                 IInstanceFactory pf;
-
-                if (container.TryGetFactory(paramType, out pf))
+                
+                if (factoryProvider.TryGetFactory(paramType, out pf))
                 {
                     paramFactories.Add(pf);
                 }
@@ -69,8 +73,12 @@ namespace yocto
             return paramFactories;
         }
 
-        private static List<ConstructorInfo> GetValidConstructors(Container container, Type implementationType)
+        private static List<ConstructorInfo> GetValidConstructors(IContainer container, Type implementationType)
         {
+            IFactoryProvider factoryProvider = container as IFactoryProvider;
+
+            CheckIsNotNull(nameof(factoryProvider), factoryProvider);
+
             var typeInfo = implementationType.GetTypeInfo();
 
             var constructors = typeInfo.DeclaredConstructors;
@@ -83,7 +91,7 @@ namespace yocto
 
                 foreach (var p in c.GetParameters())
                 {
-                    if (!container.ContainsFactory(p.ParameterType))
+                    if (!factoryProvider.CanResolve(p.ParameterType))
                     {
                         canConstruct = false;
                         break;

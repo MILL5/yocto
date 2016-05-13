@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{788F400D-162D-43D2-8DC9-096412A3ACED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>yocto</RootNamespace>
+    <AssemblyName>yocto</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\yocto\Application.cs">
+      <Link>Application.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\AutoRegistration\AutoRegistration.cs">
+      <Link>AutoRegistration\AutoRegistration.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\ChildContainer.cs">
+      <Link>ChildContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Container.cs">
+      <Link>Container.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Factories\Constructor.cs">
+      <Link>Factories\Constructor.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Factories\IInstanceFactory.cs">
+      <Link>Factories\IInstanceFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Factories\MultiInstanceFactory.cs">
+      <Link>Factories\MultiInstanceFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Factories\SingletonFactory.cs">
+      <Link>Factories\SingletonFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\IChildContainer.cs">
+      <Link>IChildContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\IContainer.cs">
+      <Link>IContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\IFactoryProvider.cs">
+      <Link>IFactoryProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\IRegistration.cs">
+      <Link>IRegistration.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Lifetimes.cs">
+      <Link>Lifetimes.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Lifetimes\ILifetimeFactory.cs">
+      <Link>Lifetimes\ILifetimeFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Lifetimes\MultiInstanceLifetimeFactory.cs">
+      <Link>Lifetimes\MultiInstanceLifetimeFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Lifetimes\SingletonLifetimeFactory.cs">
+      <Link>Lifetimes\SingletonLifetimeFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Registration\AsMultiInstanceExtension.cs">
+      <Link>Registration\AsMultiInstanceExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Registration\AsSingletonExtension.cs">
+      <Link>Registration\AsSingletonExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Registration\Instancing.cs">
+      <Link>Registration\Instancing.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Utilities\Cleanup.cs">
+      <Link>Utilities\Cleanup.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Utilities\Preconditions.cs">
+      <Link>Utilities\Preconditions.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

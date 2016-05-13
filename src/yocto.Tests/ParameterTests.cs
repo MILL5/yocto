@@ -19,14 +19,14 @@ namespace yocto.tests
         public void Parameter_RegisterShouldFailBecauseMissingParameter()
         {
             new CatPerson(new Cat());
-            Container.Root.Register<CatPerson, CatPerson>().AsMultiInstance();
+            Application.Current.Register<CatPerson, CatPerson>().AsMultiInstance();
         }
 
         [TestMethod]
         public void Parameter_RegisterWithParameters()
         {
-            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
-            Container.Root.Register<IPerson, Person>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IPerson, Person>().AsMultiInstance();
         }
     }
 }

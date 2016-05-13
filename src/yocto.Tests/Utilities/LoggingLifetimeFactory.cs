@@ -17,7 +17,7 @@ namespace yocto.tests
             _innerLifetimeFactory = innerLifetimeFactory;
         }
 
-        public IInstanceFactory GetInstanceFactory(Container container, Type implementationType)
+        public IInstanceFactory GetInstanceFactory(IContainer container, Type implementationType)
         {
             var instanceFactory = _innerLifetimeFactory.GetInstanceFactory(container, implementationType);
 

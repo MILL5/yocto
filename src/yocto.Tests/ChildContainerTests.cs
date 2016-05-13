@@ -9,30 +9,30 @@ namespace yocto.tests
         [TestMethod]
         public void ChildContainer_CreateChild()
         {
-            var c = Container.Root.GetChildContainer();
+            var c = Application.Current.GetChildContainer();
         }
 
         [TestMethod]
         public void ChildContainer_RegisterInParentResolveInChild()
         {
-            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
-            Container.Root.Register<IPerson, Person>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IPerson, Person>().AsMultiInstance();
 
-            var c = Container.Root.GetChildContainer();
+            var c = Application.Current.GetChildContainer();
             c.Resolve<IPerson>();
         }
 
         [TestMethod]
         public void ChildContainer_RegisterInChild()
         {
-            var c = Container.Root.GetChildContainer();
+            var c = Application.Current.GetChildContainer();
             c.Register<IAnimal, Cat>();
         }
 
         [TestMethod]
         public void ChildContainer_DisposeOfSingletonResource()
         {
-            var c = Container.Root.GetChildContainer();
+            var c = Application.Current.GetChildContainer();
             c.Register<DisposableResource, DisposableResource>().AsSingleton();
             c.Resolve<DisposableResource>();
             c.Dispose();
@@ -42,9 +42,9 @@ namespace yocto.tests
         [TestMethod]
         public void ChildContainer_TryResolveSuccess()
         {
-            var c = Container.Root.GetChildContainer();
+            var c = Application.Current.GetChildContainer();
 
-            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
 
             IAnimal animal;
 
@@ -54,7 +54,7 @@ namespace yocto.tests
         [TestMethod]
         public void ChildContainer_TryResolveFailure()
         {
-            var c = Container.Root.GetChildContainer();
+            var c = Application.Current.GetChildContainer();
 
             IUnknownParameter unknown;
 

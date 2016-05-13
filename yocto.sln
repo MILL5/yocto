@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AB032B54-76F6-4BC4-AC6E-5542B41A64F2}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{143C3ED0-71D2-4E64-AA9F-B370CD157288}"
@@ -15,6 +17,10 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "yocto", "src\yocto\yocto.xproj", "{9CC27EBA-DE73-418B-8ABA-597DAB11C97F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yocto.tests", "src\yocto.tests\yocto.tests.csproj", "{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yocto.portable", "src\yocto.portable\yocto.portable.csproj", "{788F400D-162D-43D2-8DC9-096412A3ACED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yocto.tests.common", "src\yocto.tests.common\yocto.tests.common.csproj", "{F2D567D7-CF76-4D45-814C-FB145C333756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +36,14 @@ Global
 		{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{788F400D-162D-43D2-8DC9-096412A3ACED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788F400D-162D-43D2-8DC9-096412A3ACED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788F400D-162D-43D2-8DC9-096412A3ACED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788F400D-162D-43D2-8DC9-096412A3ACED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2D567D7-CF76-4D45-814C-FB145C333756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2D567D7-CF76-4D45-814C-FB145C333756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2D567D7-CF76-4D45-814C-FB145C333756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2D567D7-CF76-4D45-814C-FB145C333756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -37,5 +51,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9CC27EBA-DE73-418B-8ABA-597DAB11C97F} = {430853C9-CEEB-42FF-9F50-28FECF61322A}
 		{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4} = {143C3ED0-71D2-4E64-AA9F-B370CD157288}
+		{788F400D-162D-43D2-8DC9-096412A3ACED} = {430853C9-CEEB-42FF-9F50-28FECF61322A}
+		{F2D567D7-CF76-4D45-814C-FB145C333756} = {143C3ED0-71D2-4E64-AA9F-B370CD157288}
 	EndGlobalSection
 EndGlobal

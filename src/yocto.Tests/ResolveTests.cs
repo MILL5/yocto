@@ -9,28 +9,28 @@ namespace yocto.tests
         [TestMethod, ExpectedException(typeof(Exception))]
         public void Resolve_CannotResolve()
         {
-            Container.Root.Resolve<IUnknownParameter>();
+            Application.Current.Resolve<IUnknownParameter>();
         }
 
         [TestMethod]
         public void Resolve_CanCanResolve()
         {
-            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
 
-            Assert.IsTrue(Container.Root.CanResolve<IAnimal>());
+            Assert.IsTrue(Application.Current.CanResolve<IAnimal>());
         }
 
         [TestMethod]
         public void Resolve_CannotCanResolve()
         {
-            Assert.IsFalse(Container.Root.CanResolve<IUnknownParameter>());
+            Assert.IsFalse(Application.Current.CanResolve<IUnknownParameter>());
         }
 
         [TestMethod]
         public void Resolve_CanCanResolveFromParent()
         {
-            Container.Root.Register<IAnimal, Dog>().AsMultiInstance();
-            var c = Container.Root.GetChildContainer();
+            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            var c = Application.Current.GetChildContainer();
 
             Assert.IsTrue(c.CanResolve<IAnimal>());
 
@@ -40,7 +40,7 @@ namespace yocto.tests
         [TestMethod]
         public void Resolve_TryResolveSuccess()
         {
-            var c = Container.Root;
+            var c = Application.Current;
             
             c.Register<IAnimal, Dog>().AsMultiInstance();
 
@@ -52,7 +52,7 @@ namespace yocto.tests
         [TestMethod]
         public void Resolve_TryResolveFailure()
         {
-            var c = Container.Root;
+            var c = Application.Current;
             
             IUnknownParameter unknown;
 

@@ -6,8 +6,8 @@
     <ProjectGuid>{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>yocto.Tests</RootNamespace>
-    <AssemblyName>yocto.Tests</AssemblyName>
+    <RootNamespace>yocto.tests</RootNamespace>
+    <AssemblyName>yocto.tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -38,9 +38,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="yocto">
-      <HintPath>..\..\artifacts\bin\yocto\Debug\net451\yocto.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -57,22 +54,32 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AutoRegistrationTests.cs" />
     <Compile Include="ChildContainerTests.cs" />
+    <Compile Include="FactoryProviderTests.cs" />
     <Compile Include="FinalizerTests.cs" />
     <Compile Include="LifetimeTests.cs" />
     <Compile Include="Utilities\LoggingLifetimeFactory.cs" />
     <Compile Include="Utilities\LoggingLifetimeScope.cs" />
-    <Compile Include="Mocks\Animals.cs" />
     <Compile Include="CleanupTests.cs" />
     <Compile Include="Mocks\DisposableResource.cs" />
     <Compile Include="Mocks\MultipleConstructors.cs" />
     <Compile Include="Mocks\PartialParameters.cs" />
     <Compile Include="ParameterTests.cs" />
-    <Compile Include="Mocks\Person.cs" />
     <Compile Include="PreconditionTests.cs" />
     <Compile Include="RegisterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResolveTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\yocto.portable\yocto.portable.csproj">
+      <Project>{788f400d-162d-43d2-8dc9-096412a3aced}</Project>
+      <Name>yocto.portable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\yocto.tests.common\yocto.tests.common.csproj">
+      <Project>{f2d567d7-cf76-4d45-814c-fb145c333756}</Project>
+      <Name>yocto.tests.common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

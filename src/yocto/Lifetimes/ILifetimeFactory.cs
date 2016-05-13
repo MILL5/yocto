@@ -4,6 +4,6 @@ namespace yocto
 {
     public interface ILifetimeFactory
     {
-        IInstanceFactory GetInstanceFactory(Container container, Type implementationType);
+        IInstanceFactory GetInstanceFactory(IContainer container, Type implementationType);
     }
 }
