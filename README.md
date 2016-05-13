@@ -23,8 +23,8 @@ Here are the core principals:
 
 ### Quality Bar ###
 
-* # of Lines - 227 yocto, 159 yocto.tests
-* Test Coverage - 95.66% overall, 96.85% yocto, 94.19% yocto.tests
+* # of Lines - 227 yocto, 165 yocto.tests
+* Test Coverage - 95.79% overall, 96.89% yocto, 94.49% yocto.tests
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
 * Last Published May 13, 2016
 

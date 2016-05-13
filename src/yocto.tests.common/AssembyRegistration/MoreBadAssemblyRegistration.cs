@@ -4,7 +4,7 @@ namespace yocto.tests.morebad
 {
     public static class AssemblyRegistration
     {
-        public static void Initialize()
+        public static void Initialize(object notacontainer, object stillnotacontainer)
         {
         }
     }

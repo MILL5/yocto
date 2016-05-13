@@ -10,10 +10,6 @@ namespace yocto
 {
     public static class AutoRegistration
     {
-        static AutoRegistration()
-        {
-        }
-
         private static bool TryGetRegister(Assembly assembly, out List<MethodInfo> intializers)
         {
             const string AssemblyRegistration = "AssemblyRegistration";
@@ -35,11 +31,13 @@ namespace yocto
                 foreach (var member in members)
                 {
                     var mi = member as MethodInfo;
-                    if (mi != null)
+                    
+                    if ((mi != null) && (mi.IsPublic) && (mi.IsStatic))
                     {
                         var parameters = mi.GetParameters();
 
-                        if (parameters.Length == 1 && parameters[0].ParameterType == typeof(IContainer))
+                        if (parameters.Length == 1 &&
+                            parameters[0].ParameterType == typeof(IContainer))
                         {
                             intializers.Add(mi);
                             found = true;

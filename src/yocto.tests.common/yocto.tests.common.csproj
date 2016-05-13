@@ -42,9 +42,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animals.cs" />
-    <Compile Include="AssemblyRegistration.cs" />
-    <Compile Include="MoreBadAssemblyRegistration.cs" />
-    <Compile Include="BadAssemblyRegistration.cs" />
+    <Compile Include="AssembyRegistration\AssemblyRegistration.cs" />
+    <Compile Include="AssembyRegistration\MoreBadAssemblyRegistration.cs" />
+    <Compile Include="AssembyRegistration\YetEvenMoreBadAssemblyRegistration.cs" />
+    <Compile Include="AssembyRegistration\EvenMoreBadAssemblyRegistration.cs" />
+    <Compile Include="AssembyRegistration\BadAssemblyRegistration.cs" />
     <Compile Include="Birds.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

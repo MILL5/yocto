@@ -9,9 +9,11 @@ namespace yocto.tests
         [TestMethod]
         public void AssemblyRegistration()
         {
-            Cleanup.SafeMethod(() => yocto.tests.AssemblyRegistration.Initialize(null));
-            Cleanup.SafeMethod(() => yocto.tests.bad.AssemblyRegistration.Initialize(null));
-            Cleanup.SafeMethod(() => yocto.tests.morebad.AssemblyRegistration.Initialize());
+            Cleanup.SafeMethod(() => tests.AssemblyRegistration.Initialize(null));
+            Cleanup.SafeMethod(() => bad.AssemblyRegistration.Initialize(null));
+            Cleanup.SafeMethod(() => morebad.AssemblyRegistration.Initialize(null, null));
+            Cleanup.SafeMethod(() => evenmorebad.AssemblyRegistration.Init());
+            Cleanup.SafeMethod(() => new yetevenmorebad.AssemblyRegistration().Initialize(null));
         }
 
         [TestMethod]
