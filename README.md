@@ -19,13 +19,14 @@ Here are the core principals:
 * Child Containers - support for child containers, automatic "bubbling" of resolving to parent containers, and automatic disposal of singleton objects which support IDisposable
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
 * Type Safety - use of generics for type safety
+* Assembly Registration - new support for registering types at an assembly
 
 ### Quality Bar ###
 
-* # of Lines - 188 yocto, 121 yocto.tests
-* Test Coverage - 96.22% overall, 97.37% yocto, 94.82% yocto.tests
+* # of Lines - 227 yocto, 159 yocto.tests
+* Test Coverage - 95.66% overall, 96.85% yocto, 94.19% yocto.tests
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
-* Last Published May 7, 2016
+* Last Published May 13, 2016
 
 ### Why ###
 

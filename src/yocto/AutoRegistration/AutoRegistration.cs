@@ -39,7 +39,7 @@ namespace yocto
                     {
                         var parameters = mi.GetParameters();
 
-                        if ((parameters.Length == 1) && (parameters[0].ParameterType == typeof(IContainer)))
+                        if (parameters.Length == 1 && parameters[0].ParameterType == typeof(IContainer))
                         {
                             intializers.Add(mi);
                             found = true;

@@ -21,7 +21,25 @@ namespace yocto.tests
         {
             var c = Application.Current.GetChildContainer();
 
+            // Check that we get an exception
+            Exception rethrow = null;
+            try
+            {
+                c.Register<IPerson, MonkeyPerson>();
+            }
+            catch (Exception ex)
+            {
+                rethrow = ex;
+            }
+
+            // Make sure that we hit all lines of code
+            // related to this test
+            c.Register<IMonkey, Monkey>();
             c.Register<IPerson, MonkeyPerson>();
+            c.Resolve<IPerson>();
+
+            if (rethrow != null)
+                throw rethrow;
         }
     }
 }

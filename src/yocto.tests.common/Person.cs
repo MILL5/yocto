@@ -28,14 +28,6 @@ namespace yocto.tests
         }
     }
 
-    public class DogPerson : Person
-    {
-        public DogPerson(IDog dog) : base(dog)
-        {
-
-        }
-    }
-
     public class LizardPerson : Person
     {
         public LizardPerson(ILizard lizard) : base(lizard)

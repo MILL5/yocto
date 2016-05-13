@@ -54,11 +54,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AutoRegistrationTests.cs" />
+    <Compile Include="AssemblyRegistrationTests.cs" />
     <Compile Include="ChildContainerTests.cs" />
     <Compile Include="FactoryProviderTests.cs" />
     <Compile Include="FinalizerTests.cs" />
     <Compile Include="LifetimeTests.cs" />
+    <Compile Include="Mocks\CustomLifetime.cs" />
     <Compile Include="Utilities\LoggingLifetimeFactory.cs" />
     <Compile Include="Utilities\LoggingLifetimeScope.cs" />
     <Compile Include="CleanupTests.cs" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using yocto.tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace yocto.tests
@@ -19,6 +18,14 @@ namespace yocto.tests
 
                 r.AsMultiInstance().AsSingleton();
             }
+        }
+
+        [TestMethod, ExpectedException(typeof(NotSupportedException))]
+        public void Lifetime_UnknownLifetime()
+        {
+            var r = Application.Current.Register<IAnimal, Dog>();
+
+            r.AsCustomInstance();
         }
     }
 }
