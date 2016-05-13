@@ -8,6 +8,10 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
+    /// <summary>
+    /// We are not adding support for detecting multiple registration calls since
+    /// the container has last one wins approach for registration
+    /// </summary>
     public static class AutoRegistration
     {
         private static bool TryGetRegister(Assembly assembly, out List<MethodInfo> intializers)
