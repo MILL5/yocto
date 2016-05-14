@@ -45,12 +45,32 @@ We support generics when registering types.  Of course we use constraints to ens
 
 #### Constructor Injection ####
 
-There are two ways commonly used to construct an object using dependency injection, Constructor or Property injection.  With constructor injection you get a fully constructed object instance assuming the constructor completes and all dependencies were passed to the constructor.  With property injection you construct an object instance and then you set dependencies.  It is difficult to determine whether or not an object is fully constructed when you use property injection.  If you forget to register a dependency, then the object can get constructed and returned to the user without all its dependencies being set.  We call these partially constructed objects (aka zombie objects).
+There are two ways commonly used to construct an object using dependency injection, Constructor or Property injection.  With constructor injection you get a fully constructed object instance assuming the constructor completes and all dependencies were passed to the constructor.  With property injection you construct an object instance and then you set dependencies by calling property setters.  It is difficult to determine whether or not an object is fully constructed when you use property injection.  If you forget to register a dependency, then the object can get constructed and returned to the user without all its dependencies being set.  We call these partially constructed objects (aka zombie objects).  Of course you could enforce that all property setters must be resolved.  We feel that a constructor is the best place to do that.
 
+#### Eager Type Factory Resolution ####
 
+Many containers do not resolve types until resolution (i.e. Resolve).  This allows flexibility in type registration.  You can register your types without their dependencies being registered.  This can leads to problems when your application tries to resolve a type whose dependencies are missing.  Over the years, we have seen this problem occur many times in many different applications.  We want to avoid this issue.
 
-* Multipurpose IoC container that can be used for all types of applications such as desktop, web, and mobile.
-* Proper support for child containers including disposing of singleton objects that support IDisposable.
-* We do not like zombie objects aka partially constructed objects.  For this reason we do not support property injection.
+#### Extensible API ####
 
+This has always been a goal for us.  We realized very quickly that we could use our own extensibility to refactor yocto to be extremely simple, yet powerful.  For example, we extended our own framework with Singleton and PerThread instancing.  For us, that means the core framework has less code.  Also, we are dogfooding our own API and have fixed several bugs by doing so.
 
+#### Lifetime Management ####
+
+We support three lifetimes currently, Multi-instance, Singleton, and PerThread.  This combined with child containers gives you extensive lifetime management features.
+
+#### Fluent API ####
+
+We support a simple fluent-based API for registration with AsMultiInstance, AsSingleton, and AsInstancePerThread.  We definitely want to expand on this feature.
+
+#### Child Containers ####
+
+Many applications do not need child containers.  However, when they are needed, they are very useful.  A child container is great for supporting custom lifetime management within your application.  For example, an application that requires a user to login might have a custom lifetime from login to logout.  Registering all types used when a user is 'logged in' in a child container is a great way to do maintain your application.  It also helps with memory management when the user logs out of the application by simply disposing of your child container.  Lastly it helps with correctness.  Using a child container for a custom lifetime like "login-to-logout" prevents a developer from accessing state they should not after the user has logged out.
+
+#### Memory Management ####
+
+Singleton and PerThread instance lifetimes are managed by the container.  When the container is destroyed, so are the Singleton and PerThread instances.  Multi-instance support is "in the works".
+
+#### Assembly Registration ####
+
+Create a static class in your application called AssemblyRegistration with an Initialize method that takes a single parameter of IContainer.  This is a way for an assembly to be completely self contained, register implementations and manage lifetime sematics.
