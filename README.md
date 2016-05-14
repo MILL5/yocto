@@ -65,7 +65,7 @@ We support three lifetimes currently, Multi-instance, Singleton, and PerThread. 
 
 #### Fluent API ####
 
-We support a simple fluent-based API for registration with AsMultiInstance, AsSingleton, and AsInstancePerThread.  We definitely want to expand on this feature.
+We support a simple fluent-based API for registration with AsMultiple, AsSingleton, and AsPerThread.  We definitely want to expand on this feature.
 
 #### Child Containers ####
 
