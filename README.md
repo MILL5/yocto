@@ -14,13 +14,14 @@ Here are the core principals:
 ### Key Features ###
 
 * Simple API - Register, Resolve, CanResolve, TryResolve
-* Extensible API - RegisterSingleton, RegisterPerThread
+* Type Safety - use of generics for type safety
 * Constructor Injection - constructors are selected automatically
+* Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
+* Extensible API - RegisterSingleton, RegisterPerThread
 * Lifetime Management - includes singleton, multi-instance, per thread
 * Fluent API - AsSingleton, AsMultiInstance, AsInstancePerThread
-* Child Containers - support for child containers, automatic "bubbling" of resolving to parent containers, and automatic disposal of singleton objects which support IDisposable
-* Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
-* Type Safety - use of generics for type safety
+* Child Containers - support for child containers, automatic "bubbling" of resolution to parent containers
+* Memory Management - automatic disposal of singleton or per thread objects which support IDisposable when container is disposed
 * Assembly Registration - new support for registering types for an assembly
 
 ### Quality Bar ###
@@ -37,3 +38,8 @@ You might be asking "Why another IoC container?"  I have had the opportunity to 
 * Multipurpose IoC container that can be used for all types of applications such as desktop, web, and mobile.
 * Proper support for child containers including disposing of singleton objects that support IDisposable.
 * We do not like zombie objects aka partially constructed objects.  For this reason we do not support property injection.
+
+## Simple API ##
+
+We support Register, Resolve, CanResolve, and TryResolve as the basic operations supported by the container.  This allows the developer to do interface development by registering interface types, resolving concrete implementation types, and creating multiple instances of these types (aka multiinstance) when needed.
+
