@@ -65,11 +65,13 @@ We support a simple fluent-based API for registration with AsMultiInstance, AsSi
 
 #### Child Containers ####
 
-A child container is great for supporting custom lifetime management within your application.  For example, an application that requires a user to login has a custom lifetime from login to logout.  Creating a child container after a user logs in is a great way to keep track of types and instances.  Registering all types used when a user is 'logged in' in a child container is a great way to do maintain your application.  You get memory management once the user logs out by simply disposing of the child container.  Lastly it helps with correctness.  Using a child container for a custom lifetime like "login-to-logout" prevents a developer from accessing state they should not after the user has logged out.
+A child container is great for supporting custom lifetime management within your application.  For example, an application that requires a user to login has a custom lifetime from login to logout.  Creating a child container after a user logs in and disposing it after a user logs out is a great way to track types and instances.
 
 #### Memory Management ####
 
-Singleton and PerThread instance lifetimes are managed by the container.  When the container is destroyed, so are the Singleton and PerThread instances.  Multi-instance support is "in the works".
+Singleton and PerThread instance lifetimes are managed by the container.  When the container is destroyed, so are the Singleton and PerThread instances.  This includes calling Dispose() on those objects that support IDisposable.
+
+We now do instance tracking for Multi-instance objects that support IDisposable.  We use weak references to allow instances to be cleaned up.  However, if an instance was not cleaned up (i.e. resource leak) and the container is being disposed, we will call Dispose() for you.
 
 #### Assembly Registration ####
 
