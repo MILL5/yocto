@@ -65,7 +65,7 @@ We support a simple fluent-based API for registration with AsMultiInstance, AsSi
 
 #### Child Containers ####
 
-Many applications do not need child containers.  However, when they are needed, they are very useful.  A child container is great for supporting custom lifetime management within your application.  For example, an application that requires a user to login might have a custom lifetime from login to logout.  Registering all types used when a user is 'logged in' in a child container is a great way to do maintain your application.  It also helps with memory management when the user logs out of the application by simply disposing of your child container.  Lastly it helps with correctness.  Using a child container for a custom lifetime like "login-to-logout" prevents a developer from accessing state they should not after the user has logged out.
+A child container is great for supporting custom lifetime management within your application.  For example, an application that requires a user to login might have a custom lifetime from login to logout.  Registering all types used when a user is 'logged in' in a child container is a great way to do maintain your application.  It also helps with memory management when the user logs out of the application by simply disposing of your child container.  Lastly it helps with correctness.  Using a child container for a custom lifetime like "login-to-logout" prevents a developer from accessing state they should not after the user has logged out.
 
 #### Memory Management ####
 
