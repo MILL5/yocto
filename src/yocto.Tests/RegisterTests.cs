@@ -9,7 +9,7 @@ namespace yocto.tests
         [TestMethod]
         public void Register_MultiInstance()
         {
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
 
             Application.Current.Resolve<IAnimal>();
         }
@@ -25,7 +25,7 @@ namespace yocto.tests
         [TestMethod]
         public void Register_CheckMultiInstance()
         {
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
 
             var dog1 = Application.Current.Resolve<IAnimal>();
             var dog2 = Application.Current.Resolve<IAnimal>();
@@ -56,10 +56,10 @@ namespace yocto.tests
         }
 
         [TestMethod]
-        public void Register_TwiceAsMultiInstance()
+        public void Register_TwiceAsMultiple()
         {
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
         }
 
 
@@ -91,7 +91,7 @@ namespace yocto.tests
             var mc1 = new MultipleConstructors();
             var mc2 = new MultipleConstructors(new Cat());
             Application.Current.Register<IAnimal, Dog>().AsSingleton();
-            Application.Current.Register<MultipleConstructors, MultipleConstructors>().AsMultiInstance();
+            Application.Current.Register<MultipleConstructors, MultipleConstructors>().AsMultiple();
         }
 
         [TestMethod, ExpectedException(typeof(Exception))]

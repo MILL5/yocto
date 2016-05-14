@@ -15,8 +15,8 @@ namespace yocto.tests
         [TestMethod]
         public void ChildContainer_RegisterInParentResolveInChild()
         {
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
-            Application.Current.Register<IPerson, Person>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
+            Application.Current.Register<IPerson, Person>().AsMultiple();
 
             var c = Application.Current.GetChildContainer();
             c.Resolve<IPerson>();
@@ -44,7 +44,7 @@ namespace yocto.tests
         {
             var c = Application.Current.GetChildContainer();
 
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
 
             IAnimal animal;
 

@@ -4,14 +4,14 @@ namespace yocto
 {
     public static class AsInstancePerThreadExtension
     {
-        public static IRegistration AsInstancePerThread(this IRegistration registration)
+        public static IRegistration AsPerThread(this IRegistration registration)
         {
             return registration.Register(Instancing.InstancePerThread);
         }
 
         public static IRegistration RegisterPerThread<T, V>(this IContainer container) where V : T
         {
-            return container.Register<T, V>().AsInstancePerThread();
+            return container.Register<T, V>().AsPerThread();
         }
     }
 }

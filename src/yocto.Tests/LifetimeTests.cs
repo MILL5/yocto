@@ -13,10 +13,10 @@ namespace yocto.tests
             {
                 var r = Application.Current.Register<IAnimal, Dog>();
 
-                r.AsMultiInstance();
+                r.AsMultiple();
                 r.AsSingleton();
 
-                r.AsMultiInstance().AsSingleton();
+                r.AsMultiple().AsSingleton();
             }
         }
 

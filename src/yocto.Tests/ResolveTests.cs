@@ -15,7 +15,7 @@ namespace yocto.tests
         [TestMethod]
         public void Resolve_CanCanResolve()
         {
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
 
             Assert.IsTrue(Application.Current.CanResolve<IAnimal>());
         }
@@ -29,7 +29,7 @@ namespace yocto.tests
         [TestMethod]
         public void Resolve_CanCanResolveFromParent()
         {
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
             var c = Application.Current.GetChildContainer();
 
             Assert.IsTrue(c.CanResolve<IAnimal>());
@@ -42,7 +42,7 @@ namespace yocto.tests
         {
             var c = Application.Current;
             
-            c.Register<IAnimal, Dog>().AsMultiInstance();
+            c.Register<IAnimal, Dog>().AsMultiple();
 
             IAnimal animal;
 

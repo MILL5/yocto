@@ -25,8 +25,8 @@ namespace yocto.tests
         [TestMethod]
         public void Parameter_RegisterWithParameters()
         {
-            Application.Current.Register<IAnimal, Dog>().AsMultiInstance();
-            Application.Current.Register<IPerson, Person>().AsMultiInstance();
+            Application.Current.Register<IAnimal, Dog>().AsMultiple();
+            Application.Current.Register<IPerson, Person>().AsMultiple();
         }
     }
 }

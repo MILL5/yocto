@@ -33,8 +33,8 @@ namespace yocto.tests
                 var c = Application.Current.GetChildContainer();
 
                 c.Register<DisposableResource, DisposableResource>().AsSingleton();
-                c.Register<DisposableResource1, DisposableResource1>().AsInstancePerThread();
-                c.Register<DisposableResource2, DisposableResource2>().AsMultiInstance();
+                c.Register<DisposableResource1, DisposableResource1>().AsPerThread();
+                c.Register<DisposableResource2, DisposableResource2>().AsMultiple();
 
                 c.Resolve<DisposableResource>();
                 c.Resolve<DisposableResource1>();

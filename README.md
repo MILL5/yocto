@@ -19,7 +19,7 @@ Here are the core principals:
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
 * Extensible API - RegisterSingleton, RegisterPerThread
 * Lifetime Management - includes singleton, multi-instance, per thread
-* Fluent API - AsSingleton, AsMultiInstance, AsInstancePerThread
+* Fluent API - AsSingleton, AsMultiple, AsPerThread
 * Child Containers - support for child containers, automatic "bubbling" of resolution to parent containers
 * Memory Management - automatic disposal of singleton, per thread or leaked multiinstance objects which support IDisposable when container is disposed
 * Assembly Registration - new support for registering types for an assembly

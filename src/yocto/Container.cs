@@ -96,7 +96,7 @@ namespace yocto
 
         public IRegistration Register<T,V>() where V : T
         {
-            return new Registration<T, V>(this).AsMultiInstance();
+            return new Registration<T, V>(this).AsMultiple();
         }
 
         public T Resolve<T>() where T : class

@@ -14,7 +14,7 @@ namespace yocto.tests
         [TestMethod]
         public void PerThread_InstancePerThread()
         {
-            Application.Current.Register<IAnimal, Cat>().AsInstancePerThread();
+            Application.Current.Register<IAnimal, Cat>().AsPerThread();
             
             var t1 = new Thread(Initialize1);
             t1.IsBackground = true;
@@ -32,7 +32,7 @@ namespace yocto.tests
         [TestMethod]
         public void PerThread_OneInstanceOnSameThread()
         {
-            Application.Current.Register<IAnimal, Cat>().AsInstancePerThread();
+            Application.Current.Register<IAnimal, Cat>().AsPerThread();
 
             _animal1 = Application.Current.Resolve<IAnimal>();
             _animal2 = Application.Current.Resolve<IAnimal>();
