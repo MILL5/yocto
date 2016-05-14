@@ -7,11 +7,9 @@ Yocto has been designed to be an extremely small, only a few 100 lines of code, 
 Here are the core principals:
 
 * **High Quality** - follow development best practices such as *preconditions*, *unit tests*, *code coverage*, etc.
-* **Less Is More** - most projects do not need all the ceremony of large IoC frameworks, we prefer small framework, with a limited set of features.
+* **Less Is More** - most projects do not need all the ceremony of large IoC frameworks, we prefer small framework, with a limited set of features
 * **Deployment** - published to NuGet using the new cross-platform .NET Class Library project type
-* **Consumption** - built as a cross platform library using the new .NET Execution Environment (DNX) to target multiple platforms.
-
- portable class library for use with Windows 8/10, Xamarin iOS/Android, ASP.NET Core, and .NET Framework.
+* **Consumption** - built as a cross platform library using the new .NET Execution Environment (DNX) to target multiple platforms (i.e. Windows 8/10, Xamarin iOS/Android, ASP.NET Core, and .NET Framework)
 
 ### Key Features ###
 
