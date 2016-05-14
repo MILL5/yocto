@@ -9,7 +9,9 @@ Here are the core principals:
 * **High Quality** - follow development best practices such as *preconditions*, *unit tests*, *code coverage*, etc.
 * **Less Is More** - most projects do not need all the ceremony of large IoC frameworks, we prefer small framework, with a limited set of features.
 * **Deployment** - published to NuGet using the new cross-platform .NET Class Library project type
-* **Consumption** - built as a portable class library for use with Windows 8/10, Xamarin iOS/Android, ASP.NET Core, and .NET Framework.
+* **Consumption** - built as a cross platform library using the new .NET Execution Environment (DNX) to target multiple platforms.
+
+ portable class library for use with Windows 8/10, Xamarin iOS/Android, ASP.NET Core, and .NET Framework.
 
 ### Key Features ###
 
@@ -49,7 +51,7 @@ There are two ways commonly used to construct an object using dependency injecti
 
 With constructor injection you get a fully constructed object instance assuming the constructor completes and all dependencies were passed to the constructor.  THis can easily be enforced by an IoC container (i.e. yocto).
 
-With property injection you construct an object instance and then you set dependencies by calling property setters.  It is difficult to determine whether or not an object is fully constructed when you use property injection.  If you forget to register a dependency, then the object can get constructed and returned to the user without all of its dependencies being set.  We call these object "partially constructed objects" (aka zombie objects).  We like zombies when playing video games, but not in our code.
+With property injection you construct an object instance and then you set dependencies by calling property setters.  It is difficult to determine whether or not an object is fully constructed when you use property injection.  If you forget to register a dependency, then the object can get constructed and returned to the user without all of its dependencies being set.  We call these objects "partially constructed objects" (aka zombie objects).  We like zombies when playing video games, but not in our code.
 
 #### Eager Type Factory Resolution ####
 
