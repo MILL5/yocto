@@ -39,7 +39,7 @@ You might be asking "Why another IoC container?"  I have had the opportunity to 
 * Proper support for child containers including disposing of singleton objects that support IDisposable.
 * We do not like zombie objects aka partially constructed objects.  For this reason we do not support property injection.
 
-## Simple API ##
+#### Simple API ####
 
 We support Register, Resolve, CanResolve, and TryResolve as the basic operations supported by the container.  This allows the developer to do interface development by registering interface types, resolving concrete implementation types, and creating multiple instances of these types (aka multiinstance) when needed.
 
