@@ -8,7 +8,7 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
-    internal class Container : IContainer, IFactoryProvider
+    internal partial class Container : IContainer, IFactoryProvider
     {
         private readonly object _syncLock = new object();
         private readonly List<Container> _children = new List<Container>();
@@ -20,28 +20,6 @@ namespace yocto
 
         private bool _disposed;
         
-        private class Registration<T, V> : IRegistration
-        {
-            private readonly Container _container;
-
-            public Registration(Container container)
-            {
-                CheckIsNotNull(nameof(container), container);
-                _container = container;
-            }
-
-            public IRegistration Register(string lifetime)
-            {
-                CheckIsNotNullEmptyOrWhitespace(nameof(lifetime), lifetime);
-
-                var interfaceType = typeof (T);
-                var implementationType = typeof (V);
-
-                _container.CreateInstanceFactory(interfaceType, implementationType, lifetime);
-
-                return this;
-            }
-        }
 
         internal Container()
         {
@@ -116,11 +94,6 @@ namespace yocto
             }
         }
 
-        public IRegistration RegisterSingleton<T, V>() where V : T
-        {
-            return new Registration<T, V>(this).AsSingleton();
-        }
-
         public IRegistration Register<T,V>() where V : T
         {
             return new Registration<T, V>(this).AsMultiInstance();
@@ -193,17 +166,19 @@ namespace yocto
             return (instance != null);
         }
 
-        private void CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime)
+        private IInstanceFactory CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime)
         {
             var lifetimeFactory = Lifetimes.GetLifetimeFactory(lifetime);
             var instanceFactory = lifetimeFactory.GetInstanceFactory(this, implementationType);
 
-            _factories.AddOrUpdate(interfaceType, t => instanceFactory,
+            var result = _factories.AddOrUpdate(interfaceType, t => instanceFactory,
                 (t, of) =>
                 {
                     (of as IDisposable)?.Dispose();
                     return instanceFactory;
                 });
+
+            return result;
         }
     }
 }

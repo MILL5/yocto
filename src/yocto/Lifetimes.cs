@@ -15,7 +15,8 @@ namespace yocto
             var lifetimes = new Dictionary<string, ILifetimeFactory>
             {
                 {Instancing.MultiInstance, new MultiInstanceLifetimeFactory()},
-                {Instancing.SingletonInstance, new SingletonLifetimeFactory()}
+                {Instancing.SingletonInstance, new SingletonLifetimeFactory()},
+                {Instancing.InstancePerThread, new InstancePerThreadLifetimeFactory()}
             };
 
 

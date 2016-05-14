@@ -55,6 +55,9 @@
     <Compile Include="..\yocto\Factories\IInstanceFactory.cs">
       <Link>Factories\IInstanceFactory.cs</Link>
     </Compile>
+    <Compile Include="..\yocto\Factories\InstancePerThreadFactory.cs">
+      <Link>Factories\InstancePerThreadFactory.cs</Link>
+    </Compile>
     <Compile Include="..\yocto\Factories\MultiInstanceFactory.cs">
       <Link>Factories\MultiInstanceFactory.cs</Link>
     </Compile>
@@ -70,6 +73,18 @@
     <Compile Include="..\yocto\IFactoryProvider.cs">
       <Link>IFactoryProvider.cs</Link>
     </Compile>
+    <Compile Include="..\yocto\Instancing\AsInstancePerThreadExtension.cs">
+      <Link>Instancing\AsInstancePerThreadExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Instancing\AsMultiInstanceExtension.cs">
+      <Link>Instancing\AsMultiInstanceExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Instancing\AsSingletonExtension.cs">
+      <Link>Instancing\AsSingletonExtension.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Instancing\Instancing.cs">
+      <Link>Instancing\Instancing.cs</Link>
+    </Compile>
     <Compile Include="..\yocto\IRegistration.cs">
       <Link>IRegistration.cs</Link>
     </Compile>
@@ -78,6 +93,9 @@
     </Compile>
     <Compile Include="..\yocto\Lifetimes\ILifetimeFactory.cs">
       <Link>Lifetimes\ILifetimeFactory.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto\Lifetimes\InstancePerThreadLifetimeFactory.cs">
+      <Link>Lifetimes\InstancePerThreadLifetimeFactory.cs</Link>
     </Compile>
     <Compile Include="..\yocto\Lifetimes\MultiInstanceLifetimeFactory.cs">
       <Link>Lifetimes\MultiInstanceLifetimeFactory.cs</Link>
@@ -88,14 +106,8 @@
     <Compile Include="..\yocto\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\yocto\Registration\AsMultiInstanceExtension.cs">
-      <Link>Registration\AsMultiInstanceExtension.cs</Link>
-    </Compile>
-    <Compile Include="..\yocto\Registration\AsSingletonExtension.cs">
-      <Link>Registration\AsSingletonExtension.cs</Link>
-    </Compile>
-    <Compile Include="..\yocto\Registration\Instancing.cs">
-      <Link>Registration\Instancing.cs</Link>
+    <Compile Include="..\yocto\Registration\Registration.cs">
+      <Link>Registration\Registration.cs</Link>
     </Compile>
     <Compile Include="..\yocto\Utilities\Cleanup.cs">
       <Link>Utilities\Cleanup.cs</Link>

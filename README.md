@@ -13,18 +13,20 @@ Here are the core principals:
 
 ### Key Features ###
 
-* Simple API - Register, RegisterSingleton, Resolve, CanResolve, TryResolve
+* Simple API - Register, Resolve, CanResolve, TryResolve
+* Extensible API - RegisterSingleton, RegisterPerThread
 * Constructor Injection - constructors are selected automatically
-* Lifetime Management - includes singleton, multi-instance, and extensible
+* Lifetime Management - includes singleton, multi-instance, per thread
+* Fluent API - AsSingleton, AsMultiInstance, AsInstancePerThread
 * Child Containers - support for child containers, automatic "bubbling" of resolving to parent containers, and automatic disposal of singleton objects which support IDisposable
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
 * Type Safety - use of generics for type safety
-* Assembly Registration - new support for registering types at an assembly
+* Assembly Registration - new support for registering types for an assembly
 
 ### Quality Bar ###
 
-* # of Lines - 227 yocto, 165 yocto.tests
-* Test Coverage - 95.79% overall, 96.89% yocto, 94.49% yocto.tests
+* # of Lines - 255 yocto, 214 yocto.tests
+* Test Coverage - 96.59% overall, 97.51% yocto, 95.59% yocto.tests
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
 * Last Published May 13, 2016
 

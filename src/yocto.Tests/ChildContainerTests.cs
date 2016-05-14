@@ -60,5 +60,27 @@ namespace yocto.tests
 
             Assert.IsTrue(!c.TryResolve(out unknown));
         }
+
+        [TestMethod]
+        public void ChildContainer_Dispose()
+        {
+            var c = Application.Current.GetChildContainer();
+            c.Register<IDisposable, DisposableResource>();
+            c.Resolve<IDisposable>();
+            c.Dispose();
+            c.Dispose();
+
+            var c1 = Application.Current.GetChildContainer();
+            c1.RegisterSingleton<IDisposable, DisposableResource>();
+            c1.Resolve<IDisposable>();
+            c1.Dispose();
+            c1.Dispose();
+
+            var c2 = Application.Current.GetChildContainer();
+            c2.RegisterPerThread<IDisposable, DisposableResource>();
+            c2.Resolve<IDisposable>();
+            c2.Dispose();
+            c2.Dispose();
+        }
     }
 }

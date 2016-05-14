@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace yocto
+namespace yocto.tests
 {
-    public static class AsCustomInstanceExtension
+    public static class AsUnknownInstanceExtension
     {
         private const string UNKNOWN_LIFETIME = "Unknown";
 
-        public static IRegistration AsCustomInstance(this IRegistration registration)
+        public static IRegistration AsUnknownInstance(this IRegistration registration)
         {
             return registration.Register(UNKNOWN_LIFETIME);
         }

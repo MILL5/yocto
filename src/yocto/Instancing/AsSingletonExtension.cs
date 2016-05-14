@@ -8,5 +8,10 @@ namespace yocto
         {
             return registration.Register(Instancing.SingletonInstance);
         }
+
+        public static IRegistration RegisterSingleton<T, V>(this IContainer container) where V : T
+        {
+            return container.Register<T,V>().AsSingleton();
+        }
     }
 }

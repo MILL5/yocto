@@ -25,7 +25,15 @@ namespace yocto.tests
         {
             var r = Application.Current.Register<IAnimal, Dog>();
 
-            r.AsCustomInstance();
+            r.AsUnknownInstance();
+        }
+
+        [TestMethod]
+        public void Lifetime_CustomLifetime()
+        {
+            Application.Current.Register<IAnimal, Dog>().AsCustomInstance();
+
+            Application.Current.Resolve<IAnimal>();
         }
     }
 }

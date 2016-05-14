@@ -38,7 +38,7 @@ namespace yocto
             var parameters = _constructorInfo.GetParameters();
             var paramObjects = new List<object>(parameters.Length);
 
-            for (int i = 0; i< parameters.Length; i++)
+            for (int i = 0; i < parameters.Length; i++)
             {
                 var parameterFactory = _paramFactories[i];
                 var o = parameterFactory.Create<object>();
