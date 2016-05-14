@@ -21,7 +21,7 @@ Here are the core principals:
 * Lifetime Management - includes singleton, multi-instance, per thread
 * Fluent API - AsSingleton, AsMultiInstance, AsInstancePerThread
 * Child Containers - support for child containers, automatic "bubbling" of resolution to parent containers
-* Memory Management - automatic disposal of singleton or per thread objects which support IDisposable when container is disposed
+* Memory Management - automatic disposal of singleton, per thread or leaked multiinstance objects which support IDisposable when container is disposed
 * Assembly Registration - new support for registering types for an assembly
 
 ### Quality Bar ###
