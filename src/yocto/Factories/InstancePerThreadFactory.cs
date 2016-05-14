@@ -24,11 +24,6 @@ namespace yocto
             }, true);
         }
 
-        ~InstancePerThreadFactory()
-        {
-            Dispose(false);
-        }
-
         public T Create<T>() where T: class
         {
             return (T)_instance.Value;
@@ -36,11 +31,7 @@ namespace yocto
 
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-        private void Dispose(bool dispose)
-        {
+            // We do not support a finalizer because our owner has one
             if (_disposed)
                 return;
 
@@ -53,9 +44,6 @@ namespace yocto
             });
 
             _disposed = true;
-
-            if (dispose)
-                GC.SuppressFinalize(this);
         }
     }
 }

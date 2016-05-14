@@ -10,7 +10,7 @@ namespace yocto.tests
         }
     }
 
-    public class CustomInstanceFactory : IInstanceFactory
+    public class CustomInstanceFactory : IInstanceFactory, IDisposable
     {
         public CustomInstanceFactory(IContainer container, Type implementationType)
         {
@@ -19,6 +19,11 @@ namespace yocto.tests
         public T Create<T>() where T : class
         {
             return new Dog() as T;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 

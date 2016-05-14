@@ -26,10 +26,10 @@ Here are the core principals:
 
 ### Quality Bar ###
 
-* # of Lines - 255 yocto, 214 yocto.tests
-* Test Coverage - 96.59% overall, 97.51% yocto, 95.59% yocto.tests
+* # of Lines - 272
+* Code Coverage - 100%
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
-* Last Published May 13, 2016
+* Last Published May 14, 2016
 
 ### Why ###
 
@@ -65,7 +65,7 @@ We support a simple fluent-based API for registration with AsMultiInstance, AsSi
 
 #### Child Containers ####
 
-A child container is great for supporting custom lifetime management within your application.  For example, an application that requires a user to login might have a custom lifetime from login to logout.  Registering all types used when a user is 'logged in' in a child container is a great way to do maintain your application.  It also helps with memory management when the user logs out of the application by simply disposing of your child container.  Lastly it helps with correctness.  Using a child container for a custom lifetime like "login-to-logout" prevents a developer from accessing state they should not after the user has logged out.
+A child container is great for supporting custom lifetime management within your application.  For example, an application that requires a user to login has a custom lifetime from login to logout.  Creating a child container after a user logs in is a great way to keep track of types and instances.  Registering all types used when a user is 'logged in' in a child container is a great way to do maintain your application.  You get memory management once the user logs out by simply disposing of the child container.  Lastly it helps with correctness.  Using a child container for a custom lifetime like "login-to-logout" prevents a developer from accessing state they should not after the user has logged out.
 
 #### Memory Management ####
 

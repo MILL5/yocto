@@ -2,7 +2,7 @@
 
 namespace yocto
 {
-    public interface IInstanceFactory
+    public interface IInstanceFactory : IDisposable
     {
         T Create<T>() where T : class;
     }

@@ -62,7 +62,7 @@ namespace yocto
 
                 foreach (var f in factoriesToDispose)
                 {
-                    (f as IDisposable)?.Dispose();
+                    f.Dispose();
                 }
 
                 _factories.Clear();
@@ -174,7 +174,7 @@ namespace yocto
             var result = _factories.AddOrUpdate(interfaceType, t => instanceFactory,
                 (t, of) =>
                 {
-                    (of as IDisposable)?.Dispose();
+                    of.Dispose();
                     return instanceFactory;
                 });
 

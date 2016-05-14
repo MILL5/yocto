@@ -35,5 +35,33 @@ namespace yocto.tests
 
             Application.Current.Resolve<IAnimal>();
         }
+
+        [TestMethod]
+        public void Lifetime_Dispose()
+        {
+            ILifetimeFactory lf;
+            IInstanceFactory inf;
+
+            var c = Application.Current.GetChildContainer();
+
+            lf = Lifetimes.GetLifetimeFactory(Instancing.InstancePerThread);
+            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3));
+            inf.Create<DisposableResource3>();
+            inf.Dispose();
+            inf.Dispose();
+
+
+            lf = Lifetimes.GetLifetimeFactory(Instancing.SingletonInstance);
+            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3));
+            inf.Create<DisposableResource3>();
+            inf.Dispose();
+            inf.Dispose();
+
+            lf = Lifetimes.GetLifetimeFactory(Instancing.MultiInstance);
+            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3));
+            inf.Create<DisposableResource3>();
+            inf.Dispose();
+            inf.Dispose();
+        }
     }
 }

@@ -66,8 +66,6 @@ namespace yocto
                 {
                     paramFactories.Add(pf);
                 }
-                else
-                    throw new Exception($"Could not resolve factory for parameter type. [{paramType.Name}]");
             }
 
             return paramFactories;

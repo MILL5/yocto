@@ -16,11 +16,6 @@ namespace yocto
             _instance = (new Constructor(container, implementationType)).Create<object>();
         }
 
-        ~SingletonFactory()
-        {
-            Dispose(false);
-        }
-
         public T Create<T>() where T: class
         {
             return (T)_instance;
@@ -28,11 +23,7 @@ namespace yocto
 
         public void Dispose()
         {
-            Dispose(true);
-        }
-
-        private void Dispose(bool dispose)
-        {
+            // We do not support a finalizer because our owner has one
             if (_disposed)
                 return;
 
@@ -42,9 +33,6 @@ namespace yocto
             });
 
             _disposed = true;
-
-            if (dispose)
-                GC.SuppressFinalize(this);
         }
     }
 }
