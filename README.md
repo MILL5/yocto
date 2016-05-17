@@ -2,7 +2,7 @@
 
 ### Overview ###
 
-Yocto has been designed to be an extremely small, only a few 100 lines of code, extremely high quality and extremely in high value Inversion of Control container.
+Yocto has been designed to be an extremely small, only a few 100 lines of code, extremely high quality and extremely high in value Inversion of Control container.
 
 Here are the core principals:
 
