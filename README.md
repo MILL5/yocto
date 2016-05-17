@@ -47,7 +47,7 @@ We support generics when registering types.  Of course we use constraints to ens
 
 There are two ways commonly used to construct an object using dependency injection: Constructor or Property injection.  **Yocto only supports constructor injection.**
 
-With constructor injection you get a fully constructed object instance assuming the constructor completes and all dependencies were passed to the constructor.  THis can easily be enforced by an IoC container (i.e. yocto).
+With constructor injection you get a fully constructed object instance assuming the constructor completes and all dependencies were passed to the constructor.  This can easily be enforced by an IoC container (i.e. yocto).
 
 With property injection you construct an object instance and then you set dependencies by calling property setters.  It is difficult to determine whether or not an object is fully constructed when you use property injection.  If you forget to register a dependency, then the object can get constructed and returned to the user without all of its dependencies being set.  We call these objects "partially constructed objects" (aka zombie objects).  We like zombies when playing video games, but not in our code.
 
