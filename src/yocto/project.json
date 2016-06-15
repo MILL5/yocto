@@ -1,7 +1,7 @@
 {
   "title": "yocto",
   "copyright": "Copyright MILL5 © 2016",
-  "version": "1.4.0-*",
+  "version": "1.5.0-rc3",
   "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
   "summary": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
   "authors": [ "MILL5" ],
@@ -20,8 +20,7 @@
         "System.Threading": "4.0.11-beta-*",
         "System.Collections.Concurrent": "4.0.11-beta-*"
       }
-    },
-    "net45": { }
+    }
   },
   "dependencies": {
   }

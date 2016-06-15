@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.25302.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{430853C9-CEEB-42FF-9F50-28FECF61322A}"
 EndProject
@@ -21,6 +21,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yocto.portable", "src\yocto.portable\yocto.portable.csproj", "{788F400D-162D-43D2-8DC9-096412A3ACED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yocto.tests.common", "src\yocto.tests.common\yocto.tests.common.csproj", "{F2D567D7-CF76-4D45-814C-FB145C333756}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{0C7E421F-89DA-411E-B1CF-13FBEE2D2B52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yocto.ios", "src\yocto.ios\yocto.ios.csproj", "{EF4E4730-27B2-4280-ACA4-292DE93512A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yocto.net4", "src\yocto.net4\yocto.net4.csproj", "{52DFD039-7407-4E50-A812-1E0405C4DC9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sample.wpf", "src\sample.wpf\sample.wpf.csproj", "{BC6E27C1-7319-41F6-ABD5-0528F972367F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +52,18 @@ Global
 		{F2D567D7-CF76-4D45-814C-FB145C333756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2D567D7-CF76-4D45-814C-FB145C333756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2D567D7-CF76-4D45-814C-FB145C333756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF4E4730-27B2-4280-ACA4-292DE93512A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4E4730-27B2-4280-ACA4-292DE93512A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4E4730-27B2-4280-ACA4-292DE93512A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4E4730-27B2-4280-ACA4-292DE93512A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52DFD039-7407-4E50-A812-1E0405C4DC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DFD039-7407-4E50-A812-1E0405C4DC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DFD039-7407-4E50-A812-1E0405C4DC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DFD039-7407-4E50-A812-1E0405C4DC9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC6E27C1-7319-41F6-ABD5-0528F972367F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC6E27C1-7319-41F6-ABD5-0528F972367F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC6E27C1-7319-41F6-ABD5-0528F972367F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC6E27C1-7319-41F6-ABD5-0528F972367F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +73,8 @@ Global
 		{4E6ABDD1-46E8-478D-9B18-E7D6B0AE09D4} = {143C3ED0-71D2-4E64-AA9F-B370CD157288}
 		{788F400D-162D-43D2-8DC9-096412A3ACED} = {430853C9-CEEB-42FF-9F50-28FECF61322A}
 		{F2D567D7-CF76-4D45-814C-FB145C333756} = {143C3ED0-71D2-4E64-AA9F-B370CD157288}
+		{EF4E4730-27B2-4280-ACA4-292DE93512A5} = {430853C9-CEEB-42FF-9F50-28FECF61322A}
+		{52DFD039-7407-4E50-A812-1E0405C4DC9B} = {430853C9-CEEB-42FF-9F50-28FECF61322A}
+		{BC6E27C1-7319-41F6-ABD5-0528F972367F} = {0C7E421F-89DA-411E-B1CF-13FBEE2D2B52}
 	EndGlobalSection
 EndGlobal

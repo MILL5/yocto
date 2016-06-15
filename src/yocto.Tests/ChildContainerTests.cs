@@ -34,6 +34,9 @@ namespace yocto.tests
         {
             var c = Application.Current.GetChildContainer();
             c.Register<DisposableResource, DisposableResource>().AsSingleton();
+            c.Dispose();
+
+            c = Application.Current.GetChildContainer();
             c.Resolve<DisposableResource>();
             c.Dispose();
             c.Dispose();

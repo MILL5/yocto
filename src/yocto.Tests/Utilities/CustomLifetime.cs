@@ -10,7 +10,7 @@ namespace yocto.tests
         }
     }
 
-    public class CustomInstanceFactory : IInstanceFactory, IDisposable
+    public class CustomInstanceFactory : IInstanceFactory
     {
         public CustomInstanceFactory(IContainer container, Type implementationType)
         {

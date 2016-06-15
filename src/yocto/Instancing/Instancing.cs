@@ -7,5 +7,6 @@ namespace yocto
         public const string SingletonInstance = "SingletonInstance";
         public const string MultiInstance = "MultiInstance";
         public const string InstancePerThread = "InstancePerThread";
+        public const string PooledInstance = "PooledInstance";
     }
 }

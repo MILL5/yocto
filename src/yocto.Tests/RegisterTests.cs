@@ -94,6 +94,13 @@ namespace yocto.tests
             Application.Current.Register<MultipleConstructors, MultipleConstructors>().AsMultiple();
         }
 
+        [TestMethod]
+        public void Register_MultipleConstructors2()
+        {
+            var mc = new MultipleConstructors2();
+            Application.Current.Register<MultipleConstructors2, MultipleConstructors2>().AsMultiple();
+        }
+
         [TestMethod, ExpectedException(typeof(Exception))]
         public void Register_PartialParameters()
         {

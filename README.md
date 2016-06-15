@@ -29,7 +29,7 @@ Here are the core principals:
 * # of Lines - 272
 * Code Coverage - 100%
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
-* Last Published May 14, 2016
+* Last Published June 14, 2016
 
 ### Why ###
 

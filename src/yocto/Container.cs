@@ -166,19 +166,17 @@ namespace yocto
             return (instance != null);
         }
 
-        private IInstanceFactory CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime)
+        private void CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime)
         {
             var lifetimeFactory = Lifetimes.GetLifetimeFactory(lifetime);
             var instanceFactory = lifetimeFactory.GetInstanceFactory(this, implementationType);
 
-            var result = _factories.AddOrUpdate(interfaceType, t => instanceFactory,
+            _factories.AddOrUpdate(interfaceType, t => instanceFactory,
                 (t, of) =>
                 {
                     of.Dispose();
                     return instanceFactory;
                 });
-
-            return result;
         }
     }
 }

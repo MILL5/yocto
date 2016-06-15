@@ -14,4 +14,16 @@ namespace yocto.tests
             
         }
     }
+
+
+    public class MultipleConstructors2
+    {
+        static MultipleConstructors2()
+        {   
+        }
+
+        public MultipleConstructors2()
+        {
+        }
+    }
 }

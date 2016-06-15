@@ -4,12 +4,12 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
-    internal class InstancePerThreadFactory : IInstanceFactory, IDisposable
+    internal class InstancePerThreadFactory : IInstanceFactory
     {
-        private Constructor _constructor;
+        private readonly Constructor _constructor;
         private bool _disposed;
 
-        private ThreadLocal<object> _instance;
+        private readonly ThreadLocal<object> _instance;
         
         public InstancePerThreadFactory(IContainer container, Type implementationType)
         {
@@ -18,10 +18,7 @@ namespace yocto
 
             _constructor = new Constructor(container, implementationType);
 
-            _instance = new ThreadLocal<object>(() =>
-            {
-                return _constructor.Create<object>();
-            }, true);
+            _instance = new ThreadLocal<object>(() => _constructor.Create<object>(), true);
         }
 
         public T Create<T>() where T: class

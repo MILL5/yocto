@@ -5,17 +5,17 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
-    internal class MultiInstanceFactory : IInstanceFactory, IDisposable
+    internal class MultiInstanceFactory : IInstanceFactory
     {
-        private List<InstanceTracker> _trackers = new List<InstanceTracker>();
-        private object _syncLock = new object();
+        private readonly List<InstanceTracker> _trackers = new List<InstanceTracker>();
+        private readonly object _syncLock = new object();
         private bool _disposed;
 
         private readonly Constructor _constructor;
 
-        public class InstanceTracker : IDisposable
+        private class InstanceTracker : IDisposable
         {
-            private WeakReference _weakReference;
+            private readonly WeakReference _weakReference;
 
             public InstanceTracker(IDisposable disposable)
             {

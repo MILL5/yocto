@@ -62,6 +62,7 @@ namespace yocto
                 var paramType = p.ParameterType;
                 IInstanceFactory pf;
                 
+                // ReSharper disable once PossibleNullReferenceException
                 if (factoryProvider.TryGetFactory(paramType, out pf))
                 {
                     paramFactories.Add(pf);
@@ -73,9 +74,7 @@ namespace yocto
 
         private static List<ConstructorInfo> GetValidConstructors(IContainer container, Type implementationType)
         {
-            IFactoryProvider factoryProvider = container as IFactoryProvider;
-
-            CheckIsNotNull(nameof(factoryProvider), factoryProvider);
+            IFactoryProvider factoryProvider = (IFactoryProvider)container;
 
             var typeInfo = implementationType.GetTypeInfo();
 
@@ -85,6 +84,9 @@ namespace yocto
 
             foreach (var c in constructors)
             {
+                if (c.IsStatic)
+                    continue;
+
                 bool canConstruct = true;
 
                 foreach (var p in c.GetParameters())
