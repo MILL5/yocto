@@ -19,6 +19,7 @@ Here are the core principals:
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
 * Extensible API - RegisterSingleton, RegisterPerThread, RegisterPooled, RegisterEnumerable
 * Lifetime Management - includes singleton, multi-instance, per thread, and pooled (round-robin)
+* Singleton Support - we support both lazy and eager loading of singletons
 * Enumerable Support - Register multiple implementations and retrieve as enumerable
 * Fluent API - AsSingleton, AsMultiple, AsPerThread, AsPooled, AsEnumerable
 * Child Containers - support for child containers, automatic "bubbling" of resolution to parent containers
@@ -63,6 +64,10 @@ This has always been a goal for us.  We realized very quickly that we could use 
 #### Lifetime Management ####
 
 We support four lifetimes currently, Multi-instance, Singleton, PerThread, and Pooled.  This combined with child containers gives you extensive lifetime management features.
+
+#### Singleton Support ####
+
+We support both lazy and eager loading for singletons.  Lazy loading is the default.
 
 #### Enumerable Support ####
 
