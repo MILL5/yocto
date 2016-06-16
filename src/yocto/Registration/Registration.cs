@@ -36,7 +36,7 @@ namespace yocto
 
             public void Remove()
             {
-                Container.Remove<T>();    
+                ((Container)Container).Remove<T>();    
             }
 
             public object ResolveImplementation()

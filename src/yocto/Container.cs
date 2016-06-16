@@ -99,15 +99,10 @@ namespace yocto
             return new Registration<T, V>(this).AsMultiple();
         }
 
-        public void Remove<T>() where T : class
+        private void Remove<T>() where T : class
         {
             var interfaceType = typeof(T);
 
-            RemoveInternal(interfaceType);
-        }
-
-        private void RemoveInternal(Type interfaceType)
-        {
             IInstanceFactory instanceFactory;
 
             if (_factories.TryRemove(interfaceType, out instanceFactory))

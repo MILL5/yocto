@@ -19,17 +19,18 @@ Here are the core principals:
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
 * Extensible API - RegisterSingleton, RegisterPerThread, RegisterPooled
 * Lifetime Management - includes singleton, multi-instance, per thread, and pooled (round-robin)
-* Fluent API - AsSingleton, AsMultiple, AsPerThread, AsPooled
+* Enumerable Support - Register multiple implementations and retrieve as enumerable
+* Fluent API - AsSingleton, AsMultiple, AsPerThread, AsPooled, AsEnumerable
 * Child Containers - support for child containers, automatic "bubbling" of resolution to parent containers
 * Memory Management - automatic disposal of singleton, per thread or leaked multiinstance objects which support IDisposable when container is disposed
 * Assembly Registration - new support for registering types for an assembly
 
 ### Quality Bar ###
 
-* # of Lines - 330
+* # of Lines - 379
 * Code Coverage - 100%
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
-* Last Published June 15, 2016
+* Last Published June 16, 2016
 
 ### Why ###
 
@@ -63,9 +64,13 @@ This has always been a goal for us.  We realized very quickly that we could use 
 
 We support four lifetimes currently, Multi-instance, Singleton, PerThread, and Pooled.  This combined with child containers gives you extensive lifetime management features.
 
+#### Enumerable Support ####
+
+We now support registering multiple implementations for a common interface using RegisterEnumerable or AsEnumerable.  This was challenging since we strive to maintain complete type safety.  All implementations are registered as multi-instance; however, you can use the fluent-based APIs to change the registration of the implementation.  That means you can have an enumerable of implementations where each implementation has their own custom lifetimes.
+
 #### Fluent API ####
 
-We support a simple fluent-based API for registration with AsMultiple, AsSingleton, AsPerThread and AsPooled.  We definitely want to expand on this feature.
+We support a simple fluent-based API for registration with AsMultiple, AsSingleton, AsPerThread, AsPooled and AsEnumerable.  We definitely want to expand on this feature.
 
 #### Child Containers ####
 
@@ -76,6 +81,8 @@ A child container is great for supporting custom lifetime management within your
 Singleton, PerThread, and Pooled instance lifetimes are managed by the container.  When the container is destroyed, so are the Singleton, PerThread and Pooled instances.  This includes calling Dispose() on those objects that support IDisposable.
 
 We now do instance tracking for Multi-instance objects that support IDisposable.  We use weak references to allow instances to be cleaned up.  However, if an instance was not cleaned up (i.e. resource leak) and the container is being disposed, we will call Dispose() for you.
+
+Our internal Registration class now holds a weak reference to the container.  We expose references of the Registration class as IRegistration.  This interface is the core of our fluent-based API.  The consumer of IRegistration instances previously could keep a container instance alive.  That is no longer the case.  We take advantage of this with our Enumerable support.
 
 #### Assembly Registration ####
 
