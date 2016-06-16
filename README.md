@@ -17,7 +17,7 @@ Here are the core principals:
 * Type Safety - use of generics for type safety
 * Constructor Injection - constructors are selected automatically
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
-* Extensible API - RegisterSingleton, RegisterPerThread, RegisterPooled
+* Extensible API - RegisterSingleton, RegisterPerThread, RegisterPooled, RegisterEnumerable
 * Lifetime Management - includes singleton, multi-instance, per thread, and pooled (round-robin)
 * Enumerable Support - Register multiple implementations and retrieve as enumerable
 * Fluent API - AsSingleton, AsMultiple, AsPerThread, AsPooled, AsEnumerable
