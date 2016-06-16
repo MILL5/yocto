@@ -73,6 +73,9 @@
     <Compile Include="..\yocto\IFactoryProvider.cs">
       <Link>IFactoryProvider.cs</Link>
     </Compile>
+    <Compile Include="..\yocto\Instancing\AsEnumerableExtension.cs">
+      <Link>Instancing\AsEnumerableExtension.cs</Link>
+    </Compile>
     <Compile Include="..\yocto\Instancing\AsInstancePerThreadExtension.cs">
       <Link>Instancing\AsInstancePerThreadExtension.cs</Link>
     </Compile>
@@ -121,6 +124,7 @@
     <Compile Include="..\yocto\Utilities\Preconditions.cs">
       <Link>Utilities\Preconditions.cs</Link>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">

@@ -45,11 +45,6 @@ namespace yocto
             _constructor = new Constructor(container, implementationType);
         }
 
-        ~MultiInstanceFactory()
-        {
-            Dispose(false);
-        }
-
         public T Create<T>() where T: class
         {
             T instance = _constructor.Create<T>();
@@ -68,8 +63,9 @@ namespace yocto
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
-        
+
         private List<InstanceTracker> GetTrackers()
         {
             lock (_syncLock)
@@ -94,9 +90,6 @@ namespace yocto
             });
 
             _disposed = true;
-
-            if (dispose)
-                GC.SuppressFinalize(this);
         }
     }
 }

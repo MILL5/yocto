@@ -94,9 +94,26 @@ namespace yocto
             }
         }
 
-        public IRegistration Register<T,V>() where V : T
+        public IRegistration Register<T,V>() where V : class, T where T : class
         {
             return new Registration<T, V>(this).AsMultiple();
+        }
+
+        public void Remove<T>() where T : class
+        {
+            var interfaceType = typeof(T);
+
+            RemoveInternal(interfaceType);
+        }
+
+        private void RemoveInternal(Type interfaceType)
+        {
+            IInstanceFactory instanceFactory;
+
+            if (_factories.TryRemove(interfaceType, out instanceFactory))
+            {
+                instanceFactory.Dispose();
+            }
         }
 
         public T Resolve<T>() where T : class
@@ -166,10 +183,10 @@ namespace yocto
             return (instance != null);
         }
 
-        private void CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime)
+        private void CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime, params object[] values)
         {
             var lifetimeFactory = Lifetimes.GetLifetimeFactory(lifetime);
-            var instanceFactory = lifetimeFactory.GetInstanceFactory(this, implementationType);
+            var instanceFactory = lifetimeFactory.GetInstanceFactory(this, interfaceType, implementationType, values);
 
             _factories.AddOrUpdate(interfaceType, t => instanceFactory,
                 (t, of) =>

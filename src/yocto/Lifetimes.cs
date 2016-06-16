@@ -16,7 +16,8 @@ namespace yocto
             {
                 {Instancing.MultiInstance, new MultiInstanceLifetimeFactory()},
                 {Instancing.SingletonInstance, new SingletonLifetimeFactory()},
-                {Instancing.InstancePerThread, new InstancePerThreadLifetimeFactory()}
+                {Instancing.InstancePerThread, new InstancePerThreadLifetimeFactory()},
+                {Instancing.PooledInstance, new PooledLifetimeFactory()}
             };
 
 

@@ -4,7 +4,7 @@ namespace yocto.tests
 {
     public class CustomLifetimeFactory : ILifetimeFactory
     {
-        public IInstanceFactory GetInstanceFactory(IContainer container, Type implementationType)
+        public IInstanceFactory GetInstanceFactory(IContainer container, Type interfaceType, Type implementationType, params object[] values)
         {
             return new CustomInstanceFactory(container, implementationType);
         }

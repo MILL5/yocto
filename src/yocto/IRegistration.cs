@@ -4,6 +4,12 @@ namespace yocto
 {
     public interface IRegistration
     {
-        IRegistration Register(string lifetime);
+        IContainer Container { get; }
+        Type InterfaceType { get; }
+        Type ImplementationType { get; }
+        void Remove();
+        object ResolveImplementation();
+        IRegistration RegisterImplementation();
+        IRegistration Register(string lifetime, params object[] values);
     }
 }

@@ -5,19 +5,21 @@ namespace yocto
 {
     internal class SingletonFactory : IInstanceFactory
     {
-        private readonly Constructor _constructor;
         private readonly Lazy<object> _instance;
 
         private bool _disposed;
 
-        public SingletonFactory(IContainer container, Type implementationType)
+        public SingletonFactory(IContainer container, Type implementationType, bool eagerLoad)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
 
-            _constructor = (new Constructor(container, implementationType));
-
             _instance = new Lazy<object>(() => new Constructor(container, implementationType).Create<object>());
+
+            if (eagerLoad)
+            {
+                var o = _instance.Value;
+            }
         }
 
         public T Create<T>() where T: class

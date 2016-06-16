@@ -7,7 +7,7 @@ Yocto has been designed to be an extremely small, only a few 100 lines of code, 
 Here are the core principals:
 
 * **High Quality** - follow development best practices such as *preconditions*, *unit tests*, *code coverage*, etc.
-* **Less Is More** - most projects do not need all the ceremony of large IoC frameworks, we prefer small framework, with a limited set of features
+* **Less Is More** - most projects do not need all the ceremony of large IoC frameworks, we prefer a small framework, with a limited set of features
 * **Deployment** - published to NuGet using the new cross-platform .NET Class Library project type
 * **Consumption** - built as a cross platform library using the new .NET Execution Environment (DNX) to target multiple platforms (i.e. Windows 8/10, Xamarin iOS/Android, ASP.NET Core, and .NET Framework)
 
@@ -17,19 +17,19 @@ Here are the core principals:
 * Type Safety - use of generics for type safety
 * Constructor Injection - constructors are selected automatically
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
-* Extensible API - RegisterSingleton, RegisterPerThread
-* Lifetime Management - includes singleton, multi-instance, per thread
-* Fluent API - AsSingleton, AsMultiple, AsPerThread
+* Extensible API - RegisterSingleton, RegisterPerThread, RegisterPooled
+* Lifetime Management - includes singleton, multi-instance, per thread, and pooled (round-robin)
+* Fluent API - AsSingleton, AsMultiple, AsPerThread, AsPooled
 * Child Containers - support for child containers, automatic "bubbling" of resolution to parent containers
 * Memory Management - automatic disposal of singleton, per thread or leaked multiinstance objects which support IDisposable when container is disposed
 * Assembly Registration - new support for registering types for an assembly
 
 ### Quality Bar ###
 
-* # of Lines - 272
+* # of Lines - 330
 * Code Coverage - 100%
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
-* Last Published June 14, 2016
+* Last Published June 15, 2016
 
 ### Why ###
 
@@ -57,15 +57,15 @@ Many containers do not resolve types until resolution (i.e. Resolve).  This allo
 
 #### Extensible API ####
 
-This has always been a goal for us.  We realized very quickly that we could use our own extensibility to refactor yocto to be extremely simple, yet powerful.  For example, we extended our own framework with Singleton and PerThread instancing.  For us, that means the core framework has less code.  Also, we are dogfooding our own API and have fixed several bugs by doing so.
+This has always been a goal for us.  We realized very quickly that we could use our own extensibility to refactor yocto to be extremely simple, yet powerful.  For example, we extended our own framework with Singleton, PerThread, and Pooled instancing.  For us, that means the core framework has less code.  Also, we are dogfooding our own API and have fixed several bugs by doing so.
 
 #### Lifetime Management ####
 
-We support three lifetimes currently, Multi-instance, Singleton, and PerThread.  This combined with child containers gives you extensive lifetime management features.
+We support four lifetimes currently, Multi-instance, Singleton, PerThread, and Pooled.  This combined with child containers gives you extensive lifetime management features.
 
 #### Fluent API ####
 
-We support a simple fluent-based API for registration with AsMultiple, AsSingleton, and AsPerThread.  We definitely want to expand on this feature.
+We support a simple fluent-based API for registration with AsMultiple, AsSingleton, AsPerThread and AsPooled.  We definitely want to expand on this feature.
 
 #### Child Containers ####
 
@@ -73,7 +73,7 @@ A child container is great for supporting custom lifetime management within your
 
 #### Memory Management ####
 
-Singleton and PerThread instance lifetimes are managed by the container.  When the container is destroyed, so are the Singleton and PerThread instances.  This includes calling Dispose() on those objects that support IDisposable.
+Singleton, PerThread, and Pooled instance lifetimes are managed by the container.  When the container is destroyed, so are the Singleton, PerThread and Pooled instances.  This includes calling Dispose() on those objects that support IDisposable.
 
 We now do instance tracking for Multi-instance objects that support IDisposable.  We use weak references to allow instances to be cleaned up.  However, if an instance was not cleaned up (i.e. resource leak) and the container is being disposed, we will call Dispose() for you.
 

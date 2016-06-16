@@ -1,77 +1,82 @@
-﻿//using System;
-//using System.Collections.Immutable;
-//using System.Threading;
-//using static yocto.Preconditions;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using static yocto.Preconditions;
 
-//namespace yocto
-//{
-//    internal class PooledFactory : IInstanceFactory, IDisposable
-//    {
-//        private Constructor _constructor;
-//        private bool _disposed;
+namespace yocto
+{
+    internal class PooledFactory : IInstanceFactory
+    {
+        private readonly Constructor _constructor;
 
-//        private object _syncLock = new object();
-//        private ImmutableList<object> _instances = ImmutableList<object>.Empty;
-//        private int _poolSize = Math.Max(Environment.ProcessorCount * 4, 8);
-//        private int _current;
+        private readonly object _syncLock = new object();
+        private readonly List<object> _instances = new List<object>();
+        private readonly int _poolSize = Math.Max(Environment.ProcessorCount, 8);
+        private int _current = -1;
+        private bool _disposed;
 
-//        public PooledFactory(IContainer container, Type implementationType)
-//        {
-//            CheckIsNotNull(nameof(container), container);
-//            CheckIsNotNull(nameof(implementationType), implementationType);
+        public PooledFactory(IContainer container, Type implementationType)
+        {
+            CheckIsNotNull(nameof(container), container);
+            CheckIsNotNull(nameof(implementationType), implementationType);
 
-//            _constructor = new Constructor(container, implementationType);
-//        }
+            _constructor = new Constructor(container, implementationType);
+        }
 
-//        public int GetNextIndex()
-//        {
-//            int index = Interlocked.Increment(ref _current);
+        public PooledFactory(IContainer container, Type implementationType, int poolSize) : this(container, implementationType)
+        {
+            const int minimumPoolSize = 2;
 
-//            if (index == int.MinValue)
-//                index = Interlocked.Increment(ref _current);
+            CheckIsGreaterThanOrEqual(nameof(poolSize), poolSize, minimumPoolSize);
 
-//            return Math.Abs(index) % _poolSize;
-//        }
+            _poolSize = poolSize;
+        }
 
-//        public T Create<T>() where T : class
-//        {
-//            T pooledInstance;
-//            bool growPool = _instances.Count < _poolSize;
+        private int GetNextIndex()
+        {
+            int index = Interlocked.Increment(ref _current);
 
-//            if (growPool)
-//            {
-//                lock (_syncLock)
-//                {
-//                    growPool = _instances.Count < _poolSize;
+            if (index == _poolSize)
+                index = Interlocked.Exchange(ref _current, 0);
 
-//                    if (growPool)
-//                    {
-//                        pooledInstance = _constructor.Create<T>();
-//                        _instances = _instances.Add(pooledInstance);
-//                    }
-//                }
-//            }
+            int nextIndex = Math.Abs(index) % _poolSize;
 
-//            int index = GetNextIndex();
+            return nextIndex;
+        }
 
-//            return (T)_instances[index];
-//        }
+        public T Create<T>() where T : class
+        {
+            lock (_syncLock)
+            {
+                bool growPool = _instances.Count < _poolSize;
 
-//        public void Dispose()
-//        {
-//            // We do not support a finalizer because our owner has one
-//            if (_disposed)
-//                return;
+                if (growPool)
+                {
+                    var pooledInstance = _constructor.Create<T>();
+                    _instances.Add(pooledInstance);
+                }
+            }
 
-//            Cleanup.SafeMethod(() =>
-//            {
-//                foreach (var o in _instances)
-//                {
-//                    (o as IDisposable)?.Dispose();
-//                }
-//            });
+            int index = GetNextIndex();
 
-//            _disposed = true;
-//        }
-//    }
-//}
+            return (T)_instances[index];
+        }
+
+        public void Dispose()
+        {
+            if (_disposed)
+                return;
+
+            // We do not support a finalizer because our owner has one
+            Cleanup.SafeMethod(() =>
+            {
+                foreach (var o in _instances)
+                {
+                    (o as IDisposable)?.Dispose();
+                }
+            });
+
+            _disposed = true;
+        }
+    }
+}

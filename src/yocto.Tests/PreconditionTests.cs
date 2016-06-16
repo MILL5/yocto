@@ -7,6 +7,30 @@ namespace yocto.tests
     [TestClass]
     public class PreconditionTests
     {
+        [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Precondition_Check()
+        {
+            Preconditions.CheckIsGreaterThanOrEqual("paramName", 0, 2);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Precondition_CheckIfLengthLessThanOrEqual()
+        {
+            Preconditions.CheckIfLengthLessThanOrEqual("paramName", new object[] { "hello", 4 }, 1);
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void Precondition_CheckIfLengthLessThanOrEqualLessThanZero()
+        {
+            Preconditions.CheckIfLengthLessThanOrEqual("paramName", new object[] { "hello", 4 }, -5);
+        }
+
+        [TestMethod]
+        public void Precondition_CheckIfLengthLessThanOrEqualWithNull()
+        {
+            Preconditions.CheckIfLengthLessThanOrEqual("paramName", null, 5);
+        }
+
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Precondition_CheckIsNotNullFail()
         {

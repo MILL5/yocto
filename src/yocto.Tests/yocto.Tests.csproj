@@ -61,6 +61,8 @@
     <Compile Include="FinalizerTests.cs" />
     <Compile Include="LifetimeTests.cs" />
     <Compile Include="Mocks\CustomLifetime.cs" />
+    <Compile Include="Mocks\Pooled.cs" />
+    <Compile Include="PooledTests.cs" />
     <Compile Include="PerThreadTests.cs" />
     <Compile Include="Utilities\CustomLifetime.cs" />
     <Compile Include="Utilities\LoggingLifetimeFactory.cs" />

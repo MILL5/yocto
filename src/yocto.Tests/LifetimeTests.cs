@@ -45,20 +45,26 @@ namespace yocto.tests
             var c = Application.Current.GetChildContainer();
 
             lf = Lifetimes.GetLifetimeFactory(Instancing.InstancePerThread);
-            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3));
+            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3), typeof(DisposableResource3));
             inf.Create<DisposableResource3>();
             inf.Dispose();
             inf.Dispose();
 
 
             lf = Lifetimes.GetLifetimeFactory(Instancing.SingletonInstance);
-            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3));
+            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3), typeof(DisposableResource3));
             inf.Create<DisposableResource3>();
             inf.Dispose();
             inf.Dispose();
 
             lf = Lifetimes.GetLifetimeFactory(Instancing.MultiInstance);
-            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3));
+            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3), typeof(DisposableResource3));
+            inf.Create<DisposableResource3>();
+            inf.Dispose();
+            inf.Dispose();
+
+            lf = Lifetimes.GetLifetimeFactory(Instancing.PooledInstance);
+            inf = lf.GetInstanceFactory(c, typeof(DisposableResource3), typeof(DisposableResource3));
             inf.Create<DisposableResource3>();
             inf.Dispose();
             inf.Dispose();

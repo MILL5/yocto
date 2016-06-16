@@ -77,6 +77,12 @@ namespace yocto.tests
             Application.Current.RegisterSingleton<IAnimal, Dog>();
         }
 
+        [TestMethod]
+        public void Register_SingletonWithEagerLoad()
+        {
+            Application.Current.Register<IAnimal, Dog>().AsSingleton(true);
+        }
+
 
         [TestMethod]
         public void Register_TwiceRegister()

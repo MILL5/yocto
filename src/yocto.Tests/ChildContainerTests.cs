@@ -37,6 +37,21 @@ namespace yocto.tests
             c.Dispose();
 
             c = Application.Current.GetChildContainer();
+            c.Register<DisposableResource, DisposableResource>().AsSingleton();
+            c.Resolve<DisposableResource>();
+            c.Dispose();
+            c.Dispose();
+        }
+
+        [TestMethod]
+        public void ChildContainer_DisposeOfPooledResources()
+        {
+            var c = Application.Current.GetChildContainer();
+            c.Register<DisposableResource, DisposableResource>().AsPooled();
+            c.Dispose();
+
+            c = Application.Current.GetChildContainer();
+            c.Register<DisposableResource, DisposableResource>().AsPooled();
             c.Resolve<DisposableResource>();
             c.Dispose();
             c.Dispose();
