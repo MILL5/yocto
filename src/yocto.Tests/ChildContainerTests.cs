@@ -10,6 +10,7 @@ namespace yocto.tests
         public void ChildContainer_CreateChild()
         {
             var c = Application.Current.GetChildContainer();
+            c.Dispose();
         }
 
         [TestMethod]
@@ -20,6 +21,7 @@ namespace yocto.tests
 
             var c = Application.Current.GetChildContainer();
             c.Resolve<IPerson>();
+            c.Dispose();
         }
 
         [TestMethod]
@@ -27,6 +29,7 @@ namespace yocto.tests
         {
             var c = Application.Current.GetChildContainer();
             c.Register<IAnimal, Cat>();
+            c.Dispose();
         }
 
         [TestMethod]
@@ -99,6 +102,24 @@ namespace yocto.tests
             c2.Resolve<IDisposable>();
             c2.Dispose();
             c2.Dispose();
+        }
+
+        [TestMethod]
+        public void ChildContainer_NestedDispose()
+        {
+            var c = Application.Current.GetChildContainer();
+            c.Register<IDisposable, DisposableResource>();
+            c.Resolve<IDisposable>();
+
+            var c1 = c.GetChildContainer();
+            c1.RegisterSingleton<IDisposable, DisposableResource>();
+            c1.Resolve<IDisposable>();
+
+            var c2 = c1.GetChildContainer();
+            c2.RegisterPerThread<IDisposable, DisposableResource>();
+            c2.Resolve<IDisposable>();
+
+            c.Dispose();
         }
     }
 }

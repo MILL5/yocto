@@ -8,7 +8,7 @@ namespace yocto.tests
         private readonly string _lifetime;
         private readonly ILifetimeFactory _innerLifetimeFactory;
 
-        public LoggingLifetimeFactory(string lifetime, ILifetimeFactory innerLifetimeFactory)
+        public LoggingLifetimeFactory(string lifetime, ILifetimeFactory innerLifetimeFactory, Func<object> factory)
         {
             Preconditions.CheckIsNotNullEmptyOrWhitespace(nameof(lifetime), lifetime);
             Preconditions.CheckIsNotNull(nameof(innerLifetimeFactory), innerLifetimeFactory);

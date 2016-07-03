@@ -56,6 +56,18 @@ namespace yocto.tests
         }
 
         [TestMethod]
+        public void Register_CheckRegisterSingletonWithEager()
+        {
+            Application.Current.RegisterSingleton<IAnimal, Dog>(true);
+
+            var dog1 = Application.Current.Resolve<IAnimal>();
+            var dog2 = Application.Current.Resolve<IAnimal>();
+
+            Assert.IsTrue(dog1.Equals(dog2), "Singleton instancing is broken.");
+        }
+
+
+        [TestMethod]
         public void Register_TwiceAsMultiple()
         {
             Application.Current.Register<IAnimal, Dog>().AsMultiple();
@@ -83,6 +95,41 @@ namespace yocto.tests
             Application.Current.Register<IAnimal, Dog>().AsSingleton(true);
         }
 
+        [TestMethod]
+        public void Register_Instance()
+        {
+            IAnimal dog = new Dog();
+
+            var c = Application.Current;
+
+            c.Register(dog);
+
+            c.Resolve<IAnimal>();
+        }
+
+        [TestMethod, ExpectedException(typeof(Exception))]
+        public void Register_InstanceResolveInterface()
+        {
+            Clown clown = new Clown();
+
+            var c = Application.Current.GetChildContainer();
+            
+            c.Register(clown);
+
+            var d = c.Resolve<IFish>();
+        }
+
+        [TestMethod]
+        public void Register_InstanceResolveImplementation()
+        {
+            Dog dog = new Dog();
+
+            var c = Application.Current;
+
+            c.Register(dog);
+
+            var d = c.Resolve<Dog>();
+        }
 
         [TestMethod]
         public void Register_TwiceRegister()

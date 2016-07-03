@@ -25,13 +25,15 @@ Here are the core principals:
 * Child Containers - support for child containers, automatic "bubbling" of resolution to parent containers
 * Memory Management - automatic disposal of singleton, per thread or leaked multiinstance objects which support IDisposable when container is disposed
 * Assembly Registration - new support for registering types for an assembly
+* Custom Factories - **NEW** custom factories with Func<T>
+* Register Instances - **NEW** register an instance of your type
 
 ### Quality Bar ###
 
-* # of Lines - 379
+* # of Lines - 499
 * Code Coverage - 100%
 * Best Practices - use of interfaces, preconditions, unit tests, code coverage, etc.
-* Last Published June 16, 2016
+* Last Published July 2, 2016
 
 ### Why ###
 
@@ -92,3 +94,10 @@ Our internal Registration class now holds a weak reference to the container.  We
 #### Assembly Registration ####
 
 Create a static class in your application called AssemblyRegistration with an Initialize method that takes a single parameter of IContainer.  This is a way for an assembly to be completely self contained, register implementations and manage lifetime sematics.
+
+#### Custom Factories ####
+
+Now you can provide a custom factory using Func<T> with the Register, RegisterSingleton, RegisterPerThread, RegisterPooled methods.
+
+#### Register Instances ####
+Already have an instance and want to register that instance?  Now you can!  The Register method now accepts instances.

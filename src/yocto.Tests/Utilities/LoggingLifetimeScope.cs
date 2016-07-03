@@ -13,7 +13,7 @@ namespace yocto.tests
 
             _lifetime = lifetime;
             _previousLifetimeFactory = Lifetimes.GetLifetimeFactory(lifetime);
-            var loggingLifetimeFactory = new LoggingLifetimeFactory(lifetime, _previousLifetimeFactory);
+            var loggingLifetimeFactory = new LoggingLifetimeFactory(lifetime, _previousLifetimeFactory, null);
             Lifetimes.RegisterLifetimeFactory(lifetime, loggingLifetimeFactory);
         }
 

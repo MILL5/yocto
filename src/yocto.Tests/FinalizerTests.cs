@@ -26,6 +26,21 @@ namespace yocto.tests
                 throw _ex;
         }
 
+        [TestMethod]
+        public void Finalizer_ChildContainerWithFactory()
+        {
+            var t = new Thread(InitializeWithFactory);
+            t.IsBackground = true;
+            t.Start();
+
+            _wait.WaitOne();
+
+            GC.Collect();
+
+            if (_ex != null)
+                throw _ex;
+        }
+
         private void Initialize()
         {
             try
@@ -35,6 +50,34 @@ namespace yocto.tests
                 c.Register<DisposableResource, DisposableResource>().AsSingleton();
                 c.Register<DisposableResource1, DisposableResource1>().AsPerThread();
                 c.Register<DisposableResource2, DisposableResource2>().AsMultiple();
+
+                c.Resolve<DisposableResource>();
+                c.Resolve<DisposableResource1>();
+                c.Resolve<DisposableResource2>();
+                c = null;
+
+                throw new Exception("DO NOTHING");
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message != "DO NOTHING")
+                    _ex = ex;
+            }
+            finally
+            {
+                _wait.Set();
+            }
+        }
+
+        private void InitializeWithFactory()
+        {
+            try
+            {
+                var c = Application.Current.GetChildContainer();
+
+                c.Register(() => new DisposableResource()).AsSingleton();
+                c.Register(() => new DisposableResource1()).AsPerThread();
+                c.Register(() => new DisposableResource2()).AsMultiple();
 
                 c.Resolve<DisposableResource>();
                 c.Resolve<DisposableResource1>();

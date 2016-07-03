@@ -10,11 +10,18 @@ namespace yocto
     {
         private readonly ConstructorInfo _constructorInfo;
         private readonly List<IInstanceFactory> _paramFactories;
+        private readonly Func<object> _factory;
 
-        public Constructor(IContainer container, Type implementationType)
+        public Constructor(IContainer container, Type implementationType, Func<object> factory)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
+
+            if (factory != null)
+            {
+                _factory = factory;
+                return;
+            }
 
             var validConstructors = GetValidConstructors(container, implementationType);
 
@@ -35,6 +42,14 @@ namespace yocto
 
         public T Create<T>() where T : class
         {
+            if (_factory == null)
+                return CreateUsingConstructor<T>();
+
+            return (T) _factory();
+        }
+
+        private T CreateUsingConstructor<T>() where T : class
+        {
             var parameters = _constructorInfo.GetParameters();
             var paramObjects = new List<object>(parameters.Length);
 
@@ -46,7 +61,7 @@ namespace yocto
                 paramObjects.Add(o);
             }
 
-            return (T)_constructorInfo.Invoke(paramObjects.ToArray());
+            return (T) _constructorInfo.Invoke(paramObjects.ToArray());
         }
 
         private static List<IInstanceFactory> GetParameterFactories(IContainer container, ConstructorInfo constructor)
@@ -78,7 +93,7 @@ namespace yocto
 
             var typeInfo = implementationType.GetTypeInfo();
 
-            var constructors = typeInfo.DeclaredConstructors;
+            var constructors = typeInfo.DeclaredConstructors();
 
             var validConstructors = new List<ConstructorInfo>();
 

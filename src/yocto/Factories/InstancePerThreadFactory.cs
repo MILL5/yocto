@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using static yocto.Preconditions;
 
 namespace yocto
@@ -11,14 +10,14 @@ namespace yocto
 
         private readonly ThreadLocal<object> _instance;
         
-        public InstancePerThreadFactory(IContainer container, Type implementationType)
+        public InstancePerThreadFactory(IContainer container, Type implementationType, Func<object> factory)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
 
-            _constructor = new Constructor(container, implementationType);
+            _constructor = new Constructor(container, implementationType, factory);
 
-            _instance = new ThreadLocal<object>(() => _constructor.Create<object>(), true);
+            _instance = new ThreadLocal<object>(() => _constructor.Create<object>());
         }
 
         public T Create<T>() where T: class

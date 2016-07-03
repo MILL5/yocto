@@ -1,20 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{788F400D-162D-43D2-8DC9-096412A3ACED}</ProjectGuid>
+    <ProjectGuid>{927D958C-76C2-4812-9BA1-86AE0ACD9857}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>yocto</RootNamespace>
-    <AssemblyName>yocto</AssemblyName>
+    <RootNamespace>yocto.portable</RootNamespace>
+    <AssemblyName>yocto.portable</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -76,6 +77,9 @@
     <Compile Include="..\yocto\Instancing\AsEnumerableExtension.cs">
       <Link>Instancing\AsEnumerableExtension.cs</Link>
     </Compile>
+    <Compile Include="..\yocto\Instancing\AsInstanceExtension.cs">
+      <Link>Instancing\AsInstanceExtension.cs</Link>
+    </Compile>
     <Compile Include="..\yocto\Instancing\AsInstancePerThreadExtension.cs">
       <Link>Instancing\AsInstancePerThreadExtension.cs</Link>
     </Compile>
@@ -112,8 +116,8 @@
     <Compile Include="..\yocto\Lifetimes\SingletonLifetimeFactory.cs">
       <Link>Lifetimes\SingletonLifetimeFactory.cs</Link>
     </Compile>
-    <Compile Include="..\yocto\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
+    <Compile Include="..\yocto\Registration\FactoryRegistration.cs">
+      <Link>Registration\FactoryRegistration.cs</Link>
     </Compile>
     <Compile Include="..\yocto\Registration\Registration.cs">
       <Link>Registration\Registration.cs</Link>
@@ -124,17 +128,15 @@
     <Compile Include="..\yocto\Utilities\Preconditions.cs">
       <Link>Utilities\Preconditions.cs</Link>
     </Compile>
-    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Compatibility\AssemblyExtensions.cs" />
+    <Compile Include="Compatibility\ThreadLocal.cs" />
+    <Compile Include="Compatibility\TypeInfoExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Collections.Immutable.1.1.37\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <None Include="project.json" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

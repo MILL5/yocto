@@ -9,12 +9,12 @@ namespace yocto
 
         private bool _disposed;
 
-        public SingletonFactory(IContainer container, Type implementationType, bool eagerLoad)
+        public SingletonFactory(IContainer container, Type implementationType, bool eagerLoad, Func<object> factory)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
 
-            _instance = new Lazy<object>(() => new Constructor(container, implementationType).Create<object>());
+            _instance = new Lazy<object>(() => new Constructor(container, implementationType, factory).Create<object>());
 
             if (eagerLoad)
             {

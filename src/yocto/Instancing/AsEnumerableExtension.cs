@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using static yocto.Preconditions;
+
 namespace yocto
 {
     public static class AsEnumerableExtension
@@ -15,6 +17,8 @@ namespace yocto
 
         public static IRegistration AsEnumerable(this IRegistration registration)
         {
+            CheckIsNotNull(nameof(registration), registration);
+
             registration.Remove();
 
             var registrationForImplementation = registration.RegisterImplementation();
@@ -26,7 +30,21 @@ namespace yocto
 
         public static IRegistration RegisterEnumerable<T, V>(this IContainer container) where V : class, T where T : class
         {
+            CheckIsNotNull(nameof(container), container);
+
             var registrationForImplementation = container.Register<V, V>();
+
+            Register(container, typeof(T), registrationForImplementation);
+
+            return registrationForImplementation;
+        }
+
+        public static IRegistration RegisterEnumerable<T>(this IContainer container, Func<T> factory) where T : class
+        {
+            CheckIsNotNull(nameof(container), container);
+            CheckIsNotNull(nameof(factory), factory);
+
+            var registrationForImplementation = container.Register(factory);
 
             Register(container, typeof(T), registrationForImplementation);
 
@@ -53,6 +71,8 @@ namespace yocto
 
         public static IEnumerable<T> ResolveAll<T>(this IContainer container)
         {
+            CheckIsNotNull(nameof(container), container);
+
             var key = GetEnumerableKey(container, typeof(T));
             List<T> listOfT;
 

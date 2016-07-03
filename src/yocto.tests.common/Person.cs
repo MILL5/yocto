@@ -1,5 +1,4 @@
 ﻿using System;
-using static yocto.Preconditions;
 
 namespace yocto.tests
 {
@@ -14,8 +13,6 @@ namespace yocto.tests
 
         public Person(IAnimal pet)
         {
-            CheckIsNotNull(nameof(pet), pet);
-
             _pet = pet;
         }
     }

@@ -15,15 +15,15 @@ namespace yocto
         private int _current = -1;
         private bool _disposed;
 
-        public PooledFactory(IContainer container, Type implementationType)
+        public PooledFactory(IContainer container, Type implementationType, Func<object> factory)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
 
-            _constructor = new Constructor(container, implementationType);
+            _constructor = new Constructor(container, implementationType, factory);
         }
 
-        public PooledFactory(IContainer container, Type implementationType, int poolSize) : this(container, implementationType)
+        public PooledFactory(IContainer container, Type implementationType, int poolSize, Func<object> factory) : this(container, implementationType, factory)
         {
             const int minimumPoolSize = 2;
 

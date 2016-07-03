@@ -79,6 +79,9 @@
     <Compile Include="..\yocto\IFactoryProvider.cs">
       <Link>IFactoryProvider.cs</Link>
     </Compile>
+    <Compile Include="..\yocto\Instancing\AsInstanceExtension.cs">
+      <Link>Instancing\AsInstanceExtension.cs</Link>
+    </Compile>
     <Compile Include="..\yocto\Instancing\AsInstancePerThreadExtension.cs">
       <Link>Instancing\AsInstancePerThreadExtension.cs</Link>
     </Compile>
@@ -115,6 +118,9 @@
     <Compile Include="..\yocto\Lifetimes\SingletonLifetimeFactory.cs">
       <Link>Lifetimes\SingletonLifetimeFactory.cs</Link>
     </Compile>
+    <Compile Include="..\yocto\Registration\FactoryRegistration.cs">
+      <Link>Registration\FactoryRegistration.cs</Link>
+    </Compile>
     <Compile Include="..\yocto\Registration\Registration.cs">
       <Link>Registration\Registration.cs</Link>
     </Compile>
@@ -124,6 +130,9 @@
     <Compile Include="..\yocto\Utilities\Preconditions.cs">
       <Link>Utilities\Preconditions.cs</Link>
     </Compile>
+    <Compile Include="Compatibility\AssemblyExtensions.cs" />
+    <Compile Include="Compatibility\ThreadLocal.cs" />
+    <Compile Include="Compatibility\TypeInfoExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

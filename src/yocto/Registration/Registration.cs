@@ -14,6 +14,7 @@ namespace yocto
             public Registration(Container container)
             {
                 CheckIsNotNull(nameof(container), container);
+     
                 _container = new WeakReference<IContainer>(container);
             }
 
@@ -22,7 +23,7 @@ namespace yocto
                 get
                 {
                     IContainer c;
-
+                    
                     if (!_container.TryGetTarget(out c))
                         throw new Exception("Could not access container.");
 

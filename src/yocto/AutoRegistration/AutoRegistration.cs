@@ -22,7 +22,7 @@ namespace yocto
             bool found = false;
             intializers = new List<MethodInfo>();
 
-            var types = assembly.DefinedTypes;
+            var types = assembly.ExportedTypes();
 
             var registrationTypes = types.Where(t => t.Name.Equals(AssemblyRegistration));
 

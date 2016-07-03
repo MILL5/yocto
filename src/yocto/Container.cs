@@ -94,6 +94,13 @@ namespace yocto
             }
         }
 
+        public IRegistration Register<T>(Func<T> factory) where T : class
+        {
+            CheckIsNotNull(nameof(factory), factory);
+
+            return new FactoryRegistration<T>(this, factory).AsMultiple();
+        }
+
         public IRegistration Register<T,V>() where V : class, T where T : class
         {
             return new Registration<T, V>(this).AsMultiple();
@@ -180,8 +187,13 @@ namespace yocto
 
         private void CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime, params object[] values)
         {
+            CreateInstanceFactory(interfaceType, implementationType, lifetime, null, values);
+        }
+
+        private void CreateInstanceFactory(Type interfaceType, Type implementationType, string lifetime, Func<object> factory, params object[] values)
+        {
             var lifetimeFactory = Lifetimes.GetLifetimeFactory(lifetime);
-            var instanceFactory = lifetimeFactory.GetInstanceFactory(this, interfaceType, implementationType, values);
+            var instanceFactory = lifetimeFactory.GetInstanceFactory(this, interfaceType, implementationType, factory, values);
 
             _factories.AddOrUpdate(interfaceType, t => instanceFactory,
                 (t, of) =>

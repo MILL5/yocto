@@ -37,12 +37,12 @@ namespace yocto
             }
         }
 
-        public MultiInstanceFactory(IContainer container, Type implementationType)
+        public MultiInstanceFactory(IContainer container, Type implementationType, Func<object> factory)
         {
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
             
-            _constructor = new Constructor(container, implementationType);
+            _constructor = new Constructor(container, implementationType, factory);
         }
 
         public T Create<T>() where T: class

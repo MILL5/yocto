@@ -1,5 +1,4 @@
 ﻿using System;
-using static yocto.Preconditions;
 
 namespace yocto.tests
 {
@@ -7,8 +6,6 @@ namespace yocto.tests
     {
         public static void Initialize(IContainer container)
         {
-            CheckIsNotNull(nameof(container), container);
-
             container.Register<IBird, Eagle>();
         }
     }
