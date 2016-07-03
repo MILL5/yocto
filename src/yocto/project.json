@@ -21,11 +21,10 @@
   "title": "yocto",
   "authors": [ "MILL5", "Contributors" ],
   "copyright": "Copyright MILL5 � 2016",
-  "version": "1.5.2-alpha1",
+  "version": "1.5.2-alpha2",
   "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
 
   "dependencies": {
-    "NETStandard.Library": "1.6.0"
   },
 
   "frameworks": {
