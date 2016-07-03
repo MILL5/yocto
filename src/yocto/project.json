@@ -1,27 +1,30 @@
 {
+  "packOptions": {
+    "summary": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
+    "owners": [ "MILL5" ],
+    "requireLicenseAcceptance": false,
+    "projectUrl": "https://github.com/MILL5/yocto",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/MILL5/yocto"
+    },
+    "tags": [
+      "ioc",
+      "di",
+      "dependencyinjection"
+    ]
+  },
   "title": "yocto",
-  "copyright": "Copyright MILL5 © 2016",
-  "version": "1.5.1",
+  "copyright": "Copyright MILL5 ï¿½ 2016",
+  "version": "1.5.2-alpha1",
   "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
-  "summary": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
-  "authors": [ "MILL5" ],
-  "owners": [ "MILL5" ],
-  "tags": [ "Ninject MvvmCross ioc small tiny nano TinyIoc Autofac Unity Unity3 Unity35 EntLib EntLib6 IoC DI container dependency injection inversion control LOB WinRT Win8 Windows8 NetCore WindowsStoreApps WindowsStore WindowsPhone WindowsPhone8 wp8 Azure Xamarin MonoTouch MonoAndroid OSS" ],
-  "projectUrl": "https://github.com/MILL5/yocto",
-  "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
   "frameworks": {
-    "net451": { },
-    "dotnet5.4": {
+    "netstandard1.1": {
+      "imports": "dnxcore50",
       "dependencies": {
-        "Microsoft.CSharp": "4.0.1-beta-*",
-        "System.Collections": "4.0.11-beta-*",
-        "System.Linq": "4.0.1-beta-*",
-        "System.Runtime": "4.0.21-beta-*",
-        "System.Threading": "4.0.11-beta-*",
-        "System.Collections.Concurrent": "4.0.11-beta-*"
+        "NETStandard.Library": "1.6.0"
       }
     }
-  },
-  "dependencies": {
   }
 }

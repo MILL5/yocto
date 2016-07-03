@@ -8,7 +8,7 @@ namespace yocto.tests
 
         public static IRegistration AsUnknownInstance(this IRegistration registration)
         {
-            return registration.Register(UNKNOWN_LIFETIME);
+            return registration.Register(UNKNOWN_LIFETIME, null);
         }
     }
 }

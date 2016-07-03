@@ -4,15 +4,15 @@ namespace yocto.tests
 {
     public class CustomLifetimeFactory : ILifetimeFactory
     {
-        public IInstanceFactory GetInstanceFactory(IContainer container, Type interfaceType, Type implementationType, params object[] values)
+        public IInstanceFactory GetInstanceFactory(IContainer container, Type interfaceType, Type implementationType, Func<object> factory, params object[] values)
         {
-            return new CustomInstanceFactory(container, implementationType);
+            return new CustomInstanceFactory(container, implementationType, factory);
         }
     }
 
     public class CustomInstanceFactory : IInstanceFactory
     {
-        public CustomInstanceFactory(IContainer container, Type implementationType)
+        public CustomInstanceFactory(IContainer container, Type implementationType, Func<object> factory)
         {
         }
 
@@ -38,7 +38,12 @@ namespace yocto.tests
 
         public static IRegistration AsCustomInstance(this IRegistration registration)
         {
-            return registration.Register(CUSTOM);
+            return registration.Register(CUSTOM, null);
+        }
+
+        public static IRegistration AsCustomInstance<T>(this IRegistration registration, Func<T> factory) where T : class
+        {
+            return registration.Register(CUSTOM, factory);
         }
     }
 }
