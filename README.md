@@ -100,4 +100,4 @@ Create a static class in your application called AssemblyRegistration with an In
 Now you can provide a custom factory using Func<T> with the Register, RegisterSingleton, RegisterPerThread, RegisterPooled methods.
 
 #### Register Instances ####
-Already have an instance and want to register that instance?  Now you can!  The Register method now accepts instances.
+Already have an instance and want to register that instance?  Now you can!  The RegisterInstance method takes an instance.

@@ -5,7 +5,7 @@ namespace yocto
 {
     public static class AsInstanceExtension
     {
-        public static IRegistration Register<T>(this IContainer container, T instance) where T : class
+        public static IRegistration RegisterInstance<T>(this IContainer container, T instance) where T : class
         {
             CheckIsNotNull(nameof(instance), instance);
 

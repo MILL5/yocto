@@ -102,7 +102,7 @@ namespace yocto.tests
 
             var c = Application.Current;
 
-            c.Register(dog);
+            c.RegisterInstance(dog);
 
             c.Resolve<IAnimal>();
         }
@@ -114,7 +114,7 @@ namespace yocto.tests
 
             var c = Application.Current.GetChildContainer();
             
-            c.Register(clown);
+            c.RegisterInstance(clown);
 
             var d = c.Resolve<IFish>();
         }
@@ -126,7 +126,7 @@ namespace yocto.tests
 
             var c = Application.Current;
 
-            c.Register(dog);
+            c.RegisterInstance(dog);
 
             var d = c.Resolve<Dog>();
         }

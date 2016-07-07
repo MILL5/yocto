@@ -1,4 +1,4 @@
-﻿{
+{
   "packOptions": {
     "summary": "yocto.owin - integrates yocto with OWIN",
     "owners": [ "MILL5" ],
@@ -25,11 +25,12 @@
   "version": "1.5.2-alpha2",
   "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
 
-  "dependencies": {
-    "Microsoft.AspNet.WebApi.Core": "5.2.3",
-    "Owin": "1.0.0",
-    "yocto": "1.5.2-alpha2"
-  },
+    "dependencies": {
+        "Microsoft.AspNet.WebApi.Core": "5.2.3",
+        "Microsoft.Owin": "3.0.1",
+        "Owin": "1.0.0",
+        "yocto": "1.5.2-alpha2"
+    },
 
   "frameworks": {
     "net45": {
