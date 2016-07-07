@@ -1,0 +1,44 @@
+﻿{
+  "packOptions": {
+    "summary": "yocto.owin - integrates yocto with OWIN",
+    "owners": [ "MILL5" ],
+    "requireLicenseAcceptance": false,
+    "projectUrl": "https://github.com/MILL5/yocto",
+    "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/MILL5/yocto"
+    },
+    "tags": [
+      "ioc",
+      "di",
+      "dependencyinjection",
+      "owin"
+    ],
+
+    "releaseNotes": ""
+  },
+
+  "title": "yocto.owin",
+  "authors": [ "MILL5", "Contributors" ],
+  "copyright": "Copyright MILL5 � 2016",
+  "version": "1.5.2-alpha2",
+  "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
+
+  "dependencies": {
+    "Microsoft.AspNet.WebApi.Core": "5.2.3",
+    "Owin": "1.0.0",
+    "yocto": "1.5.2-alpha2"
+  },
+
+  "frameworks": {
+    "net45": {
+      "buildOptions": {
+        "define": [ "NET45" ]
+      }
+    }
+  },
+  "scripts": {
+    "postcompile": "dotnet pack --no-build --configuration Release -o ../../artifacts"
+  }
+}

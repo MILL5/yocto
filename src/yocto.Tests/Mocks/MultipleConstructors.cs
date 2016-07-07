@@ -26,4 +26,19 @@ namespace yocto.tests
         {
         }
     }
+
+    public class MultipleConstructors3
+    {
+        static MultipleConstructors3()
+        {
+        }
+
+        public MultipleConstructors3(object test)
+        {
+        }
+
+        public MultipleConstructors3(object[] test)
+        {
+        }
+    }
 }

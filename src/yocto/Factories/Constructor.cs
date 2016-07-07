@@ -102,15 +102,24 @@ namespace yocto
                 if (c.IsStatic)
                     continue;
 
-                bool canConstruct = true;
+                var parameters = c.GetParameters();
 
-                foreach (var p in c.GetParameters())
+                bool canConstruct = parameters.Length == 0;
+
+                if (!canConstruct)
                 {
-                    if (!factoryProvider.CanResolve(p.ParameterType))
+                    bool canConstructParams = true;
+
+                    foreach (var p in c.GetParameters())
                     {
-                        canConstruct = false;
-                        break;
+                        if (!factoryProvider.CanResolve(p.ParameterType))
+                        {
+                            canConstructParams = false;
+                            break;
+                        }
                     }
+
+                    canConstruct = canConstructParams;
                 }
 
                 if (canConstruct)

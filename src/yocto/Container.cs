@@ -160,7 +160,7 @@ namespace yocto
 
             bool found = _factories.TryGetValue(type, out factory);
 
-            if (!found)
+            if (!found && _parent != null)
             {
                 found = _parent.TryGetFactory(type, out factory);
             }

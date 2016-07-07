@@ -143,8 +143,17 @@ namespace yocto.tests
         {
             var mc1 = new MultipleConstructors();
             var mc2 = new MultipleConstructors(new Cat());
-            Application.Current.Register<IAnimal, Dog>().AsSingleton();
             Application.Current.Register<MultipleConstructors, MultipleConstructors>().AsMultiple();
+            Application.Current.Resolve<MultipleConstructors>();
+        }
+
+        [TestMethod, ExpectedException(typeof(Exception))]
+        public void Register_NoValidMultipleConstructors()
+        {
+            var mc1 = new MultipleConstructors3(new object[0]);
+            var mc2 = new MultipleConstructors3(new Cat());
+            Application.Current.Register<MultipleConstructors3, MultipleConstructors3>().AsMultiple();
+            Application.Current.Resolve<MultipleConstructors3>();
         }
 
         [TestMethod]

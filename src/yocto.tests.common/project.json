@@ -3,7 +3,7 @@
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "yocto": "1.5.2-alpha1"
+    "yocto": "1.5.2-beta1"
   },
 
   "frameworks": {
