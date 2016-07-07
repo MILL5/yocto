@@ -8,8 +8,8 @@ namespace yocto
 {
     internal class Constructor
     {
+        private readonly IContainer _container;
         private readonly ConstructorInfo _constructorInfo;
-        private readonly List<IInstanceFactory> _paramFactories;
         private readonly Func<object> _factory;
 
         public Constructor(IContainer container, Type implementationType, Func<object> factory)
@@ -33,7 +33,7 @@ namespace yocto
                     throw new Exception($"Could not find a constructor to create the type. [{implementationType.Name}]");
                 case 1:
                     _constructorInfo = validConstructors[0];
-                    _paramFactories = GetParameterFactories(container, _constructorInfo);
+                    _container = container;
                     break;
                 default:
                     throw new Exception($"Found more than one constructor to create the type. [{implementationType.Name}]");
@@ -53,9 +53,11 @@ namespace yocto
             var parameters = _constructorInfo.GetParameters();
             var paramObjects = new List<object>(parameters.Length);
 
+            var paramFactories = GetParameterFactories(_container, _constructorInfo);
+
             for (int i = 0; i < parameters.Length; i++)
             {
-                var parameterFactory = _paramFactories[i];
+                var parameterFactory = paramFactories[i];
                 var o = parameterFactory.Create<object>();
 
                 paramObjects.Add(o);
