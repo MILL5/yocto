@@ -21,7 +21,7 @@
   "title": "yocto",
   "authors": [ "MILL5", "Contributors" ],
   "copyright": "Copyright MILL5 � 2016",
-  "version": "1.5.2-beta2",
+  "version": "1.5.2-beta3",
   "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
 
   "dependencies": {
