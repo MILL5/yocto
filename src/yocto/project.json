@@ -21,7 +21,7 @@
   "title": "yocto",
   "authors": [ "MILL5", "Contributors" ],
   "copyright": "Copyright MILL5 � 2016",
-  "version": "1.5.2-beta5",
+  "version": "1.5.2",
   "description": "yocto - a small, yet powerful, Inversion of Control (IoC) container",
 
   "dependencies": {
@@ -39,7 +39,7 @@
         "define": [ "NETSTANDARD1_1" ]
       },
       "dependencies": {
-        "System.Collections.Concurrent": "4.0.12",
+        "System.Collections.Concurrent": "4.0.12"  ,
         "System.ComponentModel": "4.0.1",
         "System.Diagnostics.Debug": "4.0.11",
         "System.Diagnostics.Tools": "4.0.1",

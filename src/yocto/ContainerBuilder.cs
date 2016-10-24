@@ -1,13 +1,14 @@
 ﻿using System;
+// ReSharper disable InconsistentNaming
 
 namespace yocto
 {
     public class ContainerBuilder : IRegisterType, IDisposable
     {
-        private object _syncLock = new object();
-        private IContainer _container;
+        private readonly object _syncLock = new object();
+        private volatile IContainer _container;
 
-        private bool disposed = false;
+        private bool _disposed;
 
         public ContainerBuilder()
         {
@@ -16,7 +17,7 @@ namespace yocto
 
         ~ContainerBuilder()
         {
-            Dispose(false);
+            InternalDispose();
         }
 
         public IRegistration Register<T>(Func<T> factory) where T : class
@@ -61,18 +62,19 @@ namespace yocto
             return container;
         }
 
-        protected virtual void Dispose(bool dispose)
+        protected virtual void InternalDispose()
         {
-            if (!disposed)
+            if (!_disposed)
             {
+                _disposed = true;
+
                 Cleanup.SafeMethod(() => (_container as IDisposable)?.Dispose());
-                disposed = true;
             }
         }
 
         public void Dispose()
         {
-            Dispose(true);
+            InternalDispose();
             GC.SuppressFinalize(this);
         }
     }

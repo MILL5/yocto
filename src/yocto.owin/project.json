@@ -29,7 +29,7 @@
         "Microsoft.AspNet.WebApi.Core": "5.2.3",
         "Microsoft.Owin": "3.0.1",
         "Owin": "1.0.0",
-        "yocto": "1.5.2-alpha2"
+        "yocto": "1.5.2"
     },
 
   "frameworks": {

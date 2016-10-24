@@ -39,10 +39,12 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="yocto">
+    <Reference Include="yocto, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\yocto.tests.common\bin\Debug\net40\yocto.dll</HintPath>
     </Reference>
-    <Reference Include="yocto.tests.common">
+    <Reference Include="yocto.tests.common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\yocto.tests.common\bin\Debug\net40\yocto.tests.common.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -61,6 +63,9 @@
   <ItemGroup>
     <Compile Include="..\yocto.tests\AssemblyRegistrationTests.cs">
       <Link>AssemblyRegistrationTests.cs</Link>
+    </Compile>
+    <Compile Include="..\yocto.tests\BuilderTests.cs">
+      <Link>BuilderTests.cs</Link>
     </Compile>
     <Compile Include="..\yocto.tests\ChildContainerTests.cs">
       <Link>ChildContainerTests.cs</Link>

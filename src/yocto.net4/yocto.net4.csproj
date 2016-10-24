@@ -60,6 +60,9 @@
     <Compile Include="..\yocto\Container.cs">
       <Link>Container.cs</Link>
     </Compile>
+    <Compile Include="..\yocto\ContainerBuilder.cs">
+      <Link>ContainerBuilder.cs</Link>
+    </Compile>
     <Compile Include="..\yocto\Factories\Constructor.cs">
       <Link>Factories\Constructor.cs</Link>
     </Compile>

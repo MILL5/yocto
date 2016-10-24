@@ -63,6 +63,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="AssemblyRegistrationTests.cs" />
+    <Compile Include="BuilderTests.cs" />
     <Compile Include="ChildContainerTests.cs" />
     <Compile Include="EnumerableUsingFactoryTests.cs" />
     <Compile Include="EnumerableTests.cs" />

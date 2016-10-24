@@ -28,15 +28,15 @@ namespace yocto
 
             foreach (var typeinfo in registrationTypes)
             {
-                Type type = typeinfo.AsType();
+                var type = typeinfo.AsType();
 
                 var members = type.GetRuntimeMethods().Where(m => m.Name.Equals(Initialize));
 
                 foreach (var member in members)
                 {
-                    var mi = member as MethodInfo;
+                    var mi = member;
                     
-                    if ((mi != null) && (mi.IsPublic) && (mi.IsStatic))
+                    if (mi.IsPublic && mi.IsStatic)
                     {
                         var parameters = mi.GetParameters();
 
@@ -64,7 +64,7 @@ namespace yocto
             {
                 foreach (var initializer in intializers)
                 {
-                    initializer.Invoke(null, new[] { Application.Current });
+                    initializer.Invoke(null, new object[] { Application.Current });
                 }
             }
         }
