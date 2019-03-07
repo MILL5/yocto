@@ -8,7 +8,7 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
-    internal partial class Container : IContainer, IFactoryProvider
+    internal partial class Container : IContainer, IFactoryProvider, IResolveByType
     {
         private readonly object _syncLock = new object();
         private readonly List<Container> _children = new List<Container>();
@@ -58,7 +58,7 @@ namespace yocto
                     ((IDisposable)c).Dispose();
                 }
 
-                List<IInstanceFactory> factoriesToDispose = _factories.Values.ToList();
+                var factoriesToDispose = _factories.Values.ToList();
 
                 foreach (var f in factoriesToDispose)
                 {
@@ -110,9 +110,7 @@ namespace yocto
         {
             var interfaceType = typeof(T);
 
-            IInstanceFactory instanceFactory;
-
-            if (_factories.TryRemove(interfaceType, out instanceFactory))
+            if (_factories.TryRemove(interfaceType, out var instanceFactory))
             {
                 instanceFactory.Dispose();
             }
@@ -120,9 +118,27 @@ namespace yocto
 
         public T Resolve<T>() where T : class
         {
-            T instance;
-            
-            if (!TryResolve(out instance))
+            if (!TryResolve(out T instance))
+                throw new Exception("Interface type is not registered.");
+
+            return instance;
+        }
+
+        public T Resolve<T>(Type type) where T : class
+        {
+            CheckIsNotNull(nameof(type), type);
+
+            if (!TryResolve(type, out T instance))
+                throw new Exception("Interface type is not registered.");
+
+            return instance;
+        }
+
+        public object Resolve(Type type)
+        {
+            CheckIsNotNull(nameof(type), type);
+
+            if (!TryResolve(type, out object instance))
                 throw new Exception("Interface type is not registered.");
 
             return instance;
@@ -170,16 +186,31 @@ namespace yocto
 
         public bool TryResolve<T>(out T instance) where T : class
         {
-            IInstanceFactory instanceFactory;
             instance = null;
 
-            if (_factories.TryGetValue(typeof(T), out instanceFactory))
+            if (_factories.TryGetValue(typeof(T), out var instanceFactory))
             {
                 instance = instanceFactory.Create<T>();
             }
             else if (_parent != null)
             {
                 return _parent.TryResolve(out instance);
+            }
+
+            return (instance != null);
+        }
+
+        public bool TryResolve<T>(Type type, out T instance) where T : class
+        {
+            instance = null;
+
+            if (_factories.TryGetValue(type, out var instanceFactory))
+            {
+                instance = instanceFactory.Create<T>();
+            }
+            else if (_parent != null)
+            {
+                return _parent.TryResolve(type, out instance);
             }
 
             return (instance != null);

@@ -22,9 +22,7 @@ namespace yocto
             {
                 get
                 {
-                    IContainer c;
-                    
-                    if (!_container.TryGetTarget(out c))
+                    if (!_container.TryGetTarget(out var c))
                         throw new Exception("Could not access container.");
 
                     return c;

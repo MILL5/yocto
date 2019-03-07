@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>yocto - a small, yet powerful, Inversion of Control (IoC) container</Description>
+    <Copyright>Copyright MILL5 � 2016</Copyright>
+    <AssemblyTitle>yocto.owin</AssemblyTitle>
+    <VersionPrefix>1.5.2-alpha2</VersionPrefix>
+    <Authors>MILL5;Contributors</Authors>
+    <TargetFramework>net45</TargetFramework>
+    <AssemblyName>yocto.owin</AssemblyName>
+    <PackageId>yocto.owin</PackageId>
+    <PackageTags>ioc;di;dependencyinjection;owin</PackageTags>
+    <PackageProjectUrl>https://github.com/MILL5/yocto</PackageProjectUrl>
+    <PackageLicenseUrl>http://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/MILL5/yocto</RepositoryUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\yocto\yocto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.3" />
+    <PackageReference Include="Microsoft.Owin" Version="3.0.1" />
+    <PackageReference Include="Owin" Version="1.0.0" />
+  </ItemGroup>
+
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <DefineConstants>$(DefineConstants);NET45</DefineConstants>
+  </PropertyGroup>
+
+  <Target Name="PostcompileScript" AfterTargets="Build">
+    <Exec Command="dotnet pack --no-build --configuration Release -o ../../artifacts" />
+  </Target>
+
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+
+</Project>

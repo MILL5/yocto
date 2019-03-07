@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Threading;
 using static yocto.Preconditions;
 
 namespace yocto
 {
     internal class InstancePerThreadFactory : IInstanceFactory
     {
-        private readonly Constructor _constructor;
         private bool _disposed;
 
         private readonly ThreadLocal<object> _instance;
@@ -15,9 +15,9 @@ namespace yocto
             CheckIsNotNull(nameof(container), container);
             CheckIsNotNull(nameof(implementationType), implementationType);
 
-            _constructor = new Constructor(container, implementationType, factory);
+            var constructor = new Constructor(container, implementationType, factory);
 
-            _instance = new ThreadLocal<object>(() => _constructor.Create<object>());
+            _instance = new ThreadLocal<object>(() => constructor.Create<object>());
         }
 
         public T Create<T>() where T: class

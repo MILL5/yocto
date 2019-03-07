@@ -77,10 +77,9 @@ namespace yocto
             foreach (var p in constructor.GetParameters())
             {
                 var paramType = p.ParameterType;
-                IInstanceFactory pf;
-                
+
                 // ReSharper disable once PossibleNullReferenceException
-                if (factoryProvider.TryGetFactory(paramType, out pf))
+                if (factoryProvider.TryGetFactory(paramType, out var pf))
                 {
                     paramFactories.Add(pf);
                 }

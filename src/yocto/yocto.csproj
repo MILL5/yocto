@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net472;net40;netstandard2.0;netstandard1.1;netstandard1.0</TargetFrameworks>
+    <Company>MILL5</Company>
+    <Authors>MILL5;Contributors</Authors>
+    <Version>2.0.8-alpha</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>A small, yet powerful Inversion of Control container</Description>
+    <Copyright>Copyright MILL5 © 2016-2019</Copyright>
+    <PackageProjectUrl>https://github.com/MILL5/yocto</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MILL5/yocto</RepositoryUrl>
+    <PackageTags>ioc;di;dependencyinjection</PackageTags>
+    <PackageReleaseNotes>Migration to .NET Standard 2.0, XAML MarkupExtension, ASP.NET DI Support</PackageReleaseNotes>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Condition="'$(TargetFramework)' == 'net472'" Include="System.Xaml" />
+  </ItemGroup>
+
+</Project>

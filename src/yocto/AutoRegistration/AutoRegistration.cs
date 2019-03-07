@@ -12,15 +12,15 @@ namespace yocto
     /// We are not adding support for detecting multiple registration calls since
     /// the container has last one wins approach for registration
     /// </summary>
-    public static class AutoRegistration
+    public static partial class AutoRegistration
     {
-        private static bool TryGetRegister(Assembly assembly, out List<MethodInfo> intializers)
+        private static bool TryGetRegister(Assembly assembly, out List<MethodInfo> initializers)
         {
             const string AssemblyRegistration = "AssemblyRegistration";
             const string Initialize = "Initialize";
 
             bool found = false;
-            intializers = new List<MethodInfo>();
+            initializers = new List<MethodInfo>();
 
             var types = assembly.ExportedTypes();
 
@@ -43,7 +43,7 @@ namespace yocto
                         if (parameters.Length == 1 &&
                             parameters[0].ParameterType == typeof(IContainer))
                         {
-                            intializers.Add(mi);
+                            initializers.Add(mi);
                             found = true;
                         }
                     }
@@ -58,11 +58,9 @@ namespace yocto
             CheckIsNotNull(nameof(assembly), assembly);
             CheckIsNotNull(nameof(container), container);
 
-            List<MethodInfo> intializers;
-
-            if (TryGetRegister(assembly, out intializers))
+            if (TryGetRegister(assembly, out var initializers))
             {
-                foreach (var initializer in intializers)
+                foreach (var initializer in initializers)
                 {
                     initializer.Invoke(null, new object[] { Application.Current });
                 }

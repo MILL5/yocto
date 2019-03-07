@@ -45,15 +45,20 @@ namespace yocto
             _constructor = new Constructor(container, implementationType, factory);
         }
 
+        ~MultiInstanceFactory()
+        {
+            Dispose(false);
+        }
+
         public T Create<T>() where T: class
         {
             T instance = _constructor.Create<T>();
 
-            if (instance is IDisposable)
+            if (instance is IDisposable disposable)
             {
                 lock (_syncLock)
                 {
-                    _trackers.Add(new InstanceTracker((IDisposable)instance));
+                    _trackers.Add(new InstanceTracker(disposable));
                 }
             }
 

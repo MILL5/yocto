@@ -9,7 +9,7 @@ namespace yocto
     {
         public static IEnumerable<TypeInfo> ExportedTypes(this Assembly extendThis)
         {
-            List<TypeInfo> typeInfo = new List<TypeInfo>();
+            var typeInfo = new List<TypeInfo>();
 
             foreach (var type in extendThis.ExportedTypes)
             {

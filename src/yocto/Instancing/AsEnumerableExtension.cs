@@ -57,9 +57,7 @@ namespace yocto
 
             lock (SyncLock)
             {
-                List<IRegistration> registrations;
-
-                if (!Enumerables.TryGetValue(key, out registrations))
+                if (!Enumerables.TryGetValue(key, out var registrations))
                 {
                     registrations = new List<IRegistration>();
                     Enumerables.Add(key, registrations);
@@ -78,9 +76,7 @@ namespace yocto
 
             lock (SyncLock)
             {
-                List<IRegistration> registrations;
-
-                if (!Enumerables.TryGetValue(key, out registrations))
+                if (!Enumerables.TryGetValue(key, out var registrations))
                 {
                     throw new Exception("Interface type is not registered.");
                 }

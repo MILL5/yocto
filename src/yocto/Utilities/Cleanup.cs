@@ -3,7 +3,7 @@ using static yocto.Preconditions;
 
 namespace yocto
 {
-    public class Cleanup
+    internal class Cleanup
     {
         public static void SafeMethod(Action action)
         {

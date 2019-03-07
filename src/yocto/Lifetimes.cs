@@ -28,9 +28,7 @@ namespace yocto
         {
             CheckIsNotNullEmptyOrWhitespace(nameof(lifetime), lifetime);
 
-            ILifetimeFactory lifetimeFactory;
-
-            if (_lifetimes.TryGetValue(lifetime, out lifetimeFactory))
+            if (_lifetimes.TryGetValue(lifetime, out var lifetimeFactory))
             {
                 return lifetimeFactory;
             }
