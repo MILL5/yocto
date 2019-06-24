@@ -4,7 +4,33 @@ namespace yocto
 {
     public class Application
     {
-        public static IContainer Current { get; } = new Container();
+        private static volatile Container _root = new Container();
+        private static readonly object _syncLock = new object();
+
+        public static IContainer Current { get; } = _root;
+
+        public IContainer Push()
+        {
+            lock (_syncLock)
+            {
+                _root = (Container)_root.GetChildContainer();
+                return _root;
+            }
+        }
+
+        public IContainer Pop()
+        {
+            lock (_syncLock)
+            {
+                if (_root is IChildContainer child)
+                {
+                    _root = child.Parent as Container;
+                    child.Dispose();
+                }
+
+                return _root;
+            }
+        }
 
         public static T Resolve<T>() where T : class
         {
@@ -19,6 +45,11 @@ namespace yocto
         public static bool TryResolve<T>(out T instance) where T : class
         {
             return Current.TryResolve(out instance);
+        }
+
+        public static IRegistration Register<T>(T instance) where T : class
+        {
+            return Current.Register(() => instance);
         }
 
         public static IRegistration Register<T>(Func<T> factory) where T : class

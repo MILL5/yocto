@@ -6,7 +6,7 @@ namespace yocto
     public class ContainerBuilder : IRegisterType, IDisposable
     {
         private readonly object _syncLock = new object();
-        private volatile IContainer _container;
+        private IContainer _container;
 
         private bool _disposed;
 
@@ -18,6 +18,11 @@ namespace yocto
         ~ContainerBuilder()
         {
             InternalDispose();
+        }
+
+        public IRegistration Register<T>(T instance) where T : class
+        {
+            return GetContainer().Register(() => instance);
         }
 
         public IRegistration Register<T>(Func<T> factory) where T : class
@@ -68,7 +73,10 @@ namespace yocto
             {
                 _disposed = true;
 
-                Cleanup.SafeMethod(() => (_container as IDisposable)?.Dispose());
+                lock (_syncLock)
+                {
+                    Cleanup.SafeMethod(() => (_container as IDisposable)?.Dispose());
+                }
             }
         }
 

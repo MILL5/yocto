@@ -16,7 +16,7 @@ namespace yocto
         private readonly ConcurrentDictionary<Type, IInstanceFactory> _factories =
             new ConcurrentDictionary<Type, IInstanceFactory>();
 
-        private readonly Container _parent;
+        protected readonly Container _parent;
 
         private bool _disposed;
         
@@ -92,6 +92,13 @@ namespace yocto
             {
                 _children.Remove(child);
             }
+        }
+
+        public IRegistration Register<T>(T instance) where T : class
+        {
+            CheckIsNotNull(nameof(instance), instance);
+
+            return new FactoryRegistration<T>(this, () => instance).AsMultiple();
         }
 
         public IRegistration Register<T>(Func<T> factory) where T : class

@@ -4,6 +4,7 @@ namespace yocto
 {
     public interface IRegisterType
     {
+        IRegistration Register<T>(T instance) where T : class;
         IRegistration Register<T>(Func<T> factory) where T : class;
         IRegistration Register<T, V>() where V : class, T where T : class;
     }

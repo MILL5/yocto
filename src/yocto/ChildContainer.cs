@@ -12,5 +12,7 @@ namespace yocto
         {
             Dispose(true);
         }
+
+        public IContainer Parent => _parent;
     }
 }
