@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.1' ">
-    <PackageReference Include="System.Collections.Concurrent" Version="4.0.12" />
+    <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
     <PackageReference Include="System.ComponentModel" Version="4.0.1" />
     <PackageReference Include="System.Diagnostics.Debug" Version="4.0.11" />
     <PackageReference Include="System.Diagnostics.Tools" Version="4.0.1" />
