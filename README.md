@@ -13,7 +13,7 @@ Here are the core principals:
 
 ### Key Features ###
 
-* Simple API - Register, Resolve, CanResolve, TryResolve
+* Simple API - Register, Resolve, CanResolve,  TryResolve
 * Type Safety - use of generics for type safety
 * Constructor Injection - constructors are selected automatically
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
