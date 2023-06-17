@@ -9,11 +9,11 @@ Here are the core principals:
 * **High Quality** - follow development best practices such as *preconditions*, *unit tests*, *code coverage*, etc.
 * **Less Is More** - most projects do not need all the ceremony of large IoC frameworks, we prefer a small framework, with a limited set of features
 * **Deployment** - published to NuGet using the new cross-platform .NET Class Library project type
-* **Consumption** - built as a cross platform library using the new .NET Execution Environment (DNX) to target multiple platforms (i.e. Windows 8/10, Xamarin iOS/Android, ASP.NET Core, and .NET Framework)
+* **Consumption** - built as a cross platform library for .NET to target multiple platforms (i.e. Windows 8/10, Xamarin iOS/Android, ASP.NET Core, .NET Core, and .NET Framework)
 
 ### Key Features ###
 
-* Simple API - Register, Resolve, CanResolve,  TryResolve
+* Simple API - Register, Resolve, CanResolve, TryResolve
 * Type Safety - use of generics for type safety
 * Constructor Injection - constructors are selected automatically
 * Eager Type Factory Resolution - resolve type factories needed to construct instances at registration time
