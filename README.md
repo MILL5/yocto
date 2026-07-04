@@ -87,4 +87,4 @@ This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE
 
 ---
 
-<sub>Powered by [RepoBeacon](https://repobeacon.com)</sub>
+<sub>Powered by [RepoSpotlight](https://repospotlight.ai)</sub>
