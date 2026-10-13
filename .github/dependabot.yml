@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: nuget
+    directory: /yocto3
+    schedule:
+      interval: weekly
+    groups:
+      microsoft-extensions:
+        patterns: ["Microsoft.Extensions.*"]
+      test:
+        patterns: ["MSTest*", "xunit*", "Microsoft.NET.Test.Sdk"]
+
+  - package-ecosystem: bundler
+    directory: /yocto3/docs
+    schedule:
+      interval: monthly
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly

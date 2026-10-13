@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: yocto3
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build
+        run: dotnet build Yocto.slnx -c Release -warnaserror
+
+      - name: Test (yocto + Microsoft DI specification suite)
+        run: dotnet test Yocto.slnx -c Release --no-build
+
+      - name: Native AOT publish of the sample
+        run: |
+          dotnet publish samples/Yocto.Sample -c Release -o aot
+          ./aot/Yocto.Sample
+
+      - name: Pack
+        run: dotnet pack Yocto.slnx -c Release --no-build -o artifacts
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: yocto3/artifacts/

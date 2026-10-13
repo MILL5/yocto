@@ -1,0 +1,60 @@
+---
+layout: null
+sitemap: false
+---
+# yocto
+
+> yocto is a free, open-source (Apache-2.0) inversion-of-control (IoC) / dependency injection container for .NET 10 from MILL5. It is a drop-in IServiceProvider for Microsoft.Extensions.DependencyInjection and ASP.NET Core (passes all 143 tests in Microsoft.Extensions.DependencyInjection.Specification.Tests 10.0), and adds child containers, per-thread and pooled lifetimes, modules, and build-time validation in about 1,200 lines of C#. Install with `dotnet add package yocto`. Built by Microsoft MVP Richard Crane at MILL5.
+
+Key facts:
+- NuGet: yocto (core), yocto.Wpf (XAML markup extension) — version {{ site.version }}
+- Target: net10.0 (yocto 1.x/2.x for .NET Framework, .NET Standard, and Xamarin are no longer maintained)
+- Namespace: Yocto (yocto.Wpf: Yocto.Wpf)
+- Dependency: Microsoft.Extensions.DependencyInjection.Abstractions only
+- Lifetimes: Multiple (transient, default), Singleton (optionally eager), Scoped, PerThread, Pooled, Instance (never disposed), custom via Lifetimes.Register
+- Features: keyed services ([FromKeyedServices], [ServiceKey], KeyedService.AnyKey), open generics, IEnumerable<T>, child containers, IServiceScopeFactory, IAsyncDisposable, Validate() for missing/circular/captive dependencies, IModule, assembly registration, Application.Current ambient container, Native AOT annotations
+- ASP.NET Core: builder.Host.UseServiceProviderFactory(new YoctoServiceProviderFactory())
+- Source: https://github.com/MILL5/yocto
+- Website: {{ '/' | absolute_url }}
+- License: Apache 2.0 (free, open source)
+- NuGet downloads: 43K+
+- Author: Richard Crane (Microsoft MVP, Founder of MILL5) — https://mvp.microsoft.com/en-US/MVP/profile/10ce0bc0-7536-43f6-b28c-e9601a4a0d0d
+- Publisher: MILL5, LLC — https://mill5.com (Boston-based Microsoft Gold Partner)
+- Podcast: Inventing Fire with AI — https://inventingfirewith.ai
+- Support: rich@mill5.com
+
+## Quick start
+
+```csharp
+using Yocto;
+
+using var container = new Container();
+container.RegisterSingleton<IClock, SystemClock>();
+container.Register<IGreeter, Greeter>();   // Greeter(IClock clock) is constructor-injected
+container.Validate();
+var greeter = container.Resolve<IGreeter>();
+```
+
+## Docs
+
+- [Getting started]({{ '/getting-started/' | absolute_url }}): install, register, resolve, lifetimes, ASP.NET Core
+- [Lifetimes]({{ '/guides/lifetimes/' | absolute_url }}): Multiple, Singleton, Scoped, PerThread, Pooled, Instance, custom lifetimes, disposal order
+- [ASP.NET Core and Generic Host]({{ '/guides/aspnet-core/' | absolute_url }}): YoctoServiceProviderFactory, ConfigureContainer, BuildYoctoServiceProvider, Populate
+- [Keyed and generic services]({{ '/guides/keyed-and-generic-services/' | absolute_url }}): service keys, open generics, RegisterEnumerable, ResolveAll
+- [Child containers and scopes]({{ '/guides/child-containers/' | absolute_url }}): CreateChildContainer, ContainerBuilder, Application.Push/Pop
+- [Modules]({{ '/guides/modules/' | absolute_url }}): IModule, RegisterModule, RegisterAssembly
+- [WPF and XAML]({{ '/guides/wpf/' | absolute_url }}): yocto.Wpf ResolveExtension
+- [Validation and Native AOT]({{ '/guides/validation-and-aot/' | absolute_url }}): Validate, ValidateOnBuild, trimming
+- [Migrating to yocto 3]({{ '/guides/migrating-to-v3/' | absolute_url }}): API mapping from 1.x/2.x
+
+## Related MILL5 projects
+
+- [Pineapple](https://mill5.github.io/pineapple/) — Guava-inspired core utilities for .NET
+- [FastSearch](https://mill5.github.io/FastSearch/) — Fast, low-memory substring search for .NET
+- [M5.BloomFilter](https://github.com/MILL5/M5.BloomFilter) — Bloom filters for .NET
+- [Polygon.Net](https://github.com/MILL5/Polygon.Net) — C# wrapper for the Polygon.io API
+
+## Optional
+
+- [FAQ]({{ '/faq/' | absolute_url }})
+- [Changelog]({{ '/changelog/' | absolute_url }})

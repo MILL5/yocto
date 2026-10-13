@@ -1,90 +1,123 @@
-# **Yocto**
-*An extremely small IoC container*
+<img src="https://raw.githubusercontent.com/MILL5/yocto/master/yocto3/docs/assets/yocto.png" alt="yocto logo" width="96" align="right" />
 
-## ✨ Overview
+# yocto — the tiny IoC container for .NET 10
 
-Yocto is a lightweight Inversion of Control (IoC) container designed to provide high-quality dependency injection with minimal ceremony. Built with only a few hundred lines of code, it emphasizes simplicity and performance.
+[![NuGet](https://img.shields.io/nuget/v/yocto.svg?label=yocto)](https://www.nuget.org/packages/yocto)
+[![NuGet downloads](https://img.shields.io/nuget/dt/yocto.svg)](https://www.nuget.org/packages/yocto)
+[![CI](https://github.com/MILL5/yocto/actions/workflows/ci.yml/badge.svg)](https://github.com/MILL5/yocto/actions/workflows/ci.yml)
+[![.NET 10](https://img.shields.io/badge/.NET-10-512BD4.svg)](https://dotnet.microsoft.com/download/dotnet/10.0)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/MILL5/yocto/blob/master/LICENSE)
 
-### Core Principles:
-- **High Quality:** Adheres to development best practices such as *preconditions*, *unit tests*, *code coverage*, and more.
-- **Less Is More:** Focuses on a small framework with essential features, avoiding the overhead of larger IoC frameworks.
-- **Deployment:** Available on NuGet, designed for cross-platform .NET Class Library projects.
-- **Consumption:** Supports various platforms including Windows 8/10, Xamarin iOS/Android, ASP.NET Core, .NET Core, and .NET Framework.
+**yocto is a free, open-source inversion-of-control (IoC) and dependency injection container for .NET 10.** It is a drop-in `IServiceProvider` for ASP.NET Core and Microsoft.Extensions.DependencyInjection: it passes all 143 tests in Microsoft's DI specification suite. On top of that it adds child containers, per-thread and pooled lifetimes, modules, and build-time validation, in about 1,200 lines of C#.
 
-## 🚀 Getting Started
+📖 **Documentation:** https://mill5.github.io/yocto/
 
-### Prerequisites
-- .NET SDK (version 5.0 or higher)
-- NuGet package manager
+## Install
 
-### Installation
-To install Yocto, simply use the following command in your terminal:
 ```bash
 dotnet add package yocto
+dotnet add package yocto.Wpf   # optional: XAML markup extension
 ```
 
-### Setup
-1. Create a new .NET project or open an existing one.
-2. Add Yocto as a dependency using the installation command above.
-3. Use the following basic setup in your application:
+## Quick start
 
 ```csharp
 using Yocto;
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        var container = new Container();
+using var container = new Container();
 
-        // Register services
-        container.Register<IMyService, MyService>();
+container.RegisterSingleton<IClock, SystemClock>();
+container.Register<IGreeter, Greeter>();                 // new instance per resolve (default)
+container.Register<IGreeter, LoudGreeter>("loud");       // keyed
+container.Register(typeof(IRepository<>), typeof(Repository<>)).AsScoped();  // open generic
+container.Validate();                                    // fail fast on missing, circular, or captive dependencies
 
-        // Resolve services
-        var myServiceInstance = container.Resolve<IMyService>();
-    }
-}
+var greeter = container.Resolve<IGreeter>();             // Greeter(IClock clock) is constructor-injected
+
+using var scope = container.CreateChildContainer();     // scoped services: one per child container
+var orders = scope.Resolve<IRepository<Order>>();
 ```
 
-### Basic Usage
-Yocto provides a straightforward API for registering and resolving services:
-- **Register:** Register a service type.
-- **Resolve:** Retrieve an instance of a service.
-- **CanResolve:** Check if a service can be resolved.
-- **TryResolve:** Attempt to resolve a service, returning null if it cannot be resolved.
+### ASP.NET Core
 
-## 🏗️ Architecture
+```csharp
+var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseServiceProviderFactory(new YoctoServiceProviderFactory(validateOnBuild: true));
+builder.Host.ConfigureContainer<IContainer>(c => c.RegisterPooled<IEncoder, Encoder>(poolSize: 8));
+```
 
-### Tech Stack
-- **Language:** C#
-- **Framework:** .NET Standard for cross-platform compatibility.
+## Features
 
-### Key Features
-- **Simple API:** Core operations include Register, Resolve, CanResolve, and TryResolve.
-- **Type Safety:** Utilizes generics to ensure type-safe registrations.
-- **Constructor Injection:** Supports only constructor injection to ensure fully constructed instances.
-- **Eager Type Factory Resolution:** Resolves dependencies at the time of registration to prevent runtime errors.
-- **Extensible API:** Includes various lifetime management strategies like Singleton, PerThread, and Pooled instances.
-- **Memory Management:** Automatically disposes of instances that support IDisposable when the container is disposed.
-- **Custom Factories:** Allows for custom factory methods using Func<T>.
+| Feature | API |
+|---|---|
+| Constructor injection (greediest satisfiable constructor) | `Register<TService, TImpl>()` |
+| Factories and existing instances | `Register<T>(c => …)`, `RegisterInstance(obj)` |
+| Lifetimes | `AsMultiple()` (default), `AsSingleton(eagerLoad)`, `AsScoped()`, `AsPerThread()`, `AsPooled(size)` |
+| Custom lifetimes | `Lifetimes.Register(name, ILifetimeFactory)`, `WithLifetime(name)` |
+| Keyed services | `Register<T, V>(key)`, `Resolve<T>(key)`, `[FromKeyedServices]`, `[ServiceKey]` |
+| Open generics | `Register(typeof(IRepo<>), typeof(Repo<>))` |
+| Multiple implementations | `RegisterEnumerable<T, V>()`, `ResolveAll<T>()`, inject `IEnumerable<T>` |
+| Child containers and scopes | `CreateChildContainer()`, `IServiceScopeFactory` |
+| Disposal | `Dispose()` / `DisposeAsync()`, reverse creation order, transients tracked weakly |
+| Validation | `Validate()`, `ContainerBuilder { ValidateOnBuild = true }` |
+| Modules | `IModule`, `RegisterModule<T>()`, `RegisterAssembly(assembly)` |
+| Ambient container | `Application.Current`, `Application.Push()` / `Pop()` |
+| ASP.NET Core / Generic Host | `YoctoServiceProviderFactory`, `BuildYoctoServiceProvider()`, `Populate(services)` |
+| WPF / XAML | `{yocto:Resolve {x:Type vm:MainViewModel}}` (yocto.Wpf) |
+| Native AOT and trimming | `IsAotCompatible`, `[DynamicallyAccessedMembers]` throughout |
 
-### Quality Assurance
-- **Code Coverage:** 100%
-- **Best Practices:** Adheres to interface-based development, preconditions, and comprehensive unit testing.
+## FAQ
 
-## 🤝 Contributing
+**What is yocto?**
+A tiny, open-source IoC/DI container for .NET 10 from MILL5. It is named after the SI prefix for 10⁻²⁴.
 
-Contributions are welcome! Please feel free to submit issues, fork the repository, and create pull requests. For any inquiries, you can contact us at [sales@mill5.com](mailto:sales@mill5.com).
+**Can it replace the ASP.NET Core container?**
+Yes. Use `YoctoServiceProviderFactory`. yocto passes Microsoft.Extensions.DependencyInjection.Specification.Tests 10.0, including keyed services, open generics, scopes, and disposal order.
 
-## 📄 License
+**How does it compare to Autofac or the built-in container?**
+The built-in container is enough for many apps. Choose yocto when you also want child containers that override registrations, pooled or per-thread lifetimes, modules, or a container small enough to audit. Autofac offers more, such as decorators and interception, at a much larger size.
 
-This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+**Does it support Native AOT?**
+Yes. The library builds with `IsAotCompatible` and trimming annotations. The two exceptions: `RegisterAssembly` uses reflection, and open generics over value types need runtime code generation.
+
+**Which .NET versions?**
+yocto 3 targets .NET 10 (LTS). yocto 1.x/2.x for .NET Framework, .NET Standard, and Xamarin are no longer maintained. See the [migration guide](https://mill5.github.io/yocto/guides/migrating-to-v3/).
+
+More answers: https://mill5.github.io/yocto/faq/
+
+## Building from source
+
+```bash
+cd yocto3
+dotnet build -c Release
+dotnet test                       # yocto tests + Microsoft's DI specification suite
+dotnet run --project samples/Yocto.Sample
+```
+
+## Part of the MILL5 open-source family
+
+[Pineapple](https://mill5.github.io/pineapple/) · [FastSearch](https://mill5.github.io/FastSearch/) · [M5.BloomFilter](https://github.com/MILL5/M5.BloomFilter) · [Polygon.Net](https://github.com/MILL5/Polygon.Net) · [Cut & Move](https://github.com/ChiefInnovator/cutandmove) · [MacEdgeLight](https://github.com/ChiefInnovator/macedgelight)
+
+## Contributing
+
+Issues and pull requests are welcome at https://github.com/MILL5/yocto. Please include tests; `dotnet test` must pass, including the specification suite.
+
+## License
+
+This project is licensed under the [Apache License 2.0](https://github.com/MILL5/yocto/blob/master/LICENSE). © MILL5, LLC.
+
+## Credits
+
+Created by **[Richard Crane](https://mvp.microsoft.com/en-US/MVP/profile/10ce0bc0-7536-43f6-b28c-e9601a4a0d0d)**, Microsoft MVP and founder of **[MILL5](https://mill5.com)**.
+
+- **MILL5:** [mill5.com](https://mill5.com)
+- **Microsoft MVP profile:** [mvp.microsoft.com/…/Richard-Crane](https://mvp.microsoft.com/en-US/MVP/profile/10ce0bc0-7536-43f6-b28c-e9601a4a0d0d)
+- **Podcast — _Inventing Fire with AI_:** [inventingfirewith.ai](https://inventingfirewith.ai)
+- **Support:** [rich@mill5.com](mailto:rich@mill5.com)
 
 ---
 
-*Powered by [MILL5](https://www.mill5.com)*
-
-
----
-
-<sub>Powered by [RepoSpotlight](https://repospotlight.ai)</sub>
+Powered by [MILL5](https://www.mill5.com)
+Explore [Richard Crane on Microsoft MVP](https://mvp.microsoft.com/en-US/MVP/profile/10ce0bc0-7536-43f6-b28c-e9601a4a0d0d)
+Listen to the [Inventing Fire with AI](https://inventingfirewith.ai) podcast for insights on technology and innovation.
+For support, contact: [rich@mill5.com](mailto:rich@mill5.com)
