@@ -32,10 +32,10 @@ bundle install
 bundle exec jekyll serve --baseurl /yocto
 ```
 
-`.github/workflows/pages.yml` deploys the site on pushes to `master` that touch `yocto3/docs` or `yocto3/CHANGELOG.md`.
+`.github/workflows/pages.yml` deploys the site on pushes to `main` that touch `yocto3/docs` or `yocto3/CHANGELOG.md`.
 
 ## Releasing
 
 1. Bump `<Version>` in `Directory.Build.props` and add a `CHANGELOG.md` entry.
 2. Update `version:` in `docs/_config.yml`.
-3. Tag `vX.Y.Z` on `master`. `.github/workflows/release.yml` tests, packs, pushes to NuGet (Trusted Publishing), and creates a GitHub release.
+3. Tag `vX.Y.Z` on `main`. `.github/workflows/release.yml` tests, packs, pushes to NuGet (Trusted Publishing), and creates a GitHub release.
