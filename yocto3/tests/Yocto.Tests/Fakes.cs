@@ -16,6 +16,7 @@ public class Person(IAnimal pet) : IPerson
 
 public interface IRepository<T>;
 public class Repository<T> : IRepository<T>;
+public class Unrelated<T>;
 
 public sealed class Disposable : IDisposable
 {

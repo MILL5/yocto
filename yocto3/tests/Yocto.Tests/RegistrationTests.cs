@@ -214,4 +214,28 @@ public sealed class RegistrationTests
         Assert.ThrowsExactly<InvalidOperationException>(() => root.Resolve<Holder>());
         Assert.IsNotNull(child.Resolve<Holder>().Scoped);
     }
+
+    [TestMethod]
+    public void OpenGeneric_UnrelatedImplementation_DoesNotApply()
+    {
+        using var c = new Container();
+        c.Register(typeof(IRepository<>), typeof(Unrelated<>));
+
+        Assert.IsFalse(c.TryResolve(typeof(IRepository<Dog>), out _));
+        Assert.IsNull(((IServiceProvider)c).GetService(typeof(IRepository<Dog>)));
+    }
+
+    [TestMethod]
+    public void OpenGenericSingleton_IsSharedWithChildren_AndLifetimeChangeReachesThem()
+    {
+        using var root = new Container();
+        var registration = root.Register(typeof(IRepository<>), typeof(Repository<>)).AsSingleton();
+        using var child = root.CreateChildContainer();
+
+        var shared = child.Resolve<IRepository<Dog>>();
+        Assert.AreSame(shared, root.Resolve<IRepository<Dog>>());
+
+        registration.AsMultiple();
+        Assert.AreNotSame(child.Resolve<IRepository<Dog>>(), child.Resolve<IRepository<Dog>>());
+    }
 }

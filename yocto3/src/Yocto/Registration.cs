@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Yocto;
@@ -15,6 +16,10 @@ internal sealed class Registration : IRegistration
     private IInstanceFactory _instanceFactory;
     private string _lifetime;
     private bool _released;
+
+    // Closed generic and concrete-key registrations derived from this one. Kept here rather than per resolving container
+    // so every container shares them and a lifetime change or removal releases all of them.
+    private readonly ConcurrentDictionary<(Type ServiceType, object? Key), Registration> _derived = new();
     private object?[] _options;
 
     public Registration(Container owner, Type serviceType,
@@ -97,11 +102,43 @@ internal sealed class Registration : IRegistration
     {
         var implementationType = ImplementationType;
         if (IsOpenGeneric && implementationType is not null)
+        {
             implementationType = implementationType.MakeGenericType(serviceType.GetGenericArguments());
+            // The raw Type API cannot check open generic pairs at registration time; an unrelated pair never applies.
+            if (!serviceType.IsAssignableFrom(implementationType))
+                throw new ArgumentException($"[{implementationType.Name}] does not implement [{serviceType.Name}].", nameof(serviceType));
+        }
         return new Registration(Owner, serviceType, implementationType, _factory, serviceKey, _lifetime, _options, Sequence)
         {
             IsDerivedFromOpenGeneric = IsOpenGeneric || IsDerivedFromOpenGeneric,
         };
+    }
+
+    /// <summary>Returns the cached registration for a closed generic service or concrete key, creating it if needed.</summary>
+    public Registration GetOrDerive(Type serviceType, object? serviceKey)
+    {
+        var cacheKey = (serviceType, serviceKey);
+        if (_derived.TryGetValue(cacheKey, out var derived))
+            return derived;
+        lock (_lock)
+        {
+            if (_derived.TryGetValue(cacheKey, out derived))
+                return derived;
+            derived = Derive(serviceType, serviceKey);
+            if (!_released)
+                _derived[cacheKey] = derived;
+            return derived;
+        }
+    }
+
+    /// <summary>Releases and forgets every registration derived from this one.</summary>
+    public void ReleaseDerived()
+    {
+        foreach (var key in _derived.Keys)
+        {
+            if (_derived.TryRemove(key, out var derived))
+                derived.Release();
+        }
     }
 
     public IRegistration WithLifetime(string lifetime, params object?[] options)
@@ -127,7 +164,7 @@ internal sealed class Registration : IRegistration
         previous.Dispose();
         if (ReferenceEquals(previous, factory))
             return this;
-        Owner.OnLifetimeChanged(this);
+        ReleaseDerived();
         Owner.OnRegistrationsChanged();
         return this;
     }

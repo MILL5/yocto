@@ -17,6 +17,8 @@ dotnet add package yocto.Wpf
 Register at startup:
 
 ```csharp
+using Yocto;
+
 public partial class App : System.Windows.Application
 {
     protected override void OnStartup(StartupEventArgs e)

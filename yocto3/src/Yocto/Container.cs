@@ -18,7 +18,6 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
     private const int PruneThreshold = 256;
 
     private readonly ConcurrentDictionary<ServiceIdentifier, Registration[]> _registrations = new();
-    private readonly ConcurrentDictionary<(Registration Source, Type ServiceType, object? Key), Registration> _derived = new();
     private readonly ConcurrentDictionary<ServiceIdentifier, (long Version, Array Items)> _enumerables = new();
     private readonly Dictionary<Registration, object> _scoped = new(ReferenceEqualityComparer.Instance);
     private readonly List<object> _disposables = [];
@@ -101,8 +100,6 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
         Release([registration]);
     }
 
-    internal void OnLifetimeChanged(Registration registration) => ReleaseDerived(registration);
-
     internal void OnRegistrationsChanged() => Interlocked.Increment(ref _version);
 
     /// <summary>
@@ -173,17 +170,8 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
         OnRegistrationsChanged();
         foreach (var r in registrations)
         {
-            ReleaseDerived(r);
+            r.ReleaseDerived();
             r.Release();
-        }
-    }
-
-    private void ReleaseDerived(Registration source)
-    {
-        foreach (var key in _derived.Keys.Where(k => ReferenceEquals(k.Source, source)))
-        {
-            if (_derived.TryRemove(key, out var derived))
-                derived.Release();
         }
     }
 
@@ -346,7 +334,7 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
     private static List<Registration> Ordered(List<Registration> registrations) =>
         registrations.Count > 1 ? [.. registrations.OrderBy(r => r.Sequence)] : registrations;
 
-    private Registration? Close(Registration open, Type closedServiceType, object? key)
+    private static Registration? Close(Registration open, Type closedServiceType, object? key)
     {
         if (!RuntimeFeature.IsDynamicCodeSupported && closedServiceType.GetGenericArguments().Any(a => a.IsValueType))
             throw new InvalidOperationException($"Open generic services cannot be closed over value types when dynamic code is unsupported. [{closedServiceType}]");
@@ -361,18 +349,8 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
         }
     }
 
-    private Registration DeriveCached(Registration source, Type serviceType, object? key)
-    {
-        var cacheKey = (source, serviceType, key);
-        if (_derived.TryGetValue(cacheKey, out var derived))
-            return derived;
-        lock (_lock)
-        {
-            return _derived.TryGetValue(cacheKey, out derived)
-                ? derived
-                : _derived[cacheKey] = source.Derive(serviceType, key);
-        }
-    }
+    private static Registration DeriveCached(Registration source, Type serviceType, object? key) =>
+        source.GetOrDerive(serviceType, key);
 
     private static bool IsBuiltIn(Type serviceType) =>
         serviceType == typeof(IContainer) || serviceType == typeof(IServiceProvider) || serviceType == typeof(IKeyedServiceProvider)

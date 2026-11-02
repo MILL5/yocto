@@ -25,15 +25,16 @@ public static class Application
     /// <summary>Disposes the current container and restores its parent. No-op at the root.</summary>
     public static IContainer Pop()
     {
-        IContainer popped;
+        IContainer popped, parent;
         lock (s_lock)
         {
-            if (s_current.Parent is not { } parent)
+            if (s_current.Parent is not { } restored)
                 return s_current;
             popped = s_current;
+            parent = restored;
             Volatile.Write(ref s_current, parent);
         }
         popped.Dispose();
-        return Current;
+        return parent;
     }
 }

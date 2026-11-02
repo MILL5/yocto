@@ -63,7 +63,16 @@ internal abstract class OwnedInstanceFactory(LifetimeContext context) : IInstanc
         ObjectDisposedException.ThrowIf(Volatile.Read(ref _disposed) != 0, this);
         var instance = context.Activate(context.Owner);
         if (Disposal.IsDisposable(instance))
+        {
             context.TrackForDisposal(context.Owner, instance);
+            // Disposed while activating: Dispose may have missed this instance. Whoever untracks it disposes it.
+            if (Volatile.Read(ref _disposed) != 0)
+            {
+                if (context.Untrack(context.Owner, instance))
+                    Disposal.Dispose(instance);
+                throw new ObjectDisposedException(GetType().Name);
+            }
+        }
         return instance;
     }
 
