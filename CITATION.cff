@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use yocto in your work, please cite it as below."
+type: software
+title: "yocto: the tiny IoC container for .NET 10"
+abstract: >-
+  yocto is a free, open-source inversion-of-control (IoC) and dependency injection container for .NET 10.
+  It is a drop-in IServiceProvider for Microsoft.Extensions.DependencyInjection and ASP.NET Core, with keyed services,
+  open generics, scopes, child containers, per-thread and pooled lifetimes, build-time validation, and Native AOT support.
+authors:
+  - family-names: Crane
+    given-names: Richard
+    email: rich@mill5.com
+    affiliation: MILL5, LLC
+  - name: MILL5, LLC
+    website: https://mill5.com
+version: 3.0.0
+date-released: 2026-10-13
+license: Apache-2.0
+repository-code: https://github.com/MILL5/yocto
+url: https://mill5.github.io/yocto/
+keywords:
+  - dependency injection
+  - IoC container
+  - inversion of control
+  - .NET
+  - C#
+  - ASP.NET Core
+  - Native AOT

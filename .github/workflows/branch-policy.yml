@@ -1,0 +1,29 @@
+name: Branch policy
+
+# Enforces the promotion flow: feature/* -> develop -> main.
+# "source-branch" is a required status check in the main and develop rulesets.
+on:
+  pull_request:
+    branches: [main, develop]
+
+permissions: {}
+
+jobs:
+  source-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source branch
+        env:
+          BASE: ${{ github.base_ref }}
+          HEAD: ${{ github.head_ref }}
+          SAME_REPO: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        run: |
+          case "$BASE" in
+            main)
+              [ "$HEAD" = develop ] && [ "$SAME_REPO" = true ] && exit 0
+              echo "::error::main only accepts pull requests from develop (got '$HEAD')" ;;
+            develop)
+              case "$HEAD" in feature/*|dependabot/*) exit 0 ;; esac
+              echo "::error::develop only accepts pull requests from feature/* branches (got '$HEAD')" ;;
+          esac
+          exit 1

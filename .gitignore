@@ -234,3 +234,10 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# GitHub Pages (Jekyll) build output for yocto3/docs
+yocto3/docs/_site/
+yocto3/docs/.jekyll-cache/
+yocto3/docs/vendor/
+yocto3/docs/.bundle/
+yocto3/docs/_includes/CHANGELOG.md

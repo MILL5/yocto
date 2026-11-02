@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <PackageId>yocto.Wpf</PackageId>
+    <Title>yocto.Wpf — resolve view models in XAML with yocto</Title>
+    <Description>WPF XAML markup extension ({yocto:Resolve}) that resolves view models and services from the yocto IoC container on .NET 10.</Description>
+    <PackageTags>ioc;di;dependency-injection;wpf;xaml;mvvm;yocto</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>yocto.png</PackageIcon>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\..\docs\assets\yocto.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yocto\Yocto.csproj" />
+  </ItemGroup>
+
+</Project>
