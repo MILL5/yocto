@@ -117,7 +117,7 @@ internal sealed class Registration : IRegistration
         }
         previous.Dispose();
         Owner.OnLifetimeChanged(this);
-        Yocto.Container.OnRegistrationsChanged();
+        Owner.OnRegistrationsChanged();
         return this;
     }
 

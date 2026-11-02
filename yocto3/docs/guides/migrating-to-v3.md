@@ -16,7 +16,7 @@ yocto 3 is a ground-up rewrite for .NET 10. Every 1.x/2.x feature is still there
 | `Application.Current.GetChildContainer()` | `container.CreateChildContainer()` (returns `IContainer`) |
 | `IChildContainer` | `IContainer` (every container is disposable and has `Parent`) |
 | `new Container()` was internal; use `Application.Current` | `new Container()` |
-| Register<T, V>() needed dependencies registered first | Constructors are chosen on first resolve; registration order doesn't matter |
+| Register<T, V>() needed dependencies registered first | Constructors are chosen at resolve time from current registrations; registration order doesn't matter |
 | Ambiguous constructor = any two satisfiable | Greediest satisfiable constructor wins, if it's a superset of the others |
 | `Instancing.MultiInstance`, `SingletonInstance`, … | `Lifetimes.Multiple`, `Singleton`, `Scoped`, `PerThread`, `Pooled`, `Instance` |
 | `registration.Register(lifetime, values)` | `registration.WithLifetime(lifetime, options)` |

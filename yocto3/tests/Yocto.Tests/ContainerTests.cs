@@ -85,4 +85,51 @@ public sealed class ContainerTests
         Assert.IsInstanceOfType<Dog>(host.Services.GetRequiredService<IPerson>().Pet);
         await host.StopAsync();
     }
+
+    [TestMethod]
+    public void EnumerableCache_IsNotInvalidatedByUnrelatedContainer()
+    {
+        using var a = new Container();
+        a.RegisterEnumerable<IAnimal, Dog>().AsSingleton();
+        a.RegisterEnumerable<IAnimal, Cat>().AsSingleton();
+        var first = a.Resolve<IEnumerable<IAnimal>>();
+
+        var b = new Container();
+        var registration = b.Register<IPerson, Person>();
+        Assert.AreSame(first, a.Resolve<IEnumerable<IAnimal>>());
+        registration.AsSingleton();
+        Assert.AreSame(first, a.Resolve<IEnumerable<IAnimal>>());
+        b.Dispose();
+        Assert.AreSame(first, a.Resolve<IEnumerable<IAnimal>>());
+    }
+
+    [TestMethod]
+    public void EnumerableCache_SeesParentRegistration()
+    {
+        using var root = new Container();
+        root.RegisterEnumerable<IAnimal, Dog>().AsSingleton();
+        using var child = root.CreateChildContainer();
+        Assert.AreEqual(1, child.Resolve<IEnumerable<IAnimal>>().Count());
+
+        root.RegisterEnumerable<IAnimal, Cat>().AsSingleton();
+        Assert.AreEqual(2, child.Resolve<IEnumerable<IAnimal>>().Count());
+    }
+
+    [TestMethod]
+    public void Unregister_ConcurrentWithRegisterEnumerable_IsLinearizable()
+    {
+        using var c = new Container();
+        for (var i = 0; i < 2000; i++)
+        {
+            c.RegisterEnumerable<IAnimal, Dog>();
+            Parallel.Invoke(
+                () => c.Unregister<IAnimal>(),
+                () => c.RegisterEnumerable<IAnimal, Cat>());
+
+            var animals = c.ResolveAll<IAnimal>();
+            Assert.IsTrue(animals.Count == 0 || (animals.Count == 1 && animals[0] is Cat),
+                $"Iteration {i}: [{string.Join(", ", animals.Select(a => a.GetType().Name))}]");
+            c.Unregister<IAnimal>();
+        }
+    }
 }

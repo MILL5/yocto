@@ -16,7 +16,6 @@ namespace Yocto;
 public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKeyedService, ISupportRequiredService
 {
     private const int PruneThreshold = 256;
-    private static long s_version;
 
     private readonly ConcurrentDictionary<ServiceIdentifier, Registration[]> _registrations = new();
     private readonly ConcurrentDictionary<(Registration Source, Type ServiceType, object? Key), Registration> _derived = new();
@@ -30,6 +29,7 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
     private readonly Container _scopeRoot;
     private ScopeFactory? _scopeFactory;
     private int _pruneAt = PruneThreshold;
+    private long _version;
     private int _disposed;
 
     public Container()
@@ -73,8 +73,12 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
     public bool Unregister(Type serviceType, object? serviceKey = null)
     {
         ArgumentNullException.ThrowIfNull(serviceType);
-        if (!_registrations.TryRemove(new(serviceType, serviceKey), out var removed))
-            return false;
+        Registration[]? removed;
+        lock (_lock)
+        {
+            if (!_registrations.TryRemove(new(serviceType, serviceKey), out removed))
+                return false;
+        }
         Release(removed);
         return true;
     }
@@ -99,7 +103,22 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
 
     internal void OnLifetimeChanged(Registration registration) => ReleaseDerived(registration);
 
-    internal static void OnRegistrationsChanged() => Interlocked.Increment(ref s_version);
+    internal void OnRegistrationsChanged() => Interlocked.Increment(ref _version);
+
+    /// <summary>
+    /// Changes whenever a registration changes in this container or an ancestor: the sum of their versions, which only
+    /// increase. Unrelated containers do not affect it.
+    /// </summary>
+    internal long RegistrationStamp
+    {
+        get
+        {
+            long stamp = 0;
+            for (var c = this; c is not null; c = c._parent)
+                stamp += Volatile.Read(ref c._version);
+            return stamp;
+        }
+    }
 
     private Registration CreateRegistration(Type serviceType,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] Type implementationType,
@@ -145,12 +164,14 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
         return registration;
     }
 
-    private static void Release(Registration[] registrations)
+    private void Release(Registration[] registrations)
     {
+        if (registrations.Length == 0)
+            return;
         OnRegistrationsChanged();
         foreach (var r in registrations)
         {
-            r.Owner.ReleaseDerived(r);
+            ReleaseDerived(r);
             r.Release();
         }
     }
@@ -220,7 +241,7 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
     private Array ResolveEnumerable(Type elementType, object? serviceKey)
     {
         var id = new ServiceIdentifier(elementType, serviceKey);
-        var version = Volatile.Read(ref s_version);
+        var version = RegistrationStamp;
         if (_enumerables.TryGetValue(id, out var cached) && cached.Version == version)
             return cached.Items;
 

@@ -120,7 +120,6 @@ public sealed class RegistrationTests
         Assert.AreEqual(0, c.Resolve<Greedy>().Constructor);
 
         c.Register<IAnimal, Dog>();
-        c.Register<Greedy>();
         Assert.AreEqual(1, c.Resolve<Greedy>().Constructor);
     }
 
@@ -162,5 +161,57 @@ public sealed class RegistrationTests
         using var c = new Container();
         Assert.AreSame(c, c.Resolve<IContainer>());
         Assert.AreSame(c, c.Resolve<IServiceProvider>());
+    }
+
+    [TestMethod]
+    public void Constructor_IsReselected_AfterDependencyUnregistered()
+    {
+        using var c = new Container();
+        c.Register<Greedy>();
+        c.Register<IAnimal, Dog>();
+        c.Register<IPerson, Person>();
+        Assert.AreEqual(2, c.Resolve<Greedy>().Constructor);
+
+        c.Unregister<IPerson>();
+        Assert.AreEqual(1, c.Resolve<Greedy>().Constructor);
+    }
+
+    [TestMethod]
+    public void ChildFirstResolve_DoesNotBreakParent()
+    {
+        using var root = new Container();
+        root.Register<Greedy>();
+        root.Register<IAnimal, Dog>();
+        using var child = root.CreateChildContainer();
+        child.Register<IPerson, Person>();
+
+        Assert.AreEqual(1, child.Resolve<Greedy>().Constructor);
+        Assert.AreEqual(1, root.Resolve<Greedy>().Constructor);
+    }
+
+    [TestMethod]
+    public void Validate_FromChild_DoesNotBreakParentResolve()
+    {
+        using var root = new Container();
+        root.Register<Greedy>();
+        root.Register<IAnimal, Dog>();
+        using var child = root.CreateChildContainer();
+        child.Register<IPerson, Person>();
+
+        child.Validate();
+        Assert.AreEqual(1, root.Resolve<Greedy>().Constructor);
+    }
+
+    [TestMethod]
+    public void ChildOnlyDependency_FallsBackToResolvingContainer()
+    {
+        using var root = new Container();
+        root.Register<Holder>();
+        using var child = root.CreateChildContainer();
+        child.Register<Disposable>();
+
+        Assert.IsNotNull(child.Resolve<Holder>().Scoped);
+        Assert.ThrowsExactly<InvalidOperationException>(() => root.Resolve<Holder>());
+        Assert.IsNotNull(child.Resolve<Holder>().Scoped);
     }
 }

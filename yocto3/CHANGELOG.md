@@ -21,7 +21,7 @@ A ground-up rewrite for .NET 10. The 1.x/2.x codebases (.NET Framework 4.0/4.7.2
 ### Changed
 - The namespace is now `Yocto` (was `yocto`).
 - `new Container()` is public. Child containers are `IContainer`.
-- Constructors are selected on first resolve: the greediest satisfiable constructor wins. Registration order no longer matters.
+- The greediest constructor satisfiable from the registration's container wins, and is selected again after registrations change. Registration order no longer matters.
 - Lifetimes are configured with `WithLifetime(name, options)`. Constants moved from `Instancing` to `Lifetimes`. `ILifetimeFactory` and `IInstanceFactory` were redesigned around `LifetimeContext`.
 - `RegisterEnumerable` replaces `AsEnumerable`. Enumerables are stored per container instead of in a static dictionary.
 - `RegisterInstance` no longer disposes the instance.
