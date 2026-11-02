@@ -1,0 +1,622 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-02T10:55:16+00:00",
+  "title": "Design System: yocto",
+  "extensions": {
+    "colorMeta": {
+      "signal-blue": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "#2563eb",
+        "tonalRamp": [
+          "oklch(15% 0.054 263)",
+          "oklch(26% 0.095 263)",
+          "oklch(38% 0.136 263)",
+          "oklch(49% 0.177 263)",
+          "oklch(61% 0.213 263)",
+          "oklch(72% 0.172 263)",
+          "oklch(84% 0.131 263)",
+          "oklch(95% 0.090 263)"
+        ]
+      },
+      "signal-blue-deep": {
+        "role": "primary",
+        "displayName": "Signal Blue Deep",
+        "canonical": "#1d4ed8",
+        "tonalRamp": [
+          "oklch(15% 0.054 264)",
+          "oklch(26% 0.096 264)",
+          "oklch(38% 0.137 264)",
+          "oklch(49% 0.178 264)",
+          "oklch(61% 0.215 264)",
+          "oklch(72% 0.173 264)",
+          "oklch(84% 0.132 264)",
+          "oklch(95% 0.090 264)"
+        ]
+      },
+      "signal-blue-wash": {
+        "role": "primary",
+        "displayName": "Signal Wash",
+        "canonical": "#e8f0ff",
+        "tonalRamp": [
+          "oklch(15% 0.005 263)",
+          "oklch(26% 0.010 263)",
+          "oklch(38% 0.014 263)",
+          "oklch(49% 0.018 263)",
+          "oklch(61% 0.022 263)",
+          "oklch(72% 0.018 263)",
+          "oklch(84% 0.013 263)",
+          "oklch(95% 0.009 263)"
+        ]
+      },
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Accent Ink",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "focus-amber": {
+        "role": "tertiary",
+        "displayName": "Focus Amber",
+        "canonical": "#9a6a00",
+        "tonalRamp": [
+          "oklch(15% 0.029 78)",
+          "oklch(26% 0.052 78)",
+          "oklch(38% 0.074 78)",
+          "oklch(49% 0.096 78)",
+          "oklch(61% 0.116 78)",
+          "oklch(72% 0.093 78)",
+          "oklch(84% 0.071 78)",
+          "oklch(95% 0.049 78)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#fbfcfe",
+        "tonalRamp": [
+          "oklch(15% 0.001 265)",
+          "oklch(26% 0.001 265)",
+          "oklch(38% 0.002 265)",
+          "oklch(49% 0.002 265)",
+          "oklch(61% 0.003 265)",
+          "oklch(72% 0.002 265)",
+          "oklch(84% 0.002 265)",
+          "oklch(95% 0.001 265)"
+        ]
+      },
+      "surface-white": {
+        "role": "neutral",
+        "displayName": "Surface White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#111827",
+        "tonalRamp": [
+          "oklch(15% 0.008 265)",
+          "oklch(26% 0.014 265)",
+          "oklch(38% 0.020 265)",
+          "oklch(49% 0.026 265)",
+          "oklch(61% 0.031 265)",
+          "oklch(72% 0.025 265)",
+          "oklch(84% 0.019 265)",
+          "oklch(95% 0.013 265)"
+        ]
+      },
+      "slate-muted": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#5b6475",
+        "tonalRamp": [
+          "oklch(15% 0.007 263)",
+          "oklch(26% 0.013 263)",
+          "oklch(38% 0.019 263)",
+          "oklch(49% 0.024 263)",
+          "oklch(61% 0.029 263)",
+          "oklch(72% 0.023 263)",
+          "oklch(84% 0.018 263)",
+          "oklch(95% 0.012 263)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e3e8f0",
+        "tonalRamp": [
+          "oklch(15% 0.003 260)",
+          "oklch(26% 0.005 260)",
+          "oklch(38% 0.008 260)",
+          "oklch(49% 0.010 260)",
+          "oklch(61% 0.012 260)",
+          "oklch(72% 0.010 260)",
+          "oklch(84% 0.007 260)",
+          "oklch(95% 0.005 260)"
+        ]
+      },
+      "code-wash": {
+        "role": "neutral",
+        "displayName": "Code Wash",
+        "canonical": "#f2f5fa",
+        "tonalRamp": [
+          "oklch(15% 0.002 261)",
+          "oklch(26% 0.003 261)",
+          "oklch(38% 0.005 261)",
+          "oklch(49% 0.006 261)",
+          "oklch(61% 0.007 261)",
+          "oklch(72% 0.006 261)",
+          "oklch(84% 0.004 261)",
+          "oklch(95% 0.003 261)"
+        ]
+      },
+      "syntax-keyword": {
+        "role": "syntax",
+        "displayName": "Syntax Keyword",
+        "canonical": "#2563eb",
+        "tonalRamp": [
+          "oklch(15% 0.054 263)",
+          "oklch(26% 0.095 263)",
+          "oklch(38% 0.136 263)",
+          "oklch(49% 0.177 263)",
+          "oklch(61% 0.213 263)",
+          "oklch(72% 0.172 263)",
+          "oklch(84% 0.131 263)",
+          "oklch(95% 0.090 263)"
+        ]
+      },
+      "syntax-string": {
+        "role": "syntax",
+        "displayName": "Syntax String",
+        "canonical": "#0f766e",
+        "tonalRamp": [
+          "oklch(15% 0.022 186)",
+          "oklch(26% 0.038 186)",
+          "oklch(38% 0.054 186)",
+          "oklch(49% 0.071 186)",
+          "oklch(61% 0.085 186)",
+          "oklch(72% 0.069 186)",
+          "oklch(84% 0.052 186)",
+          "oklch(95% 0.036 186)"
+        ]
+      },
+      "syntax-type": {
+        "role": "syntax",
+        "displayName": "Syntax Type",
+        "canonical": "#a1580b",
+        "tonalRamp": [
+          "oklch(15% 0.031 58)",
+          "oklch(26% 0.055 58)",
+          "oklch(38% 0.078 58)",
+          "oklch(49% 0.102 58)",
+          "oklch(61% 0.122 58)",
+          "oklch(72% 0.099 58)",
+          "oklch(84% 0.075 58)",
+          "oklch(95% 0.052 58)"
+        ]
+      },
+      "syntax-number": {
+        "role": "syntax",
+        "displayName": "Syntax Number",
+        "canonical": "#b4235a",
+        "tonalRamp": [
+          "oklch(15% 0.046 4)",
+          "oklch(26% 0.080 4)",
+          "oklch(38% 0.115 4)",
+          "oklch(49% 0.150 4)",
+          "oklch(61% 0.180 4)",
+          "oklch(72% 0.145 4)",
+          "oklch(84% 0.111 4)",
+          "oklch(95% 0.076 4)"
+        ]
+      },
+      "night-paper": {
+        "role": "neutral",
+        "displayName": "Night Paper",
+        "canonical": "#0b1220",
+        "tonalRamp": [
+          "oklch(15% 0.008 263)",
+          "oklch(26% 0.014 263)",
+          "oklch(38% 0.019 263)",
+          "oklch(49% 0.025 263)",
+          "oklch(61% 0.031 263)",
+          "oklch(72% 0.025 263)",
+          "oklch(84% 0.019 263)",
+          "oklch(95% 0.013 263)"
+        ],
+        "scheme": "dark"
+      },
+      "night-surface": {
+        "role": "neutral",
+        "displayName": "Night Surface",
+        "canonical": "#111a2e",
+        "tonalRamp": [
+          "oklch(15% 0.010 265)",
+          "oklch(26% 0.018 265)",
+          "oklch(38% 0.026 265)",
+          "oklch(49% 0.034 265)",
+          "oklch(61% 0.041 265)",
+          "oklch(72% 0.033 265)",
+          "oklch(84% 0.025 265)",
+          "oklch(95% 0.017 265)"
+        ],
+        "scheme": "dark"
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink",
+        "canonical": "#e6edf7",
+        "tonalRamp": [
+          "oklch(15% 0.004 257)",
+          "oklch(26% 0.007 257)",
+          "oklch(38% 0.010 257)",
+          "oklch(49% 0.013 257)",
+          "oklch(61% 0.015 257)",
+          "oklch(72% 0.012 257)",
+          "oklch(84% 0.009 257)",
+          "oklch(95% 0.006 257)"
+        ],
+        "scheme": "dark"
+      },
+      "night-muted": {
+        "role": "neutral",
+        "displayName": "Night Muted",
+        "canonical": "#9aa8c0",
+        "tonalRamp": [
+          "oklch(15% 0.010 261)",
+          "oklch(26% 0.017 261)",
+          "oklch(38% 0.024 261)",
+          "oklch(49% 0.031 261)",
+          "oklch(61% 0.038 261)",
+          "oklch(72% 0.031 261)",
+          "oklch(84% 0.023 261)",
+          "oklch(95% 0.016 261)"
+        ],
+        "scheme": "dark"
+      },
+      "night-hairline": {
+        "role": "neutral",
+        "displayName": "Night Hairline",
+        "canonical": "#22304a",
+        "tonalRamp": [
+          "oklch(15% 0.013 262)",
+          "oklch(26% 0.022 262)",
+          "oklch(38% 0.032 262)",
+          "oklch(49% 0.042 262)",
+          "oklch(61% 0.050 262)",
+          "oklch(72% 0.041 262)",
+          "oklch(84% 0.031 262)",
+          "oklch(95% 0.021 262)"
+        ],
+        "scheme": "dark"
+      },
+      "night-signal-blue": {
+        "role": "primary",
+        "displayName": "Night Signal Blue",
+        "canonical": "#60a5fa",
+        "tonalRamp": [
+          "oklch(15% 0.036 255)",
+          "oklch(26% 0.063 255)",
+          "oklch(38% 0.090 255)",
+          "oklch(49% 0.118 255)",
+          "oklch(61% 0.142 255)",
+          "oklch(72% 0.114 255)",
+          "oklch(84% 0.087 255)",
+          "oklch(95% 0.060 255)"
+        ],
+        "scheme": "dark"
+      },
+      "night-signal-blue-hover": {
+        "role": "primary",
+        "displayName": "Night Signal Blue Hover",
+        "canonical": "#93c5fd",
+        "tonalRamp": [
+          "oklch(15% 0.024 252)",
+          "oklch(26% 0.042 252)",
+          "oklch(38% 0.060 252)",
+          "oklch(49% 0.079 252)",
+          "oklch(61% 0.094 252)",
+          "oklch(72% 0.076 252)",
+          "oklch(84% 0.058 252)",
+          "oklch(95% 0.040 252)"
+        ],
+        "scheme": "dark"
+      },
+      "night-signal-wash": {
+        "role": "primary",
+        "displayName": "Night Signal Wash",
+        "canonical": "#172554",
+        "tonalRamp": [
+          "oklch(15% 0.022 268)",
+          "oklch(26% 0.039 268)",
+          "oklch(38% 0.055 268)",
+          "oklch(49% 0.072 268)",
+          "oklch(61% 0.086 268)",
+          "oklch(72% 0.070 268)",
+          "oklch(84% 0.053 268)",
+          "oklch(95% 0.036 268)"
+        ],
+        "scheme": "dark"
+      },
+      "night-code-wash": {
+        "role": "neutral",
+        "displayName": "Night Code Wash",
+        "canonical": "#16213a",
+        "tonalRamp": [
+          "oklch(15% 0.013 265)",
+          "oklch(26% 0.022 265)",
+          "oklch(38% 0.032 265)",
+          "oklch(49% 0.041 265)",
+          "oklch(61% 0.050 265)",
+          "oklch(72% 0.040 265)",
+          "oklch(84% 0.030 265)",
+          "oklch(95% 0.021 265)"
+        ],
+        "scheme": "dark"
+      },
+      "night-focus-amber": {
+        "role": "tertiary",
+        "displayName": "Night Focus Amber",
+        "canonical": "#f2b51c",
+        "tonalRamp": [
+          "oklch(15% 0.040 83)",
+          "oklch(26% 0.071 83)",
+          "oklch(38% 0.102 83)",
+          "oklch(49% 0.132 83)",
+          "oklch(61% 0.159 83)",
+          "oklch(72% 0.128 83)",
+          "oklch(84% 0.098 83)",
+          "oklch(95% 0.067 83)"
+        ],
+        "scheme": "dark"
+      },
+      "night-syntax-string": {
+        "role": "syntax",
+        "displayName": "Night Syntax String",
+        "canonical": "#6fd3c4",
+        "tonalRamp": [
+          "oklch(15% 0.024 183)",
+          "oklch(26% 0.043 183)",
+          "oklch(38% 0.061 183)",
+          "oklch(49% 0.080 183)",
+          "oklch(61% 0.096 183)",
+          "oklch(72% 0.077 183)",
+          "oklch(84% 0.059 183)",
+          "oklch(95% 0.040 183)"
+        ],
+        "scheme": "dark"
+      },
+      "night-syntax-type": {
+        "role": "syntax",
+        "displayName": "Night Syntax Type",
+        "canonical": "#f2c25c",
+        "tonalRamp": [
+          "oklch(15% 0.033 84)",
+          "oklch(26% 0.058 84)",
+          "oklch(38% 0.083 84)",
+          "oklch(49% 0.108 84)",
+          "oklch(61% 0.130 84)",
+          "oklch(72% 0.105 84)",
+          "oklch(84% 0.080 84)",
+          "oklch(95% 0.055 84)"
+        ],
+        "scheme": "dark"
+      },
+      "night-syntax-number": {
+        "role": "syntax",
+        "displayName": "Night Syntax Number",
+        "canonical": "#ff8fb4",
+        "tonalRamp": [
+          "oklch(15% 0.035 360)",
+          "oklch(26% 0.062 360)",
+          "oklch(38% 0.089 360)",
+          "oklch(49% 0.115 360)",
+          "oklch(61% 0.139 360)",
+          "oklch(72% 0.112 360)",
+          "oklch(84% 0.085 360)",
+          "oklch(95% 0.058 360)"
+        ],
+        "scheme": "dark"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "h1: page titles and the home hero headline."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "h2 section breaks (browser default size)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles, FAQ questions, family items."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Single muted intro paragraph under the home h1."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Prose, capped at the 46rem prose column."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Breadcrumb and Last-reviewed meta line."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Inline code and code blocks."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "border-hover",
+        "value": "border-color .15s ease-out",
+        "purpose": "Card border shift to Signal Blue on hover/focus-within. The only declared transition."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "hero-stack",
+        "value": "640px",
+        "purpose": "max-width: hero collapses to one column and hides the logo."
+      }
+    ],
+    "focus": {
+      "value": "outline: 3px solid var(--focus); outline-offset: 2px",
+      "purpose": "Keyboard focus on links and FAQ summaries."
+    },
+    "colorScheme": "Light and dark via prefers-color-scheme; night-* tokens are the dark values of the same custom properties in yocto3/docs/assets/css/site.css."
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solid Signal Blue call to action; one per action row.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Get started</a>",
+      "css": ".ds-btn-primary { display: inline-block; padding: .65rem 1.1rem; border-radius: 10px; background: var(--accent, #2563eb); color: var(--accent-ink, #fff); text-decoration: none; font-weight: 600; font-family: ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif; } .ds-btn-primary:hover { background: var(--accent-hover, #1d4ed8); } .ds-btn-primary:focus-visible { outline: 3px solid var(--focus, #9a6a00); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Hairline-bordered outbound link button (GitHub, NuGet).",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\">View on GitHub</a>",
+      "css": ".ds-btn-secondary { display: inline-block; padding: .65rem 1.1rem; border-radius: 10px; background: transparent; color: var(--text, #111827); border: 1px solid var(--border, #e3e8f0); text-decoration: none; font-weight: 600; font-family: ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif; } .ds-btn-secondary:hover { background: var(--accent-soft, #e8f0ff); border-color: var(--accent, #2563eb); } .ds-btn-secondary:focus-visible { outline: 3px solid var(--focus, #9a6a00); outline-offset: 2px; }"
+    },
+    {
+      "name": "Feature Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat surface tile in auto-fill grids; border turns blue on hover/focus-within.",
+      "html": "<div class=\"ds-card\"><h3>Child containers</h3><p>Override registrations per test, tenant, or window.</p></div>",
+      "css": ".ds-card { background: var(--surface, #fff); border: 1px solid var(--border, #e3e8f0); border-radius: 10px; padding: 1.1rem 1.2rem; transition: border-color .15s ease-out; font-family: ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif; color: var(--text, #111827); max-width: 18rem; } .ds-card:hover, .ds-card:focus-within { border-color: var(--accent, #2563eb); } .ds-card h3 { margin: 0 0 .35rem; font-size: 1.05rem; line-height: 1.25; } .ds-card p { margin: 0; color: var(--muted, #5b6475); font-size: .95rem; line-height: 1.6; }"
+    },
+    {
+      "name": "Site Navigation",
+      "kind": "nav",
+      "refersTo": "site-header",
+      "description": "Surface header bar: logo + lowercase wordmark left, muted links right.",
+      "html": "<header class=\"ds-header\"><a class=\"ds-brand\" href=\"#\"><svg width=\"32\" height=\"32\" viewBox=\"0 0 512 512\" aria-hidden=\"true\"><defs><linearGradient id=\"dsg\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0\" stop-color=\"#2563eb\"/><stop offset=\"1\" stop-color=\"#06b6d4\"/></linearGradient></defs><rect x=\"16\" y=\"16\" width=\"480\" height=\"480\" rx=\"112\" fill=\"url(#dsg)\"/><rect x=\"112\" y=\"112\" width=\"288\" height=\"288\" rx=\"64\" fill=\"none\" stroke=\"#fff\" stroke-width=\"28\" opacity=\".55\"/><rect x=\"184\" y=\"184\" width=\"144\" height=\"144\" rx=\"36\" fill=\"none\" stroke=\"#fff\" stroke-width=\"28\" opacity=\".8\"/><circle cx=\"256\" cy=\"256\" r=\"26\" fill=\"#fff\"/></svg><span>yocto</span></a><nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Getting started</a><a href=\"#\">Guides</a><a href=\"#\">FAQ</a><a href=\"#\">GitHub</a></nav></header>",
+      "css": ".ds-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; min-height: 4rem; padding: 0 1.25rem; background: var(--surface, #fff); border-bottom: 1px solid var(--border, #e3e8f0); font-family: ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif; } .ds-brand { display: flex; align-items: center; gap: .5rem; font-weight: 700; font-size: 1.15rem; color: var(--text, #111827); text-decoration: none; } .ds-nav { display: flex; gap: 1.25rem; flex-wrap: wrap; } .ds-nav a { color: var(--muted, #5b6475); text-decoration: none; font-weight: 500; } .ds-nav a:hover, .ds-nav a[aria-current=\"page\"] { color: var(--text, #111827); } .ds-header a:focus-visible { outline: 3px solid var(--focus, #9a6a00); outline-offset: 2px; }"
+    },
+    {
+      "name": "Code Block",
+      "kind": "custom",
+      "refersTo": "code-block",
+      "description": "Tinted, hairline-bordered C# block with Rouge syntax colors.",
+      "html": "<pre class=\"ds-pre\"><code><span class=\"k\">using</span> <span class=\"k\">var</span> container = <span class=\"k\">new</span> <span class=\"nc\">Container</span>();\ncontainer.<span class=\"nf\">RegisterSingleton</span>&lt;<span class=\"nc\">IClock</span>, <span class=\"nc\">SystemClock</span>&gt;();  <span class=\"c1\">// one instance</span>\n<span class=\"k\">var</span> s = <span class=\"s\">\"yocto\"</span>; <span class=\"k\">int</span> n = <span class=\"mi\">143</span>;</code></pre>",
+      "css": ".ds-pre { background: var(--code-bg, #f2f5fa); border: 1px solid var(--border, #e3e8f0); border-radius: 10px; padding: 1rem; overflow-x: auto; line-height: 1.45; font-family: ui-monospace, \"SF Mono\", \"Cascadia Code\", Menlo, Consolas, monospace; font-size: .9em; color: var(--text, #111827); } .ds-pre .k { color: var(--syn-keyword, #2563eb); } .ds-pre .s { color: var(--syn-string, #0f766e); } .ds-pre .c1 { color: var(--muted, #5b6475); font-style: italic; } .ds-pre .nc, .ds-pre .nf { color: var(--syn-type, #a1580b); } .ds-pre .mi { color: var(--syn-number, #b4235a); }"
+    },
+    {
+      "name": "FAQ Disclosure",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Native details rows with a blue +/– glyph; first item open.",
+      "html": "<div class=\"ds-faq\"><details open><summary><h3>What is yocto?</h3></summary><p>A tiny IoC container for .NET 10.</p></details><details><summary><h3>How do I install yocto?</h3></summary><p>Run dotnet add package yocto.</p></details></div>",
+      "css": ".ds-faq { font-family: ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif; color: var(--text, #111827); line-height: 1.6; } .ds-faq details { border-bottom: 1px solid var(--border, #e3e8f0); padding: .75rem 0; } .ds-faq summary { cursor: pointer; list-style: none; } .ds-faq summary::-webkit-details-marker { display: none; } .ds-faq summary h3 { display: inline; font-size: 1.05rem; margin: 0; } .ds-faq summary::before { content: \"+\"; display: inline-block; width: 1.25rem; color: var(--accent, #2563eb); font-weight: 700; } .ds-faq details[open] summary::before { content: \"\\2013\"; } .ds-faq summary:focus-visible { outline: 3px solid var(--focus, #9a6a00); outline-offset: 2px; }"
+    },
+    {
+      "name": "Comparison Table",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Hairline-ruled, horizontally scrolling table; surface header cells.",
+      "html": "<table class=\"ds-table\"><thead><tr><th></th><th>yocto 3</th><th>MEDI 10</th></tr></thead><tbody><tr><td>Child containers</td><td>Yes</td><td>No</td></tr><tr><td>Pooled lifetime</td><td>Yes</td><td>No</td></tr></tbody></table>",
+      "css": ".ds-table { border-collapse: collapse; width: 100%; font-size: .95rem; display: block; overflow-x: auto; font-family: ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif; color: var(--text, #111827); } .ds-table th, .ds-table td { border-bottom: 1px solid var(--border, #e3e8f0); padding: .6rem .75rem; text-align: left; vertical-align: top; } .ds-table th { background: var(--surface, #fff); }"
+    },
+    {
+      "name": "Callout",
+      "kind": "custom",
+      "refersTo": "callout",
+      "description": "Defined in site.css but unused on current pages: boxed note with uppercase blue tag.",
+      "html": "<div class=\"ds-callout\">Child containers are disposed with their parent.</div>",
+      "css": ".ds-callout { border: 1px solid var(--border, #e3e8f0); background: var(--surface, #fff); padding: .75rem 1rem; border-radius: 10px; font-family: ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif; color: var(--text, #111827); } .ds-callout::before { content: \"Note\"; display: block; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--accent, #2563eb); margin-bottom: .25rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Readable Afternoon",
+    "overview": "The site is a plain, quiet technical reading surface that mirrors the library it documents: one stylesheet of about 130 lines, one layout, system fonts, no JavaScript, no imagery beyond the logo. Everything sits on a near-white paper (or deep navy at night) with a single blue accent that marks what is actionable: links, the primary button, card hover, the FAQ toggle glyph. Hierarchy comes from size, weight, and the muted/ink text contrast, not from color blocks or decoration.\n\nDensity is relaxed and prose-led. Content runs in a 46rem reading column inside a 72rem frame; only the home page breaks out to full frame width for its card grid and comparison table. Code blocks are first-class citizens, given a tinted wash, a hairline border, and the same 10px corner as cards and buttons, so C# reads as part of the page rather than a pasted inset.\n\nBoth color schemes are equal: every token has a light and a dark value switched by `prefers-color-scheme`, with no manual toggle. (inferred) The visual stance is \"a well-made README\": competent, calm, and out of the way of the code.",
+    "keyCharacteristics": [
+      "System UI sans for everything except code; system monospace for code.",
+      "One accent hue (blue), used for interaction only; amber reserved for keyboard focus.",
+      "Flat: hairline borders and tonal surfaces, zero shadows.",
+      "One corner radius (10px) for every container-like object; 4px for inline code.",
+      "Light and dark schemes driven entirely by CSS custom properties."
+    ],
+    "rules": [
+      {
+        "name": "The One Signal Rule",
+        "body": "Blue means \"you can act on this.\" It never fills a section background, decorates a heading, or appears as an illustration color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Amber Focus Rule",
+        "body": "Keyboard focus is always the 3px amber outline at 2px offset, never blue, so it stays distinguishable from links.",
+        "section": "colors"
+      },
+      {
+        "name": "The Paired Scheme Rule",
+        "body": "No color is introduced without both a light and a dark value in the `:root` custom-property blocks.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Webfont Rule",
+        "body": "Type is the system stack only; no font files are loaded.",
+        "section": "typography"
+      },
+      {
+        "name": "The Single Uppercase Rule",
+        "body": "Uppercase tracking is reserved for the callout \"Note\" tag.",
+        "section": "typography"
+      },
+      {
+        "name": "The Hairline Rule",
+        "body": "Separation is a 1px Hairline border or a surface tone change, never a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Border-Is-State Rule",
+        "body": "The only hover \"lift\" is a border-color change to Signal Blue (cards, secondary buttons), transitioned at 0.15s ease-out on cards.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** take every color from the `:root` custom properties and add both light and dark values for anything new.",
+      "**Do** use Signal Blue only for links and interactive affordances; keep focus as the 3px amber outline at 2px offset.",
+      "**Do** keep reading content inside the 46rem prose column; use `wide: true` only for grid- or table-heavy pages.",
+      "**Do** use the 10px radius and a 1px Hairline border for any new block container.",
+      "**Do** keep the system font stacks; code in the system monospace stack.",
+      "**Do** keep the yocto logo (`assets/yocto.svg` / `yocto.png`) and the lowercase \"yocto\" wordmark as shipped."
+    ],
+    "donts": [
+      "**Don't** add box-shadows, gradients (outside the logo), or background imagery; depth is hairlines and surface tone.",
+      "**Don't** load webfonts or icon fonts.",
+      "**Don't** introduce a second accent hue for UI; syntax colors stay inside code blocks.",
+      "**Don't** add client-side JavaScript for presentation (theme toggles, animated reveals); the dark scheme follows the OS.",
+      "**Don't** use uppercase tracking outside the callout tag."
+    ],
+    "provenance": "Recorded from shipped code without an owner interview; North Star, color names and philosophy lines are inferences."
+  }
+}
