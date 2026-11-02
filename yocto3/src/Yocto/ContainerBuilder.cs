@@ -33,7 +33,17 @@ public sealed class ContainerBuilder(IContainer? parent = null) : IRegistrar, ID
     {
         var container = Interlocked.Exchange(ref _container, null) ?? throw new InvalidOperationException("Container already built.");
         if (ValidateOnBuild)
-            container.Validate();
+        {
+            try
+            {
+                container.Validate();
+            }
+            catch
+            {
+                container.Dispose();
+                throw;
+            }
+        }
         return container;
     }
 

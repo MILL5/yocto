@@ -132,4 +132,36 @@ public sealed class ContainerTests
             c.Unregister<IAnimal>();
         }
     }
+
+    [TestMethod]
+    public void Build_ValidationFailure_DisposesContainer()
+    {
+        var disposable = new Disposable();
+        var builder = new ContainerBuilder { ValidateOnBuild = true };
+        builder.Register(() => disposable).AsSingleton(eagerLoad: true);
+        builder.Register<Holder>().AsSingleton();
+        builder.Register(() => new Disposable()).AsScoped();
+
+        Assert.ThrowsExactly<AggregateException>(() => builder.Build());
+        Assert.IsTrue(disposable.IsDisposed);
+    }
+
+    [TestMethod]
+    public void DisposedContainer_CanResolve_Throws()
+    {
+        var c = new Container();
+        c.Dispose();
+        Assert.ThrowsExactly<ObjectDisposedException>(() => c.CanResolve<IContainer>());
+    }
+
+    [TestMethod]
+    public void OpenGenericDefinition_IsNotResolvable()
+    {
+        using var c = new Container();
+        c.Register(typeof(IRepository<>), typeof(Repository<>));
+
+        Assert.IsFalse(c.CanResolve(typeof(IRepository<>)));
+        Assert.IsNull(((IServiceProvider)c).GetService(typeof(IRepository<>)));
+        Assert.ThrowsExactly<InvalidOperationException>(() => c.Resolve(typeof(IRepository<>)));
+    }
 }

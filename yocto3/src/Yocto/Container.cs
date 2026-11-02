@@ -170,8 +170,8 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
         OnRegistrationsChanged();
         foreach (var r in registrations)
         {
-            r.ReleaseDerived();
             r.Release();
+            r.ReleaseDerived();
         }
     }
 
@@ -182,6 +182,9 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
     public bool CanResolve(Type serviceType, object? serviceKey = null)
     {
         ArgumentNullException.ThrowIfNull(serviceType);
+        ThrowIfDisposed();
+        if (serviceType.IsGenericTypeDefinition)
+            return false;
         return FindSingle(serviceType, serviceKey) is not null
             || (serviceKey is null && IsBuiltIn(serviceType))
             || TryGetEnumerableElementType(serviceType, out _);
@@ -197,6 +200,13 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
     {
         ArgumentNullException.ThrowIfNull(serviceType);
         ThrowIfDisposed();
+
+        // An open generic definition is not a resolvable service; its registration has no activator or factory.
+        if (serviceType.IsGenericTypeDefinition)
+        {
+            instance = null;
+            return false;
+        }
 
         if (TryGetEnumerableElementType(serviceType, out var elementType))
         {
@@ -395,6 +405,8 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
         var key = (Registration)registration;
         lock (_scopedLock)
         {
+            // Rechecked under the lock that disposal uses to clear scoped instances.
+            ThrowIfDisposed();
             if (!_scoped.TryGetValue(key, out var instance))
                 _scoped[key] = instance = create();
             return instance;

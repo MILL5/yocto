@@ -132,13 +132,17 @@ internal sealed class Registration : IRegistration
     }
 
     /// <summary>Releases and forgets every registration derived from this one.</summary>
+    /// <remarks>Clears under the same lock <see cref="GetOrDerive"/> adds under, so nothing derived earlier survives.</remarks>
     public void ReleaseDerived()
     {
-        foreach (var key in _derived.Keys)
+        Registration[] released;
+        lock (_lock)
         {
-            if (_derived.TryRemove(key, out var derived))
-                derived.Release();
+            released = [.. _derived.Values];
+            _derived.Clear();
         }
+        foreach (var derived in released)
+            derived.Release();
     }
 
     public IRegistration WithLifetime(string lifetime, params object?[] options)
