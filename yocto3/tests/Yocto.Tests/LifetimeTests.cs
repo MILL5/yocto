@@ -106,4 +106,18 @@ public sealed class LifetimeTests
         {
         }
     }
+
+    [TestMethod]
+    public void WithLifetime_AfterRemove_ReleasesNewInstances()
+    {
+        using var c = new Container();
+        var created = new List<Disposable>();
+        var registration = c.Register(() => { var d = new Disposable(); created.Add(d); return d; });
+        registration.Remove();
+
+        registration.AsSingleton(eagerLoad: true);
+
+        Assert.HasCount(1, created);
+        Assert.IsTrue(created[0].IsDisposed);
+    }
 }

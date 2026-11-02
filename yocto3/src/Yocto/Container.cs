@@ -153,6 +153,8 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
         Registration[]? replaced = null;
         lock (_lock)
         {
+            // Rechecked under the lock: disposal snapshots registrations under it, so none can be added afterwards.
+            ThrowIfDisposed();
             _registrations.TryGetValue(id, out var existing);
             if (replace)
                 replaced = existing;
@@ -401,9 +403,9 @@ public sealed class Container : IContainer, IServiceScope, IServiceProviderIsKey
 
     private Container Attach(Container child)
     {
-        ThrowIfDisposed();
         lock (_lock)
         {
+            ThrowIfDisposed();
             _children.Add(child);
         }
         return child;

@@ -28,6 +28,7 @@ dotnet pack -c Release -o artifacts
 
 ```bash
 cd docs
+cp ../CHANGELOG.md _includes/CHANGELOG.md   # generated include; the Pages workflow does the same
 bundle install
 bundle exec jekyll serve --baseurl /yocto
 ```

@@ -14,6 +14,7 @@ internal sealed class Registration : IRegistration
     private readonly Lock _lock = new();
     private IInstanceFactory _instanceFactory;
     private string _lifetime;
+    private bool _released;
     private object?[] _options;
 
     public Registration(Container owner, Type serviceType,
@@ -110,12 +111,22 @@ internal sealed class Registration : IRegistration
         IInstanceFactory previous;
         lock (_lock)
         {
-            previous = _instanceFactory;
-            _lifetime = lifetime;
-            _options = options;
-            Volatile.Write(ref _instanceFactory, factory);
+            if (_released)
+            {
+                // Removed or replaced concurrently: nothing would ever release the new factory.
+                previous = factory;
+            }
+            else
+            {
+                previous = _instanceFactory;
+                _lifetime = lifetime;
+                _options = options;
+                Volatile.Write(ref _instanceFactory, factory);
+            }
         }
         previous.Dispose();
+        if (ReferenceEquals(previous, factory))
+            return this;
         Owner.OnLifetimeChanged(this);
         Owner.OnRegistrationsChanged();
         return this;
@@ -124,7 +135,16 @@ internal sealed class Registration : IRegistration
     public void Remove() => Owner.Remove(this);
 
     /// <summary>Releases instances owned by the current lifetime.</summary>
-    public void Release() => Volatile.Read(ref _instanceFactory).Dispose();
+    public void Release()
+    {
+        IInstanceFactory factory;
+        lock (_lock)
+        {
+            _released = true;
+            factory = _instanceFactory;
+        }
+        factory.Dispose();
+    }
 
     public override string ToString() =>
         $"{ServiceType.Name}{(ServiceKey is null ? "" : $" [{ServiceKey}]")} -> {ImplementationType?.Name ?? "factory"} ({_lifetime})";
