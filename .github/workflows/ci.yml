@@ -42,7 +42,7 @@ jobs:
       - name: Pack
         run: dotnet pack Yocto.slnx -c Release --no-build -o artifacts
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: packages
           path: yocto3/artifacts/
