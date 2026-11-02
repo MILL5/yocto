@@ -1,4 +1,7 @@
 ---
+next:
+  url: /guides/migrating-to-v3/
+  title: Migrating to yocto 3
 title: Validate yocto registrations and publish with Native AOT
 description: Detect missing, circular, and captive dependencies at startup with yocto's Validate, and publish trimmed or Native AOT .NET 10 apps that use the yocto IoC container.
 breadcrumb: Validation and Native AOT

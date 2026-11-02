@@ -25,7 +25,7 @@ faq:
       <a class="button secondary" href="{{ site.nuget_url }}">NuGet</a>
     </div>
   </div>
-  <img src="{{ '/assets/yocto.png' | relative_url }}" alt="yocto logo" width="112" height="112">
+  <img src="{{ '/assets/yocto.svg' | relative_url }}" alt="yocto logo" width="112" height="112">
 </section>
 
 ```bash
@@ -51,12 +51,12 @@ var greeter = container.Resolve<IGreeter>();      // Greeter(IClock) is construc
   <div class="card"><h3>Child containers</h3><p>Override registrations per test, tenant, or window. Children fall back to their parent and are disposed with it.</p></div>
   <div class="card"><h3>Fail fast</h3><p><code>Validate()</code> finds missing dependencies, circular references, and singletons that capture scoped services.</p></div>
   <div class="card"><h3>Native AOT ready</h3><p>Trimming and AOT annotations throughout, <code>IsAotCompatible</code> enforced in the build, no Reflection.Emit.</p></div>
-  <div class="card"><h3>Tiny</h3><p>About 1,200 lines of C#. Its only dependency is Microsoft’s DI abstractions package.</p></div>
+  <div class="card"><h3>Tiny</h3><p>About 1,200 lines of code, excluding comments. Its only dependency is Microsoft’s DI abstractions package.</p></div>
 </div>
 
 ## How yocto compares
 
-| | yocto 3 | Microsoft.Extensions.DependencyInjection 10 | Autofac 9 |
+| | yocto 3 | MEDI 10 (built-in) | Autofac 9 |
 |---|---|---|---|
 | Drop-in `IServiceProvider` for ASP.NET Core | ✅ | ✅ (built in) | ✅ (via Autofac.Extensions.DependencyInjection) |
 | Keyed services, open generics, `IEnumerable<T>` | ✅ | ✅ | ✅ |
@@ -77,6 +77,8 @@ Choose the built-in container when its feature set is enough. Choose yocto when 
   <div class="card"><h3><a href="{{ '/guides/aspnet-core/' | relative_url }}">ASP.NET Core and Generic Host</a></h3><p>Use yocto as the app's service provider.</p></div>
   <div class="card"><h3><a href="{{ '/guides/keyed-and-generic-services/' | relative_url }}">Keyed and generic services</a></h3><p>Service keys, <code>[FromKeyedServices]</code>, open generics, and enumerables.</p></div>
   <div class="card"><h3><a href="{{ '/guides/child-containers/' | relative_url }}">Child containers and scopes</a></h3><p>Overrides, disposal, <code>ContainerBuilder</code>, and <code>Application.Current</code>.</p></div>
+  <div class="card"><h3><a href="{{ '/guides/modules/' | relative_url }}">Modules and assembly registration</a></h3><p>Package registrations with the library that owns them.</p></div>
+  <div class="card"><h3><a href="{{ '/guides/wpf/' | relative_url }}">WPF and XAML</a></h3><p>Resolve view models in markup with <code>yocto.Wpf</code>.</p></div>
   <div class="card"><h3><a href="{{ '/guides/validation-and-aot/' | relative_url }}">Validation and Native AOT</a></h3><p>Catch wiring bugs at startup and publish trimmed.</p></div>
   <div class="card"><h3><a href="{{ '/guides/migrating-to-v3/' | relative_url }}">Migrating to yocto 3</a></h3><p>What changed from yocto 1.x and 2.x.</p></div>
 </div>

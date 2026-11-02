@@ -61,3 +61,7 @@ See [ASP.NET Core and Generic Host]({{ '/guides/aspnet-core/' | relative_url }})
 ## 6. Dispose
 
 Disposing a container disposes its child containers and every `IDisposable`/`IAsyncDisposable` instance it created, newest first. Prefer `await using` when services implement `IAsyncDisposable`.
+
+## Next
+
+[Lifetimes]({{ '/guides/lifetimes/' | relative_url }}) · [ASP.NET Core]({{ '/guides/aspnet-core/' | relative_url }}) · [All guides]({{ '/guides/' | relative_url }})

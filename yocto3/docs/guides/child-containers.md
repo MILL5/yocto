@@ -1,4 +1,7 @@
 ---
+next:
+  url: /guides/modules/
+  title: Modules and assembly registration
 title: Child containers, scopes, ContainerBuilder, and Application.Current in yocto
 description: Create child containers and scopes with yocto on .NET 10, override registrations, dispose hierarchies, build containers with ContainerBuilder, and use the ambient Application container.
 breadcrumb: Child containers and scopes

@@ -3,7 +3,7 @@
   <h2 id="faq-heading">{{ include.heading | default: "Frequently asked questions" }}</h2>
   {% for q in page.faq %}
   <details{% if forloop.first %} open{% endif %}>
-    <summary><h3>{{ q.q }}</h3></summary>
+    <summary><span class="q">{{ q.q }}</span></summary>
     {{ q.a | markdownify }}
   </details>
   {% endfor %}

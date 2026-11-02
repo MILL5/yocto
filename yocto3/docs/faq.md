@@ -3,7 +3,7 @@ title: yocto IoC container — frequently asked questions
 description: Answers about yocto, the tiny dependency injection container for .NET 10 — install, ASP.NET Core support, lifetimes, Native AOT, license, and comparisons with Autofac and Microsoft.Extensions.DependencyInjection.
 faq:
   - q: What is yocto?
-    a: yocto is a free, open-source (Apache 2.0) inversion-of-control (IoC) and dependency injection container for .NET 10 from MILL5. The name comes from the SI prefix for 10⁻²⁴ — it is deliberately tiny, about 1,200 lines of C#.
+    a: yocto is a free, open-source (Apache 2.0) inversion-of-control (IoC) and dependency injection container for .NET 10 from MILL5. The name comes from the SI prefix for 10⁻²⁴ — it is deliberately tiny, about 1,200 lines of C# (excluding comments).
   - q: How do I install yocto?
     a: "Run `dotnet add package yocto`, or add `<PackageReference Include=\"yocto\" Version=\"3.*\" />` to your project file. The WPF/XAML markup extension ships separately as `yocto.Wpf`."
   - q: Can yocto replace the built-in ASP.NET Core container?
@@ -32,4 +32,4 @@ faq:
 
 # Frequently asked questions
 
-{% include faq.html heading="yocto FAQ" %}
+{% include faq.html heading="Using yocto" %}

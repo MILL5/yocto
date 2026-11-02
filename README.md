@@ -8,7 +8,7 @@
 [![.NET 10](https://img.shields.io/badge/.NET-10-512BD4.svg)](https://dotnet.microsoft.com/download/dotnet/10.0)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/MILL5/yocto/blob/main/LICENSE)
 
-**yocto is a free, open-source inversion-of-control (IoC) and dependency injection container for .NET 10.** It is a drop-in `IServiceProvider` for ASP.NET Core and Microsoft.Extensions.DependencyInjection: it passes all 143 tests in Microsoft's DI specification suite. On top of that it adds child containers, per-thread and pooled lifetimes, modules, and build-time validation, in about 1,200 lines of C#.
+**yocto is a free, open-source inversion-of-control (IoC) and dependency injection container for .NET 10.** It is a drop-in `IServiceProvider` for ASP.NET Core and Microsoft.Extensions.DependencyInjection: it passes all 143 tests in Microsoft's DI specification suite. On top of that it adds child containers, per-thread and pooled lifetimes, modules, and build-time validation, in about 1,200 lines of C# (excluding comments).
 
 📖 **Documentation:** https://mill5.github.io/yocto/
 

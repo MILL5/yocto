@@ -1,4 +1,7 @@
 ---
+next:
+  url: /guides/validation-and-aot/
+  title: Validation and Native AOT
 title: Resolve view models in WPF XAML with yocto.Wpf
 description: Use the yocto.Wpf ResolveExtension markup extension to resolve view models and services from the yocto IoC container in WPF XAML on .NET 10.
 breadcrumb: WPF and XAML

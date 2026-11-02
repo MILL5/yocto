@@ -5,6 +5,8 @@ description: Guides for yocto, the tiny IoC container for .NET 10 — lifetimes,
 
 # Guides
 
+## All guides
+
 <div class="cards">
   <div class="card"><h3><a href="{{ '/guides/lifetimes/' | relative_url }}">Lifetimes</a></h3><p>Multiple, singleton, scoped, per-thread, pooled, instance, and custom.</p></div>
   <div class="card"><h3><a href="{{ '/guides/aspnet-core/' | relative_url }}">ASP.NET Core and Generic Host</a></h3><p>Use yocto as the app's <code>IServiceProvider</code>.</p></div>

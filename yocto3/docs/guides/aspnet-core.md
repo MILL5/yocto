@@ -1,4 +1,7 @@
 ---
+next:
+  url: /guides/keyed-and-generic-services/
+  title: Keyed and generic services
 title: Use yocto with ASP.NET Core and the .NET Generic Host
 description: Replace the default ASP.NET Core service provider with yocto on .NET 10 using YoctoServiceProviderFactory, ConfigureContainer, and BuildYoctoServiceProvider.
 breadcrumb: ASP.NET Core and Generic Host

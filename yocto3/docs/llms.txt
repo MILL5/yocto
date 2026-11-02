@@ -4,7 +4,7 @@ sitemap: false
 ---
 # yocto
 
-> yocto is a free, open-source (Apache-2.0) inversion-of-control (IoC) / dependency injection container for .NET 10 from MILL5. It is a drop-in IServiceProvider for Microsoft.Extensions.DependencyInjection and ASP.NET Core (passes all 143 tests in Microsoft.Extensions.DependencyInjection.Specification.Tests 10.0), and adds child containers, per-thread and pooled lifetimes, modules, and build-time validation in about 1,200 lines of C#. Install with `dotnet add package yocto`. Built by Microsoft MVP Richard Crane at MILL5.
+> yocto is a free, open-source (Apache-2.0) inversion-of-control (IoC) / dependency injection container for .NET 10 from MILL5. It is a drop-in IServiceProvider for Microsoft.Extensions.DependencyInjection and ASP.NET Core (passes all 143 tests in Microsoft.Extensions.DependencyInjection.Specification.Tests 10.0), and adds child containers, per-thread and pooled lifetimes, modules, and build-time validation in about 1,200 lines of C# (excluding comments). Install with `dotnet add package yocto`. Built by Microsoft MVP Richard Crane at MILL5.
 
 Key facts:
 - NuGet: yocto (core), yocto.Wpf (XAML markup extension) — version {{ site.version }}

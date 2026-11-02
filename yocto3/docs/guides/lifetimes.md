@@ -1,4 +1,7 @@
 ---
+next:
+  url: /guides/aspnet-core/
+  title: ASP.NET Core and Generic Host
 title: yocto lifetimes — transient, singleton, scoped, per-thread, pooled
 description: How yocto manages object lifetimes on .NET 10 — Multiple (transient), Singleton, Scoped, PerThread, Pooled, and Instance — plus custom lifetimes and disposal rules.
 breadcrumb: Lifetimes

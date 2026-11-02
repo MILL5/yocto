@@ -16,12 +16,12 @@
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="{{ '/' | relative_url }}">
-        <img src="{{ '/assets/yocto.png' | relative_url }}" alt="" width="32" height="32">
+        <img src="{{ '/assets/yocto.svg' | relative_url }}" alt="" width="32" height="32">
         <span>yocto</span>
       </a>
       <nav aria-label="Primary">
         {% for item in site.nav %}
-        <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+        <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% elsif page.url contains item.url %} aria-current="true"{% endif %}>{{ item.title }}</a>
         {% endfor %}
         <a href="{{ site.github_repo }}">GitHub</a>
       </nav>
@@ -37,6 +37,9 @@
     <article>
       {{ content }}
     </article>
+    {% if page.next %}
+    <p class="next">Next: <a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a></p>
+    {% endif %}
     {% if page.last_reviewed %}
     <p class="meta">Last reviewed {{ page.last_reviewed | date: "%B %-d, %Y" }} · yocto {{ site.version }}</p>
     {% endif %}

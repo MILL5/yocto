@@ -1,4 +1,7 @@
 ---
+next:
+  url: /guides/wpf/
+  title: WPF and XAML
 title: yocto modules and assembly registration
 description: Group registrations into IModule classes and register whole assemblies with yocto's AssemblyRegistration convention on .NET 10.
 breadcrumb: Modules

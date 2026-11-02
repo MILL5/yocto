@@ -1,4 +1,7 @@
 ---
+next:
+  url: /guides/child-containers/
+  title: Child containers and scopes
 title: Keyed services, open generics, and IEnumerable in yocto
 description: Register and resolve keyed services, open generic types like IRepository<T>, and multiple implementations as IEnumerable<T> with the yocto container for .NET 10.
 breadcrumb: Keyed and generic services
